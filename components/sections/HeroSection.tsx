@@ -19,6 +19,10 @@ export default function HeroSection() {
         </Canvas>
       </div>
 
+      <div className="absolute top-6 right-6 z-20 font-mono text-[10px] tracking-[0.2em] text-accent-blue/60 uppercase">
+        Développé par Teo Comyn
+      </div>
+
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
         <h1 className="flex font-serif text-[clamp(2.5rem,8vw,6.5rem)] font-normal leading-none tracking-tight text-text-primary drop-shadow-[0_0_20px_rgba(60,160,255,0.3)]">

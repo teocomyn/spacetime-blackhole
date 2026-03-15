@@ -52,7 +52,7 @@ export default function FooterSection() {
           
           <div className="font-mono text-[10px] text-text-dim tracking-wider flex flex-col gap-2 mt-8">
             <p>BASÉ SUR LES TRAVAUX DE: MALDACENA, PENROSE, HAWKING, RYU, TAKAYANAGI, VERLINDE, SUSSKIND</p>
-            <p>CRÉÉ AVEC CURIOSITÉ. <a href="https://github.com" className="hover:text-white underline decoration-white/20 underline-offset-4">CODE SOURCE</a></p>
+            <p>DÉVELOPPÉ PAR TEO COMYN. <a href="https://github.com/teocomyn/spacetime-blackhole" target="_blank" rel="noopener noreferrer" className="hover:text-white underline decoration-white/20 underline-offset-4 ml-1">CODE SOURCE</a></p>
           </div>
         </motion.div>
       </div>
