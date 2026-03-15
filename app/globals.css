@@ -1,27 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;600;700&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@700,500,300,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --bg-primary: #050610;
+  --bg-secondary: #0a0d1a;
+  --bg-panel: rgba(5, 6, 16, 0.85);
+  
+  --accent-blue: #3ca0ff;
+  --accent-cyan: #00e5ff;
+  --accent-orange: #ffa064;
+  --accent-red: #ff3c3c;
+  --accent-purple: #b480ff;
+  
+  --text-primary: #e0f0ff;
+  --text-secondary: #8ab8d8;
+  --text-muted: #4a6a85;
+  --text-dim: #2a4a60;
+  
+  --font-instrument: 'Instrument Serif', Georgia, serif;
+  --font-satoshi: 'Satoshi', sans-serif;
+  --font-geist-mono: 'Geist Mono', monospace;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  font-family: var(--font-satoshi);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(60, 160, 255, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(60, 160, 255, 0.4);
+}
+
+/* Selection */
+::selection {
+  background: rgba(60, 160, 255, 0.3);
+  color: #ffffff;
 }
