@@ -7,10 +7,11 @@ import * as THREE from "three";
 
 interface Props {
   eprStrength: number;
-  onUpdate: (stats: { qubits: number; links: number; fps: number }) => void;
+  onUpdate: (stats: { qubits: number; links: number }) => void;
 }
 
 export default function WormholeMode({ eprStrength, onUpdate }: Props) {
+  const lastReport = useRef(0);
   const clusterA = useMemo(() => new THREE.Vector3(-6, 0, 0), []);
   const clusterB = useMemo(() => new THREE.Vector3(6, 0, 0), []);
   
@@ -62,7 +63,11 @@ export default function WormholeMode({ eprStrength, onUpdate }: Props) {
 
     if (meshRef.current) meshRef.current.instanceMatrix.needsUpdate = true;
 
-    if (Math.random() < 0.05) onUpdate({ qubits: 40, links: Math.floor(eprStrength * 100), fps: 60 });
+    const now = performance.now();
+    if (now - lastReport.current > 400) {
+      lastReport.current = now;
+      onUpdate({ qubits: 40, links: Math.floor(eprStrength * 100) });
+    }
   });
 
   const tubeRadius = Math.max(0.01, eprStrength * 1.5);

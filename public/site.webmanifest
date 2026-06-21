@@ -1,0 +1,10 @@
+{
+  "name": "Emergent Spacetime",
+  "short_name": "Spacetime",
+  "description": "L'espace-temps émerge de l'intrication quantique",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050610",
+  "theme_color": "#050610",
+  "lang": "fr"
+}

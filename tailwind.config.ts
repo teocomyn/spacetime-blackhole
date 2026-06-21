@@ -26,9 +26,9 @@ const config: Config = {
         "text-dim": "var(--text-dim)",
       },
       fontFamily: {
-        serif: ["var(--font-instrument)"],
-        sans: ["var(--font-satoshi)"],
-        mono: ["var(--font-geist-mono)"],
+        serif: ["var(--font-instrument)", "Georgia", "serif"],
+        sans: ["var(--font-satoshi)", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
       },
       boxShadow: {
         'glow-blue': '0 0 30px rgba(60,160,255,0.15)',

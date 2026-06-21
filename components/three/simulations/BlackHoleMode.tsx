@@ -6,11 +6,12 @@ import * as THREE from "three";
 
 interface Props {
   mass: number;
-  onUpdate: (stats: { qubits: number; links: number; fps: number }) => void;
+  onUpdate: (stats: { qubits: number; links: number }) => void;
 }
 
 export default function BlackHoleMode({ mass, onUpdate }: Props) {
   const count = 3000;
+  const lastReport = useRef(0);
   const group = useRef<THREE.Group>(null);
   const diskRef = useRef<THREE.Points>(null);
   
@@ -103,7 +104,11 @@ export default function BlackHoleMode({ mass, onUpdate }: Props) {
         diskRef.current.geometry.attributes.position.needsUpdate = true;
     }
 
-    if (Math.random() < 0.05) onUpdate({ qubits: count, links: 0, fps: 60 });
+    const now = performance.now();
+    if (now - lastReport.current > 400) {
+      lastReport.current = now;
+      onUpdate({ qubits: count, links: 0 });
+    }
   });
 
   const eventHorizonRadius = 1.2 * mass;

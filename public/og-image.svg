@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#0a1a30"/>
+      <stop offset="100%" stop-color="#050610"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <circle cx="600" cy="280" r="120" fill="none" stroke="#3ca0ff" stroke-opacity="0.3" stroke-width="1"/>
+  <circle cx="600" cy="280" r="80" fill="none" stroke="#00e5ff" stroke-opacity="0.5" stroke-width="1"/>
+  <text x="600" y="460" text-anchor="middle" fill="#e0f0ff" font-family="Georgia, serif" font-size="52">Emergent Spacetime</text>
+  <text x="600" y="520" text-anchor="middle" fill="#8ab8d8" font-family="monospace" font-size="22">L'espace n'existe pas</text>
+</svg>

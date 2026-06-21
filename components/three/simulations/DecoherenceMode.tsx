@@ -6,11 +6,12 @@ import * as THREE from "three";
 
 interface Props {
   rebuildTrigger: number;
-  onUpdate: (stats: { qubits: number; links: number; fps: number }) => void;
+  onUpdate: (stats: { qubits: number; links: number }) => void;
 }
 
 export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
   const count = 60;
+  const lastReport = useRef(0);
   const group = useRef<THREE.Group>(null);
   const [progress, setProgress] = useState(0);
 
@@ -149,7 +150,11 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
     lineGeometry.attributes.position.needsUpdate = true;
     lineGeometry.attributes.color.needsUpdate = true;
     
-    if (Math.random() < 0.05) onUpdate({ qubits: count, links: drawnLinks, fps: 60 });
+    const now = performance.now();
+    if (now - lastReport.current > 400) {
+      lastReport.current = now;
+      onUpdate({ qubits: count, links: drawnLinks });
+    }
   });
 
   const sphereColors = useMemo(() => {
