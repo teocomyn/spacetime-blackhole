@@ -7,9 +7,8 @@ Développé par **Teo Comyn** — [github.com/teocomyn/spacetime-blackhole](http
 ## Fonctionnalités
 
 - Scrollytelling (GSAP + Framer Motion) avec alternative statique pour l'accessibilité
-- Simulations WebGL (Three.js / R3F) : intrication, trou noir, ER=EPR, décohérence
 - Vidéo HLS Mux en hero + réseau de qubits 3D lazy-loadé
-- Navigation par ancres, i18n FR/EN, deep linking `?mode=wormhole`
+- Navigation par ancres et i18n FR/EN
 - SEO : Open Graph, JSON-LD, sitemap, robots, PWA manifest
 
 ## Stack

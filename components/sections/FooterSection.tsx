@@ -51,15 +51,6 @@ export default function FooterSection() {
             <button
               type="button"
               onClick={() => {
-                document.getElementById("simulation")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-6 py-3 rounded-full border border-accent-blue/40 text-accent-cyan font-mono text-xs tracking-widest hover:bg-accent-blue/10 transition-colors shadow-[0_0_15px_rgba(60,160,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
-            >
-              {t.footer.replaySim}
-            </button>
-            <button
-              type="button"
-              onClick={() => {
                 document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
               }}
               className="px-6 py-3 rounded-full border border-white/15 text-text-secondary font-mono text-xs tracking-widest hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"

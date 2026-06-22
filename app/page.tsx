@@ -1,7 +1,6 @@
 import HeroSection from "@/components/sections/HeroSection";
 import ProblemSection from "@/components/sections/ProblemSection";
 import IntuitionSection from "@/components/sections/IntuitionSection";
-import SimulationSection from "@/components/sections/SimulationSection";
 import TimelineSection from "@/components/sections/TimelineSection";
 import UnknownsSection from "@/components/sections/UnknownsSection";
 import BibliographySection from "@/components/sections/BibliographySection";
@@ -14,7 +13,6 @@ export default function Home() {
       <HeroSection />
       <ProblemSection />
       <IntuitionSection />
-      <SimulationSection />
       <TimelineSection />
       <UnknownsSection />
       <BibliographySection />

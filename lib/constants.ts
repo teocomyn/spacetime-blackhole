@@ -7,7 +7,6 @@ export const SECTIONS = [
   { id: "hero", labelFr: "Accueil", labelEn: "Home" },
   { id: "problem", labelFr: "Conflit", labelEn: "Conflict" },
   { id: "intuition", labelFr: "Intuition", labelEn: "Intuition" },
-  { id: "simulation", labelFr: "Simulation", labelEn: "Simulation" },
   { id: "timeline", labelFr: "Timeline", labelEn: "Timeline" },
   { id: "unknowns", labelFr: "Inconnus", labelEn: "Unknowns" },
   { id: "bibliography", labelFr: "Sources", labelEn: "Sources" },
