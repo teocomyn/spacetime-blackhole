@@ -55,7 +55,7 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
       }
     }
     return list;
-  }, [nodes, count]);
+  }, [nodes]);
 
   const instancedMeshRef = useRef<THREE.InstancedMesh>(null);
   const tempObject = new THREE.Object3D();
@@ -158,26 +158,30 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
   });
 
   const sphereColors = useMemo(() => {
-    const colArray = new Float32Array(count * 3);
-    const colorObj = new THREE.Color();
-    nodes.forEach((n, i) => {
-      // Colors fade to gray as progress increases
-      if (n.spin > 0) colorObj.setHex(0x3ca0ff);
-      else colorObj.setHex(0xffa064);
-      colorObj.toArray(colArray, i * 3);
-    });
-    return colArray;
-  }, [nodes, count]);
+    return nodes.map((n) => new THREE.Color(n.spin > 0 ? 0x3ca0ff : 0xffa064));
+  }, [nodes]);
 
   // Interpolate colors to gray in loop would be expensive for instanced buffering, 
   // so we just rely on opacity/drift for the chaotic effect in this implementation.
+
+  useEffect(() => {
+    const mesh = instancedMeshRef.current;
+    if (!mesh) return;
+
+    sphereColors.forEach((color, index) => {
+      mesh.setColorAt(index, color);
+    });
+
+    if (mesh.instanceColor) {
+      mesh.instanceColor.needsUpdate = true;
+    }
+  }, [sphereColors]);
 
   return (
     <group ref={group}>
       <instancedMesh ref={instancedMeshRef} args={[undefined, undefined, count]}>
         <sphereGeometry args={[0.08, 16, 16]} />
         <meshBasicMaterial vertexColors toneMapped={false} transparent opacity={1 - progress * 0.8} />
-        <instancedBufferAttribute attach="instanceColor" args={[sphereColors, 3]} />
       </instancedMesh>
       <lineSegments geometry={lineGeometry} material={lineMaterial} />
     </group>

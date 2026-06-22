@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useCallback } from "react";
+import { useEffect, useRef, useMemo, useCallback } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -253,21 +253,27 @@ export default function InstancedQubitNetwork({
   });
 
   const sphereColors = useMemo(() => {
-    const colArray = new Float32Array(count * 3);
-    const colorObj = new THREE.Color();
-    nodes.forEach((n, i) => {
-      colorObj.setHex(n.spin > 0 ? 0x3ca0ff : 0xffa064);
-      colorObj.toArray(colArray, i * 3);
+    return nodes.map((n) => new THREE.Color(n.spin > 0 ? 0x3ca0ff : 0xffa064));
+  }, [nodes]);
+
+  useEffect(() => {
+    const mesh = instancedMeshRef.current;
+    if (!mesh) return;
+
+    sphereColors.forEach((color, index) => {
+      mesh.setColorAt(index, color);
     });
-    return colArray;
-  }, [nodes, count]);
+
+    if (mesh.instanceColor) {
+      mesh.instanceColor.needsUpdate = true;
+    }
+  }, [sphereColors]);
 
   return (
     <group ref={group}>
       <instancedMesh ref={instancedMeshRef} args={[undefined, undefined, count]}>
         <sphereGeometry args={[sphereSize, 16, 16]} />
         <meshBasicMaterial vertexColors toneMapped={false} />
-        <instancedBufferAttribute attach="instanceColor" args={[sphereColors, 3]} />
       </instancedMesh>
       <lineSegments geometry={lineGeometry} material={lineMaterial} />
     </group>
