@@ -15,7 +15,7 @@ export default function GlossarySection() {
     >
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] text-white mb-4">
+          <h2 className="font-sans text-[clamp(2rem,4vw,3rem)] text-white mb-4">
             {t.glossary.title}
           </h2>
           <p className="font-sans text-text-secondary">{t.glossary.subtitle}</p>
@@ -27,7 +27,7 @@ export default function GlossarySection() {
               key={item.id}
               className="rounded-xl border border-white/5 bg-bg-secondary/40 p-6 backdrop-blur-sm"
             >
-              <dt className="font-serif text-xl text-accent-cyan mb-2">
+              <dt className="font-sans text-xl text-accent-cyan mb-2">
                 {locale === "fr" ? item.termFr : item.termEn}
               </dt>
               <dd className="font-sans text-sm text-text-secondary leading-relaxed">

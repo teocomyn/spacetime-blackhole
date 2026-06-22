@@ -96,13 +96,13 @@ export default function IntuitionSection() {
 
       {!animate && (
         <div className="mx-auto max-w-3xl px-6 py-24 space-y-10">
-          <p className="font-serif text-3xl text-white">{t.intuition.text1Title}</p>
+          <p className="font-sans text-3xl text-white">{t.intuition.text1Title}</p>
           <p className="text-text-secondary">{t.intuition.text1Desc}</p>
-          <p className="font-serif text-2xl text-accent-red">{t.intuition.text2Title}</p>
+          <p className="font-sans text-2xl text-accent-red">{t.intuition.text2Title}</p>
           <p className="text-text-secondary">{t.intuition.text2Desc}</p>
-          <p className="font-serif text-2xl text-accent-blue">{t.intuition.text3Title}</p>
+          <p className="font-sans text-2xl text-accent-blue">{t.intuition.text3Title}</p>
           <p className="text-text-secondary">{t.intuition.text3Line1}</p>
-          <p className="font-mono text-sm text-text-muted uppercase">{t.intuition.text3Line2}</p>
+          <p className="font-sans text-sm text-text-muted uppercase">{t.intuition.text3Line2}</p>
         </div>
       )}
 
@@ -115,7 +115,7 @@ export default function IntuitionSection() {
           />
 
           <motion.div style={{ opacity: text1Opacity }} className="absolute z-20 max-w-2xl px-6 text-center">
-            <p className="font-serif text-[clamp(1.8rem,4vw,3.5rem)] text-white leading-tight">
+            <p className="font-sans text-[clamp(1.8rem,4vw,3.5rem)] text-white leading-tight">
               {t.intuition.text1Title}
             </p>
             <p className="mt-6 text-text-secondary font-sans text-[clamp(0.9rem,1.5vw,1.1rem)]">
@@ -124,7 +124,7 @@ export default function IntuitionSection() {
           </motion.div>
 
           <motion.div style={{ opacity: text2Opacity }} className="absolute z-20 max-w-2xl px-6 text-center">
-            <p className="font-serif text-[clamp(2rem,5vw,4rem)] text-accent-red leading-none drop-shadow-md">
+            <p className="font-sans text-[clamp(2rem,5vw,4rem)] text-accent-red leading-none drop-shadow-md">
               {t.intuition.text2Title}
             </p>
             <p className="mt-6 text-text-secondary font-sans text-[clamp(0.95rem,1.8vw,1.2rem)] leading-relaxed">
@@ -136,11 +136,11 @@ export default function IntuitionSection() {
             style={{ opacity: text3Opacity }}
             className="absolute z-20 max-w-3xl px-6 text-center bg-bg-panel/50 p-8 rounded-3xl backdrop-blur-sm border border-accent-blue/10"
           >
-            <p className="font-serif text-[clamp(2.2rem,5vw,4.5rem)] text-accent-blue leading-tight mb-6">
+            <p className="font-sans text-[clamp(2.2rem,5vw,4.5rem)] text-accent-blue leading-tight mb-6">
               {t.intuition.text3Title}
             </p>
             <p className="text-text-primary font-sans text-lg font-light mb-4">{t.intuition.text3Line1}</p>
-            <p className="text-text-secondary font-mono text-sm tracking-wide uppercase">
+            <p className="text-text-secondary font-sans text-sm tracking-wide uppercase">
               {t.intuition.text3Line2}
             </p>
           </motion.div>

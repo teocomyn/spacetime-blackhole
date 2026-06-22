@@ -44,7 +44,7 @@ export default function SiteNav() {
           <li key={id}>
             <a
               href={`#${id}`}
-              className={`rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan ${
+              className={`rounded-full px-3 py-1.5 font-sans text-[10px] uppercase tracking-wider transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan ${
                 activeId === id
                   ? "bg-accent-blue/20 text-accent-cyan"
                   : "text-text-muted hover:text-text-secondary"
@@ -60,7 +60,7 @@ export default function SiteNav() {
             type="button"
             onClick={() => setReducedEffects(!reducedEffects)}
             aria-pressed={reducedEffects}
-            className="rounded-full px-2 py-1.5 font-mono text-[10px] text-text-muted hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+            className="rounded-full px-2 py-1.5 font-sans text-[10px] text-text-muted hover:text-text-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
             title={t.reduceEffects}
           >
             {reducedEffects ? "FX−" : "FX+"}

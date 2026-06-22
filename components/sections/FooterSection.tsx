@@ -1,5 +1,7 @@
 "use client";
 
+import BackgroundVideo from "@/components/media/BackgroundVideo";
+import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 
@@ -10,46 +12,53 @@ export default function FooterSection() {
   return (
     <section
       id="footer"
-      className="relative h-screen w-full bg-bg-primary flex flex-col items-center justify-center overflow-hidden"
+      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(60,160,255,0.05)_0%,transparent_60%)]" />
+      <BackgroundVideo
+        src={BLACKHOLE_VIDEOS.accretionHls}
+        className="absolute inset-0 h-full w-full object-cover opacity-50"
+      />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_0%,rgba(0,0,0,0.65)_50%,rgba(0,0,0,0.95)_100%)]" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/70" />
 
-      <div className="relative z-10 text-center px-4">
-        <div>
-          <h2 className="font-serif text-[clamp(2rem,6vw,5rem)] text-white leading-tight mb-2">
-            {t.footer.line1} <br /> {locale === "fr" ? "le contenant." : "the container."}
-          </h2>
-          <h2 className="font-serif text-[clamp(2rem,6vw,5rem)] text-accent-blue leading-tight mb-8">
-            {t.footer.line2}
-          </h2>
-        </div>
+      <div className="relative z-10 px-4 text-center">
+        <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/45">
+          {t.footer.epilogue}
+        </p>
 
-        <p className="font-sans text-text-secondary text-lg mb-16 italic">
+        <h2 className="font-sans text-[clamp(2rem,6vw,5rem)] font-light leading-[1.02] tracking-[-0.03em] text-white">
+          {t.footer.line1}
+          <br />
+          <span className="text-white/55">{locale === "fr" ? "le contenant." : "the container."}</span>
+        </h2>
+        <h2 className="mt-2 font-sans text-[clamp(2rem,6vw,5rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-accent-orange">
+          {t.footer.line2}
+        </h2>
+
+        <p className="mx-auto mt-10 max-w-lg font-sans text-lg leading-relaxed text-white/65">
           {t.footer.quote}
         </p>
 
-        <div className="flex flex-col items-center gap-4">
-          <div className="flex flex-wrap justify-center gap-3">
-            <button
-              type="button"
-              onClick={() => {
-                document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="px-6 py-3 rounded-full border border-white/15 text-text-secondary font-mono text-xs tracking-widest hover:bg-white/5 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
-            >
-              {t.footer.backTop}
-            </button>
-          </div>
+        <div className="mt-14 flex flex-col items-center gap-4">
+          <button
+            type="button"
+            onClick={() => {
+              document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="inline-flex min-h-[48px] items-center rounded-full border border-white/15 bg-white/[0.06] px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+          >
+            {t.footer.backTop}
+          </button>
 
-          <div className="font-mono text-[10px] text-text-dim tracking-wider flex flex-col gap-2 mt-8">
+          <div className="mt-8 flex flex-col gap-2 font-sans text-[10px] uppercase tracking-wider text-white/40">
             <p>{t.footer.credits}</p>
             <p>
-              {locale === "fr" ? "DÉVELOPPÉ PAR TEO COMYN." : "BUILT BY TEO COMYN."}{" "}
+              {locale === "fr" ? "Développé par Teo Comyn." : "Built by Teo Comyn."}{" "}
               <a
                 href="https://github.com/teocomyn/spacetime-blackhole"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-white underline decoration-white/20 underline-offset-4 ml-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                className="ml-1 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
               >
                 {t.footer.source}
               </a>

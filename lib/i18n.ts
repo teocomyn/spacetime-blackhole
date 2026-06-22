@@ -72,7 +72,42 @@ type Dictionary = {
     title: string;
     subtitle: string;
   };
+  finale: {
+    aria: string;
+    label: string;
+    line1: string;
+    line2: string;
+    body: string;
+    cta: string;
+  };
+  capabilities: {
+    title: string;
+    subtitle: string;
+    cta: string;
+    labelProgram: string;
+    labelVoice: string;
+    quote: string;
+    quoteAuthor: string;
+    quoteRole: string;
+    metric: string;
+    metricLabel: string;
+    labelSystems: string;
+    labelReach: string;
+    link: string;
+    linkSub: string;
+    linkAria: string;
+    timeline: { year: string; program: string; note: string }[];
+    toolsRow1: string[];
+    toolsRow2: string[];
+  };
+  phenomena: {
+    label: string;
+    title: string;
+    leftCards: { title: string; subtitle: string }[];
+    rightCards: { title: string; subtitle: string }[];
+  };
   footer: {
+    epilogue: string;
     line1: string;
     line2: string;
     quote: string;
@@ -182,7 +217,57 @@ export const translations: Record<Locale, Dictionary> = {
       title: "Glossaire",
       subtitle: "Termes clés de la physique holographique",
     },
+    finale: {
+      aria: "Singularité — immersion trou noir",
+      label: "[ singularité ]",
+      line1: "Au-delà de l'horizon,",
+      line2: "l'information ne disparaît pas.",
+      body: "Les trous noirs ne sont pas des puits sans fond. Ils encodent tout ce qui tombe en eux sur leur surface — une projection holographique où l'espace-temps émerge de l'intrication.",
+      cta: "Explorer les horizons",
+    },
+    capabilities: {
+      title:
+        "Les trous noirs ne détruisent pas l'information — ils la transforment, la compressent, la projettent.",
+      subtitle:
+        "De la limite de Bekenstein à ER=EPR, chaque découverte rapproche la gravité quantique d'une géométrie émergente née de l'intrication.",
+      cta: "Voir les phénomènes",
+      labelProgram: "Chronologie",
+      labelVoice: "Voix de la physique",
+      quote:
+        "« Un trou noir n'est pas aussi noir qu'on le croit. Il rayonne comme un corps chaud et peut perdre de la masse. »",
+      quoteAuthor: "Stephen Hawking",
+      quoteRole: "Physicien théoricien — rayonnement de Hawking, 1974",
+      metric: "S = A/4",
+      metricLabel: "Entropie de Bekenstein-Hawking — l'information gravite à la surface",
+      labelSystems: "Systèmes fondamentaux",
+      labelReach: "Continuer l'exploration",
+      link: "github.com/teocomyn/spacetime-blackhole",
+      linkSub: "Code source · expérience interactive",
+      linkAria: "Ouvrir le dépôt GitHub",
+      timeline: [
+        { year: "2024", program: "Intrigation & géométrie émergente", note: "Réseaux tensoriels" },
+        { year: "2013", program: "ER = EPR", note: "Ponts quantiques" },
+        { year: "1974", program: "Rayonnement de Hawking", note: "Évaporation" },
+      ],
+      toolsRow1: ["Horizon", "Accrétion", "Tidalité", "Singularité", "Photosphère"],
+      toolsRow2: ["EPR", "ER=EPR", "AdS/CFT", "Firewall", "Page curve"],
+    },
+    phenomena: {
+      label: "[ phénomènes ]",
+      title: "trous noirs",
+      leftCards: [
+        { title: "Horizon des événements", subtitle: "frontière sans retour" },
+        { title: "Disque d'accrétion", subtitle: "matière en chute libre" },
+        { title: "Lentille gravitationnelle", subtitle: "courbure extrême" },
+      ],
+      rightCards: [
+        { title: "Paradoxe de l'information", subtitle: "où va l'information ?" },
+        { title: "Rayonnement de Hawking", subtitle: "évaporation quantique" },
+        { title: "Trou de ver ER=EPR", subtitle: "intrication géométrique" },
+      ],
+    },
     footer: {
+      epilogue: "[ épilogue ]",
       line1: "L'espace-temps n'est pas",
       line2: "C'est le contenu.",
       quote: "Et peut-être qu'un jour, les trous noirs éclaireront nos chemins.",
@@ -291,7 +376,57 @@ export const translations: Record<Locale, Dictionary> = {
       title: "Glossary",
       subtitle: "Key terms in holographic physics",
     },
+    finale: {
+      aria: "Singularity — black hole immersion",
+      label: "[ singularity ]",
+      line1: "Beyond the horizon,",
+      line2: "information is not lost.",
+      body: "Black holes are not bottomless pits. They encode everything that falls in on their surface — a holographic projection where spacetime emerges from entanglement.",
+      cta: "Explore the horizons",
+    },
+    capabilities: {
+      title:
+        "Black holes do not destroy information — they transform it, compress it, project it.",
+      subtitle:
+        "From Bekenstein's bound to ER=EPR, each discovery brings quantum gravity closer to an emergent geometry born from entanglement.",
+      cta: "See the phenomena",
+      labelProgram: "Timeline",
+      labelVoice: "Voice of physics",
+      quote:
+        "\"A black hole is not as black as it is painted. It radiates like a hot body and can lose mass.\"",
+      quoteAuthor: "Stephen Hawking",
+      quoteRole: "Theoretical physicist — Hawking radiation, 1974",
+      metric: "S = A/4",
+      metricLabel: "Bekenstein-Hawking entropy — information gravitates at the surface",
+      labelSystems: "Core systems",
+      labelReach: "Keep exploring",
+      link: "github.com/teocomyn/spacetime-blackhole",
+      linkSub: "Source code · interactive experience",
+      linkAria: "Open GitHub repository",
+      timeline: [
+        { year: "2024", program: "Entanglement & emergent geometry", note: "Tensor networks" },
+        { year: "2013", program: "ER = EPR", note: "Quantum bridges" },
+        { year: "1974", program: "Hawking radiation", note: "Evaporation" },
+      ],
+      toolsRow1: ["Horizon", "Accretion", "Tidal forces", "Singularity", "Photosphere"],
+      toolsRow2: ["EPR", "ER=EPR", "AdS/CFT", "Firewall", "Page curve"],
+    },
+    phenomena: {
+      label: "[ phenomena ]",
+      title: "black holes",
+      leftCards: [
+        { title: "Event horizon", subtitle: "point of no return" },
+        { title: "Accretion disk", subtitle: "matter in free fall" },
+        { title: "Gravitational lensing", subtitle: "extreme curvature" },
+      ],
+      rightCards: [
+        { title: "Information paradox", subtitle: "where does information go?" },
+        { title: "Hawking radiation", subtitle: "quantum evaporation" },
+        { title: "ER=EPR wormhole", subtitle: "geometric entanglement" },
+      ],
+    },
     footer: {
+      epilogue: "[ epilogue ]",
       line1: "Spacetime is not",
       line2: "It is the content.",
       quote: "And perhaps one day, black holes will light our way.",

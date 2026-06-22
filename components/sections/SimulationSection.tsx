@@ -28,7 +28,7 @@ function SimulationLoader() {
           role="status"
           aria-label="Chargement simulation"
         />
-        <p className="font-mono text-xs tracking-widest text-text-muted uppercase">
+        <p className="font-sans text-xs tracking-widest text-text-muted uppercase">
           WebGL…
         </p>
       </div>

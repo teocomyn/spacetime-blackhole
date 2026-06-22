@@ -44,7 +44,7 @@ export default function SimControlPanel({
         {t.simulation.disclaimer}
       </p>
 
-      <h3 className="font-serif text-2xl text-white mb-4 tracking-wide">
+      <h3 className="font-sans text-2xl text-white mb-4 tracking-wide">
         {t.simulation.panelTitle}
       </h3>
 
@@ -66,7 +66,7 @@ export default function SimControlPanel({
               aria-controls="sim-panel-controls"
               aria-label={m.aria}
               onClick={() => setMode(id)}
-              className={`relative px-4 py-3 text-left rounded-lg text-sm font-mono transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan ${
+              className={`relative px-4 py-3 text-left rounded-lg text-sm font-sans transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan ${
                 isActive
                   ? "bg-accent-blue/10 border border-accent-blue/50 text-accent-cyan shadow-[0_0_15px_rgba(60,160,255,0.2)]"
                   : "bg-white/5 border border-transparent text-text-muted hover:bg-white/10 hover:text-text-secondary"
@@ -89,7 +89,7 @@ export default function SimControlPanel({
           <div className="flex flex-col gap-2">
             <label
               htmlFor="entanglement-strength"
-              className="text-xs font-mono text-text-secondary flex justify-between"
+              className="text-xs font-sans text-text-secondary flex justify-between"
             >
               <span>{t.simulation.entanglement}</span>
               <span aria-hidden="true">{Math.round(entanglementStrength * 100)}%</span>
@@ -111,7 +111,7 @@ export default function SimControlPanel({
           <div className="flex flex-col gap-2">
             <label
               htmlFor="blackhole-mass"
-              className="text-xs font-mono text-text-secondary flex justify-between"
+              className="text-xs font-sans text-text-secondary flex justify-between"
             >
               <span>{t.simulation.mass}</span>
               <span aria-hidden="true">{Math.round(mass * 100)}%</span>
@@ -133,7 +133,7 @@ export default function SimControlPanel({
           <div className="flex flex-col gap-2">
             <label
               htmlFor="epr-strength"
-              className="text-xs font-mono text-text-secondary flex justify-between"
+              className="text-xs font-sans text-text-secondary flex justify-between"
             >
               <span>{t.simulation.epr}</span>
               <span aria-hidden="true">{Math.round(eprStrength * 100)}%</span>
@@ -155,7 +155,7 @@ export default function SimControlPanel({
           <button
             type="button"
             onClick={triggerRebuild}
-            className="w-full py-2 bg-accent-blue/20 hover:bg-accent-blue/30 text-accent-cyan border border-accent-blue/50 rounded-lg text-sm font-mono transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+            className="w-full py-2 bg-accent-blue/20 hover:bg-accent-blue/30 text-accent-cyan border border-accent-blue/50 rounded-lg text-sm font-sans transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
           >
             {t.simulation.rebuild}
           </button>
@@ -169,7 +169,7 @@ export default function SimControlPanel({
       </div>
 
       <div
-        className="flex justify-between items-center text-[10px] font-mono text-text-dim border-t border-white/10 pt-4"
+        className="flex justify-between items-center text-[10px] font-sans text-text-dim border-t border-white/10 pt-4"
         aria-live="polite"
       >
         <span className="flex items-center gap-1">
@@ -191,7 +191,7 @@ export default function SimControlPanel({
       <button
         type="button"
         onClick={() => setCollapsed((c) => !c)}
-        className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/15 bg-bg-panel/95 px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-accent-cyan backdrop-blur-xl md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+        className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/15 bg-bg-panel/95 px-4 py-2 font-sans text-[10px] uppercase tracking-widest text-accent-cyan backdrop-blur-xl md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
         aria-expanded={!collapsed}
         aria-controls="sim-control-panel"
       >

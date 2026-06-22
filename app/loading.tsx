@@ -7,7 +7,7 @@ export default function Loading() {
           role="status"
           aria-label="Chargement"
         />
-        <p className="font-mono text-xs tracking-widest text-text-muted uppercase">
+        <p className="font-sans text-xs tracking-widest text-text-muted uppercase">
           Emergent Spacetime
         </p>
       </div>

@@ -26,9 +26,22 @@ const config: Config = {
         "text-dim": "var(--text-dim)",
       },
       fontFamily: {
-        serif: ["var(--font-instrument)", "Georgia", "serif"],
-        sans: ["var(--font-satoshi)", "system-ui", "sans-serif"],
-        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        sans: ["var(--font-sans)", "var(--font-display)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
+      },
+      animation: {
+        "marquee-left": "marquee-left 24s linear infinite",
+        "marquee-right": "marquee-right 28s linear infinite",
+      },
+      keyframes: {
+        "marquee-left": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "marquee-right": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
       },
       boxShadow: {
         'glow-blue': '0 0 30px rgba(60,160,255,0.15)',

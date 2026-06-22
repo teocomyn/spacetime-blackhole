@@ -73,7 +73,7 @@ export default function UnknownsSection() {
     <section id="unknowns" className="relative w-full bg-bg-primary py-32 px-6 border-t border-accent-red/10">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] text-white mb-4">
+          <h2 className="font-sans text-[clamp(2rem,4vw,3rem)] text-white mb-4">
             {t.unknowns.title}
           </h2>
           <p className="font-sans text-text-secondary max-w-2xl mx-auto">{t.unknowns.subtitle}</p>

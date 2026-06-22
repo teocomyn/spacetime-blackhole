@@ -36,12 +36,12 @@ export default function HeroSection() {
         </div>
       )}
 
-      <div className="absolute top-6 right-6 z-20 font-mono text-[10px] tracking-[0.2em] text-accent-blue/60 uppercase">
+      <div className="absolute top-6 right-6 z-20 font-sans text-[10px] tracking-[0.2em] text-accent-blue/60 uppercase">
         {t.hero.credit}
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        <h1 className="flex font-serif text-[clamp(2.5rem,8vw,6.5rem)] font-normal leading-none tracking-tight text-text-primary drop-shadow-[0_0_20px_rgba(60,160,255,0.3)]">
+        <h1 className="flex font-sans text-[clamp(2.5rem,8vw,6.5rem)] font-normal leading-none tracking-tight text-text-primary drop-shadow-[0_0_20px_rgba(60,160,255,0.3)]">
           {title.map((letter, i) =>
             animate ? (
               <motion.span
@@ -70,14 +70,14 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
-            className="mt-8 max-w-2xl font-mono text-[clamp(0.75rem,2vw,1rem)] leading-relaxed tracking-widest text-text-secondary opacity-80"
+            className="mt-8 max-w-2xl font-sans text-[clamp(0.75rem,2vw,1rem)] leading-relaxed tracking-widest text-text-secondary opacity-80"
           >
             {t.hero.subtitle1}
             <br />
             {t.hero.subtitle2}
           </motion.p>
         ) : (
-          <p className="mt-8 max-w-2xl font-mono text-[clamp(0.75rem,2vw,1rem)] leading-relaxed tracking-widest text-text-secondary opacity-80">
+          <p className="mt-8 max-w-2xl font-sans text-[clamp(0.75rem,2vw,1rem)] leading-relaxed tracking-widest text-text-secondary opacity-80">
             {t.hero.subtitle1}
             <br />
             {t.hero.subtitle2}
@@ -92,7 +92,7 @@ export default function HeroSection() {
           transition={{ duration: 1, delay: 2.2 }}
           className="absolute bottom-10 left-1/2 flex -translate-x-1/2 flex-col items-center gap-3 drop-shadow-md"
         >
-          <span className="font-mono text-[0.65rem] uppercase tracking-[0.2em] text-accent-blue/70">
+          <span className="font-sans text-[0.65rem] uppercase tracking-[0.2em] text-accent-blue/70">
             {t.hero.scroll}
           </span>
           <motion.div

@@ -272,19 +272,19 @@ export default function ProblemSection() {
 
       {!animateScroll && (
         <div className="mx-auto max-w-3xl px-6 py-24 space-y-8">
-          <p className="font-serif text-2xl text-white">{t.problem.text1}</p>
+          <p className="font-sans text-2xl text-white">{t.problem.text1}</p>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-white/10 p-6">
-              <h3 className="text-accent-blue font-mono text-sm mb-2">{t.problem.sceneTitle}</h3>
+              <h3 className="text-accent-blue font-sans text-sm mb-2">{t.problem.sceneTitle}</h3>
               <p className="text-text-secondary">{t.problem.sceneDesc}</p>
             </div>
             <div className="rounded-xl border border-white/10 p-6">
-              <h3 className="text-accent-cyan font-mono text-sm mb-2">{t.problem.actorTitle}</h3>
+              <h3 className="text-accent-cyan font-sans text-sm mb-2">{t.problem.actorTitle}</h3>
               <p className="text-text-secondary">{t.problem.actorDesc}</p>
             </div>
           </div>
-          <p className="font-serif text-xl text-accent-red">{t.problem.explosion}</p>
-          <p className="font-mono text-sm text-text-muted">{t.problem.text4}</p>
+          <p className="font-sans text-xl text-accent-red">{t.problem.explosion}</p>
+          <p className="font-sans text-sm text-text-muted">{t.problem.text4}</p>
         </div>
       )}
 
@@ -294,7 +294,7 @@ export default function ProblemSection() {
 
           <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
             <div ref={text1Ref} className="absolute max-w-xl opacity-0">
-              <p className="font-serif text-3xl md:text-5xl text-white mb-6">{t.problem.text1}</p>
+              <p className="font-sans text-3xl md:text-5xl text-white mb-6">{t.problem.text1}</p>
             </div>
 
             <div
@@ -302,11 +302,11 @@ export default function ProblemSection() {
               className="absolute max-w-2xl opacity-0 flex flex-col md:flex-row gap-12 text-left bg-bg-panel p-8 rounded-2xl border border-white/5 backdrop-blur-md"
             >
               <div className="flex-1">
-                <h3 className="text-accent-blue font-mono text-sm mb-3">{t.problem.sceneTitle}</h3>
+                <h3 className="text-accent-blue font-sans text-sm mb-3">{t.problem.sceneTitle}</h3>
                 <p className="text-text-secondary text-sm md:text-base leading-relaxed">{t.problem.sceneDesc}</p>
               </div>
               <div className="flex-1">
-                <h3 className="text-accent-cyan font-mono text-sm mb-3">{t.problem.actorTitle}</h3>
+                <h3 className="text-accent-cyan font-sans text-sm mb-3">{t.problem.actorTitle}</h3>
                 <p className="text-text-secondary text-sm md:text-base leading-relaxed">{t.problem.actorDesc}</p>
               </div>
             </div>
@@ -315,19 +315,19 @@ export default function ProblemSection() {
               ref={text3Ref}
               className="absolute max-w-2xl opacity-0 bg-bg-panel/90 p-8 rounded-xl border border-accent-orange/20 backdrop-blur-md shadow-[0_0_50px_rgba(255,160,100,0.1)]"
             >
-              <p className="font-serif text-2xl md:text-4xl text-white">{t.problem.text3Title}</p>
+              <p className="font-sans text-2xl md:text-4xl text-white">{t.problem.text3Title}</p>
               <p className="mt-4 text-text-secondary font-sans text-sm md:text-base">{t.problem.text3Desc}</p>
             </div>
 
             <h2
               ref={explosionTextRef}
-              className="absolute font-serif text-[clamp(2rem,6vw,5rem)] font-bold text-accent-red leading-none drop-shadow-[0_0_30px_rgba(255,60,60,0.8)] opacity-0 uppercase mix-blend-screen"
+              className="absolute font-sans text-[clamp(2rem,6vw,5rem)] font-bold text-accent-red leading-none drop-shadow-[0_0_30px_rgba(255,60,60,0.8)] opacity-0 uppercase mix-blend-screen"
             >
               {t.problem.explosion}
             </h2>
 
             <div ref={text4Ref} className="absolute mt-32 max-w-xl opacity-0">
-              <p className="font-mono tracking-widest text-sm text-text-muted uppercase">{t.problem.text4}</p>
+              <p className="font-sans tracking-widest text-sm text-text-muted uppercase">{t.problem.text4}</p>
             </div>
           </div>
         </div>

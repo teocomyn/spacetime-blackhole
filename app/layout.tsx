@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Inter, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import GrainOverlay from "@/components/GrainOverlay";
 import CustomCursor from "@/components/CustomCursor";
@@ -10,23 +10,16 @@ import LanguageToggle from "@/components/LanguageToggle";
 import { AppProvider } from "@/context/AppContext";
 import { SITE_URL } from "@/lib/constants";
 
-const instrumentSerif = Instrument_Serif({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-instrument",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-display",
   display: "swap",
 });
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-satoshi",
-  display: "swap",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-sans",
   display: "swap",
 });
 
@@ -83,17 +76,14 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="fr"
-      className={`dark ${instrumentSerif.variable} ${inter.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="fr" className={`dark ${dmSans.variable} ${inter.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="antialiased font-sans text-text-primary bg-bg-primary overflow-x-hidden">
+      <body className="overflow-x-hidden bg-bg-primary font-sans text-text-primary antialiased">
         <AppProvider>
           <SkipLink />
           <LanguageToggle />

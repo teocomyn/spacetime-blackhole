@@ -108,10 +108,10 @@ export default function TimelineSection() {
     <section ref={containerRef} id="timeline" className="relative w-full bg-bg-primary py-32 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-8 relative">
         <div className="text-center mb-32">
-          <h2 className="font-serif text-[clamp(2rem,5vw,4rem)] text-white mb-4">
+          <h2 className="font-sans text-[clamp(2rem,5vw,4rem)] text-white mb-4">
             {t.timeline.title}
           </h2>
-          <p className="font-mono text-sm tracking-widest text-text-muted uppercase">
+          <p className="font-sans text-sm tracking-widest text-text-muted uppercase">
             {t.timeline.subtitle}
           </p>
         </div>
@@ -149,10 +149,10 @@ export default function TimelineSection() {
 
                   <div className="relative p-6 md:p-8 rounded-2xl border border-white/5 bg-bg-secondary/40 backdrop-blur-md transition-all duration-500 hover:border-white/15 md:hover:-translate-y-1 active:scale-[0.99]">
                     <div className="flex flex-wrap items-baseline gap-4 mb-4">
-                      <span className="font-serif text-3xl md:text-5xl" style={{ color: item.color }}>
+                      <span className="font-sans text-3xl md:text-5xl" style={{ color: item.color }}>
                         {item.year}
                       </span>
-                      <span className="font-mono text-sm tracking-widest text-text-muted">
+                      <span className="font-sans text-sm tracking-widest text-text-muted">
                         {isEn ? item.authorEn : item.authorFr}
                       </span>
                     </div>
