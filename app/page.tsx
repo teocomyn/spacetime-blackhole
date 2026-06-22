@@ -8,7 +8,6 @@ import BibliographySection from "@/components/sections/BibliographySection";
 import GlossarySection from "@/components/sections/GlossarySection";
 import BlackHoleFinaleSection from "@/components/sections/BlackHoleFinaleSection";
 import BlackHoleCapabilitiesSection from "@/components/sections/BlackHoleCapabilitiesSection";
-import BlackHoleSubmissionsSection from "@/components/sections/BlackHoleSubmissionsSection";
 import FooterSection from "@/components/sections/FooterSection";
 
 export default function Home() {
@@ -24,7 +23,6 @@ export default function Home() {
       <GlossarySection />
       <BlackHoleFinaleSection />
       <BlackHoleCapabilitiesSection />
-      <BlackHoleSubmissionsSection />
       <FooterSection />
     </main>
   );

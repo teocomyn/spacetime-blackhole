@@ -1,6 +1,7 @@
 "use client";
 
 import VideoLayer from "@/components/media/InteractiveVideoCard";
+import BackgroundVideo from "@/components/media/BackgroundVideo";
 import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
@@ -39,22 +40,41 @@ export default function BlackHoleCapabilitiesSection() {
       id="horizons"
       className="capabilities relative z-[70] min-h-screen bg-[#050608] px-[clamp(16px,3.8vw,72px)] py-[clamp(34px,4vw,72px)] text-white"
     >
-      <header className="capabilities__header mx-auto mb-[clamp(24px,3vw,42px)] flex max-w-[1820px] flex-col items-start justify-between gap-8 lg:flex-row lg:gap-8">
-        <div className="max-w-[860px]">
+      <header className="capabilities__header mx-auto mb-[clamp(24px,3vw,42px)] flex max-w-[1820px] flex-col items-start gap-8 lg:flex-row lg:items-start lg:justify-between">
+        <div className="max-w-[860px] flex-1">
           <h2 className="m-0 max-w-[920px] font-sans text-[clamp(29px,3.2vw,54px)] font-light leading-[1.08] tracking-[-0.02em] text-white">
             {t.capabilities.title}
           </h2>
           <p className="mt-[18px] max-w-[760px] font-sans text-[clamp(14px,1vw,17px)] font-normal leading-[1.62] text-white/55">
             {t.capabilities.subtitle}
           </p>
+          <a
+            href="#footer"
+            className="capabilities__button mt-8 inline-flex min-h-[48px] items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.06] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.12),0_18px_44px_rgb(0_0_0_/_0.35)] backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan lg:hidden"
+          >
+            {t.capabilities.cta}
+            <span aria-hidden="true">↗</span>
+          </a>
         </div>
-        <a
-          href="#phenomena"
-          className="capabilities__button inline-flex min-h-[48px] shrink-0 items-center gap-2.5 self-start rounded-full border border-white/10 bg-white/[0.06] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.12),0_18px_44px_rgb(0_0_0_/_0.35)] backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
-        >
-          {t.capabilities.cta}
-          <span aria-hidden="true">↗</span>
-        </a>
+
+        <div className="flex w-full shrink-0 flex-col items-center gap-6 sm:flex-row sm:items-start lg:w-auto lg:flex-col lg:items-end">
+          <div className="relative h-[min(72vw,280px)] w-[min(72vw,280px)] shrink-0 overflow-hidden ring-1 ring-white/10 sm:h-[240px] sm:w-[240px] lg:h-[280px] lg:w-[280px]">
+            <div className="absolute -inset-3 rounded-full bg-accent-orange/10 blur-2xl" aria-hidden="true" />
+            <BackgroundVideo
+              src={BLACKHOLE_VIDEOS.horizonMp4}
+              className="relative h-full w-full object-cover"
+              lazy
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050608]/60 via-transparent to-transparent" />
+          </div>
+          <a
+            href="#footer"
+            className="capabilities__button hidden min-h-[48px] shrink-0 items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.06] px-5 text-sm font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.12),0_18px_44px_rgb(0_0_0_/_0.35)] backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan lg:inline-flex"
+          >
+            {t.capabilities.cta}
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
       </header>
 
       <div className="capabilities__grid mx-auto grid min-h-[clamp(620px,72vh,780px)] max-w-[1820px] grid-cols-1 gap-[clamp(14px,1.25vw,22px)] lg:grid-cols-2 xl:grid-cols-3">
