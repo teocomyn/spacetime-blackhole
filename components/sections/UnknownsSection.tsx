@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 
@@ -73,26 +72,17 @@ export default function UnknownsSection() {
   return (
     <section id="unknowns" className="relative w-full bg-bg-primary py-32 px-6 border-t border-accent-red/10">
       <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] text-white mb-4">
             {t.unknowns.title}
           </h2>
           <p className="font-sans text-text-secondary max-w-2xl mx-auto">{t.unknowns.subtitle}</p>
-        </motion.div>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {UNKNOWNS.map((item, i) => (
-            <motion.article
+            <article
               key={item.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
               className="bg-bg-secondary/40 border border-accent-red/20 rounded-2xl p-8 backdrop-blur-sm group hover:bg-accent-red/5 transition-colors duration-500 active:scale-[0.99]"
             >
               <div className="mb-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all origin-left">
@@ -104,7 +94,7 @@ export default function UnknownsSection() {
               <p className="font-sans text-text-secondary text-sm leading-relaxed">
                 {isEn ? item.descEn : item.descFr}
               </p>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>

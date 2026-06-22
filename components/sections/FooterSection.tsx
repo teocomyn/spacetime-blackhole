@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 
@@ -16,37 +15,20 @@ export default function FooterSection() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(60,160,255,0.05)_0%,transparent_60%)]" />
 
       <div className="relative z-10 text-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-10%" }}
-          transition={{ duration: 1 }}
-        >
+        <div>
           <h2 className="font-serif text-[clamp(2rem,6vw,5rem)] text-white leading-tight mb-2">
             {t.footer.line1} <br /> {locale === "fr" ? "le contenant." : "the container."}
           </h2>
           <h2 className="font-serif text-[clamp(2rem,6vw,5rem)] text-accent-blue leading-tight mb-8">
             {t.footer.line2}
           </h2>
-        </motion.div>
+        </div>
 
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="font-sans text-text-secondary text-lg mb-16 italic"
-        >
+        <p className="font-sans text-text-secondary text-lg mb-16 italic">
           {t.footer.quote}
-        </motion.p>
+        </p>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 1 }}
-          className="flex flex-col items-center gap-4"
-        >
+        <div className="flex flex-col items-center gap-4">
           <div className="flex flex-wrap justify-center gap-3">
             <button
               type="button"
@@ -73,7 +55,7 @@ export default function FooterSection() {
               </a>
             </p>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

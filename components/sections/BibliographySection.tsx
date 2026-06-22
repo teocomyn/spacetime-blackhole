@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 import { BIBLIOGRAPHY } from "@/lib/content";
@@ -15,27 +14,16 @@ export default function BibliographySection() {
       className="relative w-full bg-bg-primary py-32 px-6 border-t border-white/5"
     >
       <div className="max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16">
           <h2 className="font-serif text-[clamp(2rem,4vw,3rem)] text-white mb-4">
             {t.bibliography.title}
           </h2>
           <p className="font-sans text-text-secondary">{t.bibliography.subtitle}</p>
-        </motion.div>
+        </div>
 
         <ul className="space-y-4">
-          {BIBLIOGRAPHY.map((item, i) => (
-            <motion.li
-              key={item.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-            >
+          {BIBLIOGRAPHY.map((item) => (
+            <li key={item.id}>
               <a
                 href={item.url}
                 target="_blank"
@@ -53,7 +41,7 @@ export default function BibliographySection() {
                 </p>
                 <p className="mt-1 font-mono text-[11px] text-text-dim">{item.venue}</p>
               </a>
-            </motion.li>
+            </li>
           ))}
         </ul>
       </div>

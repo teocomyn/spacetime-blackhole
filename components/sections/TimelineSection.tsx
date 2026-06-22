@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useRef } from "react";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
@@ -108,19 +107,14 @@ export default function TimelineSection() {
   return (
     <section ref={containerRef} id="timeline" className="relative w-full bg-bg-primary py-32 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-8 relative">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-32"
-        >
+        <div className="text-center mb-32">
           <h2 className="font-serif text-[clamp(2rem,5vw,4rem)] text-white mb-4">
             {t.timeline.title}
           </h2>
           <p className="font-mono text-sm tracking-widest text-text-muted uppercase">
             {t.timeline.subtitle}
           </p>
-        </motion.div>
+        </div>
 
         <div className="absolute left-8 md:left-1/2 top-64 bottom-12 w-[2px] bg-gradient-to-b from-transparent via-white/10 to-transparent md:-translate-x-1/2" />
 
@@ -128,12 +122,8 @@ export default function TimelineSection() {
           {TIMELINE.map((item, index) => {
             const isLeft = index % 2 === 0;
             return (
-              <motion.article
+              <article
                 key={item.id}
-                initial={{ opacity: 0, x: isLeft ? -50 : 50, filter: "blur(10px)" }}
-                whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-                viewport={{ once: true, margin: "-15% 0px" }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
                 className={`flex flex-col md:flex-row items-start md:items-center relative w-full pl-10 md:pl-0 ${
                   isLeft ? "md:justify-start" : "md:justify-end"
                 }`}
@@ -183,7 +173,7 @@ export default function TimelineSection() {
                     />
                   </div>
                 </div>
-              </motion.article>
+              </article>
             );
           })}
         </div>
