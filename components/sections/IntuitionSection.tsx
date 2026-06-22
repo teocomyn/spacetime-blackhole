@@ -189,7 +189,7 @@ export default function IntuitionSection() {
             <div className="my-10 flex items-center gap-4">
               <span className="h-px w-12 bg-gradient-to-r from-transparent to-accent-blue/40" />
               <span className="h-1.5 w-1.5 rounded-full bg-accent-cyan shadow-[0_0_12px_rgba(0,229,255,0.8)]" />
-              <span className="h-px w-12 bg-gradient-to-l from-transparent to-accent-orange/40" />
+              <span className="h-px w-12 bg-gradient-to-l from-transparent to-accent-deep/40" />
             </div>
 
             <p className="max-w-md font-sans text-[clamp(0.65rem,1.2vw,0.8rem)] font-medium uppercase leading-relaxed tracking-[0.24em] text-white/40">
@@ -203,7 +203,7 @@ export default function IntuitionSection() {
             className="absolute z-10 flex h-64 w-12 flex-col items-center justify-end pt-4"
           >
             <div className="relative flex h-40 w-6 justify-center rounded-full border-[1.5px] border-white/20 bg-white/5 p-[2px] backdrop-blur-sm">
-              <div className="absolute bottom-1 h-[60%] w-4 rounded-full bg-gradient-to-t from-accent-red to-orange-500 shadow-[0_0_15px_rgba(255,60,60,0.6)]" />
+              <div className="absolute bottom-1 h-[60%] w-4 rounded-full bg-gradient-to-t from-accent-red to-accent-deep shadow-[0_0_15px_rgba(255,60,60,0.6)]" />
             </div>
             <div className="z-10 -mt-2 h-10 w-10 rounded-full border-[1.5px] border-white/20 bg-accent-red shadow-[0_0_20px_rgba(255,60,60,0.8)]" />
           </motion.div>

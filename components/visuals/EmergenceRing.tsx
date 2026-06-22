@@ -17,7 +17,7 @@ export default function EmergenceRing({ opacity, scale }: Props) {
       <div className="relative flex h-[min(88vw,560px)] w-[min(88vw,560px)] items-center justify-center">
         {/* Singularity glow */}
         <div className="absolute inset-[28%] rounded-full bg-[radial-gradient(circle,rgba(0,229,255,0.14)_0%,rgba(60,160,255,0.06)_40%,transparent_72%)] blur-2xl" />
-        <div className="absolute inset-[38%] rounded-full bg-[radial-gradient(circle,rgba(255,100,40,0.08)_0%,transparent_70%)] blur-xl" />
+        <div className="absolute inset-[38%] rounded-full bg-[radial-gradient(circle,rgba(45,90,140,0.08)_0%,transparent_70%)] blur-xl" />
 
         <svg
           viewBox="0 0 400 400"
@@ -29,7 +29,7 @@ export default function EmergenceRing({ opacity, scale }: Props) {
             <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
               <stop offset="0%" stopColor="rgba(0,229,255,0.55)" />
               <stop offset="50%" stopColor="rgba(60,160,255,0.35)" />
-              <stop offset="100%" stopColor="rgba(255,120,40,0.25)" />
+              <stop offset="100%" stopColor="rgba(45, 90, 140, 0.35)" />
             </linearGradient>
             <filter id="ringGlow" x="-50%" y="-50%" width="200%" height="200%">
               <feGaussianBlur stdDeviation="3" result="blur" />
@@ -133,7 +133,7 @@ export default function EmergenceRing({ opacity, scale }: Props) {
             cx="200"
             cy="200"
             r="88"
-            stroke="rgba(255,120,40,0.2)"
+            stroke="rgba(45, 90, 140, 0.35)"
             strokeWidth="0.4"
             className="animate-pulse"
           />

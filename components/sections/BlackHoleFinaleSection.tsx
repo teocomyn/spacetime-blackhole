@@ -60,7 +60,7 @@ export default function BlackHoleFinaleSection() {
 
           <motion.p
             style={{ opacity: line2Opacity }}
-            className="mt-4 max-w-[18ch] font-sans text-[clamp(1.6rem,4.5vw,3.2rem)] font-semibold leading-tight tracking-[-0.02em] text-accent-orange"
+            className="mt-4 max-w-[18ch] font-sans text-[clamp(1.6rem,4.5vw,3.2rem)] font-semibold leading-tight tracking-[-0.02em] text-accent-deep"
           >
             {t.finale.line2}
           </motion.p>

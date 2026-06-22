@@ -313,7 +313,7 @@ export default function ProblemSection() {
 
             <div
               ref={text3Ref}
-              className="absolute max-w-2xl opacity-0 bg-bg-panel/90 p-8 rounded-xl border border-accent-orange/20 backdrop-blur-md shadow-[0_0_50px_rgba(255,160,100,0.1)]"
+              className="absolute max-w-2xl opacity-0 bg-bg-panel/90 p-8 rounded-xl border border-accent-deep/20 backdrop-blur-md shadow-[0_0_50px_rgba(45,90,140,0.12)]"
             >
               <p className="font-sans text-2xl md:text-4xl text-white">{t.problem.text3Title}</p>
               <p className="mt-4 text-text-secondary font-sans text-sm md:text-base">{t.problem.text3Desc}</p>

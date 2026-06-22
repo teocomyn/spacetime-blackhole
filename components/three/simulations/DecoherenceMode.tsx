@@ -158,7 +158,7 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
   });
 
   const sphereColors = useMemo(() => {
-    return nodes.map((n) => new THREE.Color(n.spin > 0 ? 0x3ca0ff : 0xffa064));
+    return nodes.map((n) => new THREE.Color(n.spin > 0 ? 0x3ca0ff : 0x3a5f8f));
   }, [nodes]);
 
   // Interpolate colors to gray in loop would be expensive for instanced buffering, 

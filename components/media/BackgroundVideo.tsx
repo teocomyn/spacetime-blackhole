@@ -69,7 +69,7 @@ export default function BackgroundVideo({
     return (
       <div
         ref={lazy ? containerRef : undefined}
-        className={`bg-[radial-gradient(circle_at_center,rgba(255,120,40,0.15),transparent_70%)] ${className}`}
+        className={`bg-[radial-gradient(circle_at_center,rgba(45,90,140,0.15),transparent_70%)] ${className}`}
         aria-hidden="true"
       />
     );

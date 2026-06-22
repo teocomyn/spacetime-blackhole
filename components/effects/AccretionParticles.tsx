@@ -83,7 +83,7 @@ export default function AccretionParticles() {
         p.y += dx * spiral;
 
         ctx.font = `${p.size}px Inter, system-ui, sans-serif`;
-        ctx.fillStyle = `rgba(255, 220, 180, ${p.alpha * Math.min(1, dist / 120)})`;
+        ctx.fillStyle = `rgba(180, 210, 240, ${p.alpha * Math.min(1, dist / 120)})`;
         ctx.fillText(p.char, p.x, p.y);
 
         if (dist < 24) {
@@ -92,7 +92,7 @@ export default function AccretionParticles() {
       }
 
       const grad = ctx.createRadialGradient(cx(), cy(), 0, cx(), cy(), Math.min(w, h) * 0.35);
-      grad.addColorStop(0, "rgba(255, 120, 40, 0.12)");
+      grad.addColorStop(0, "rgba(45, 90, 140, 0.12)");
       grad.addColorStop(1, "transparent");
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);

@@ -253,7 +253,7 @@ export default function InstancedQubitNetwork({
   });
 
   const sphereColors = useMemo(() => {
-    return nodes.map((n) => new THREE.Color(n.spin > 0 ? 0x3ca0ff : 0xffa064));
+    return nodes.map((n) => new THREE.Color(n.spin > 0 ? 0x3ca0ff : 0x3a5f8f));
   }, [nodes]);
 
   useEffect(() => {

@@ -30,7 +30,7 @@ export default function VideoLayer({
           playbackRate={hovered ? 1.6 : 1}
         />
       </div>
-      <div className="pointer-events-none absolute inset-0 bg-accent-orange/0 transition-colors duration-500 group-hover:bg-accent-orange/[0.08]" />
+      <div className="pointer-events-none absolute inset-0 bg-accent-deep/0 transition-colors duration-500 group-hover:bg-accent-deep/[0.08]" />
     </>
   );
 }

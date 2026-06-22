@@ -40,7 +40,7 @@ export default function SimControlPanel({
 
   const panel = (
     <>
-      <p className="mb-4 rounded-lg border border-accent-orange/20 bg-accent-orange/5 px-3 py-2 font-sans text-[11px] leading-relaxed text-text-secondary">
+      <p className="mb-4 rounded-lg border border-accent-deep/20 bg-accent-deep/5 px-3 py-2 font-sans text-[11px] leading-relaxed text-text-secondary">
         {t.simulation.disclaimer}
       </p>
 

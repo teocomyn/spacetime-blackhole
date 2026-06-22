@@ -59,7 +59,7 @@ export default function BlackHoleCapabilitiesSection() {
 
         <div className="flex w-full shrink-0 flex-col items-center gap-6 sm:flex-row sm:items-start lg:w-auto lg:flex-col lg:items-end">
           <div className="relative h-[min(72vw,280px)] w-[min(72vw,280px)] shrink-0 overflow-hidden ring-1 ring-white/10 sm:h-[240px] sm:w-[240px] lg:h-[280px] lg:w-[280px]">
-            <div className="absolute -inset-3 rounded-full bg-accent-orange/10 blur-2xl" aria-hidden="true" />
+            <div className="absolute -inset-3 rounded-full bg-accent-deep/10 blur-2xl" aria-hidden="true" />
             <BackgroundVideo
               src={BLACKHOLE_VIDEOS.horizonMp4}
               className="relative h-full w-full object-cover"
@@ -79,7 +79,7 @@ export default function BlackHoleCapabilitiesSection() {
 
       <div className="capabilities__grid mx-auto grid min-h-[clamp(620px,72vh,780px)] max-w-[1820px] grid-cols-1 gap-[clamp(14px,1.25vw,22px)] lg:grid-cols-2 xl:grid-cols-3">
         <div className="capabilities__stack grid gap-[clamp(14px,1.25vw,22px)]">
-          <article className="group relative min-h-[560px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] shadow-[0_22px_60px_rgb(0_0_0_/_0.45)] transition-[box-shadow,border-color] duration-500 hover:border-accent-orange/35 hover:shadow-[0_0_48px_rgba(255,100,40,0.18)] lg:min-h-[620px] xl:min-h-0 xl:row-span-2">
+          <article className="group relative min-h-[560px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] shadow-[0_22px_60px_rgb(0_0_0_/_0.45)] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45, 90, 140, 0.18)] lg:min-h-[620px] xl:min-h-0 xl:row-span-2">
             <VideoLayer src={BLACKHOLE_VIDEOS.accretionHls} />
             <CapCardShade heavy />
             <CapLabel>{t.capabilities.labelProgram}</CapLabel>
@@ -117,7 +117,7 @@ export default function BlackHoleCapabilitiesSection() {
             </footer>
           </article>
 
-          <article className="group relative block min-h-[320px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] transition-[box-shadow,border-color] duration-500 hover:border-accent-orange/35 hover:shadow-[0_0_48px_rgba(255,100,40,0.18)]">
+          <article className="group relative block min-h-[320px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45, 90, 140, 0.18)]">
             <VideoLayer src={BLACKHOLE_VIDEOS.collapseMp4} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <CapCardShade heavy />
             <div className="cap-cardmetric absolute inset-0 z-[2] text-center">
@@ -132,7 +132,7 @@ export default function BlackHoleCapabilitiesSection() {
         </div>
 
         <div className="capabilities__stack capabilitiesstack--systems grid gap-[clamp(14px,1.25vw,22px)] lg:col-span-2 lg:grid-cols-2 lg:grid-rows-[minmax(260px,1fr)_auto] xl:col-span-1 xl:grid-cols-1 xl:grid-rows-[minmax(420px,1.45fr)_auto]">
-          <article className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[18px] border border-white/[0.08] transition-[box-shadow,border-color] duration-500 hover:border-accent-orange/35 hover:shadow-[0_0_48px_rgba(255,100,40,0.18)] xl:min-h-[420px]">
+          <article className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[18px] border border-white/[0.08] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45, 90, 140, 0.18)] xl:min-h-[420px]">
             <VideoLayer src={BLACKHOLE_VIDEOS.wormholeHls} />
             <CapCardShade />
             <CapLabel>{t.capabilities.labelSystems}</CapLabel>

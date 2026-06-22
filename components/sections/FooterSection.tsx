@@ -34,7 +34,7 @@ export default function FooterSection() {
           <br />
           <span className="text-white/55">{locale === "fr" ? "le contenant." : "the container."}</span>
         </h2>
-        <h2 className="mt-2 font-sans text-[clamp(2rem,6vw,5rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-accent-orange">
+        <h2 className="mt-2 font-sans text-[clamp(2rem,6vw,5rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-accent-deep">
           {t.footer.line2}
         </h2>
 
@@ -49,7 +49,7 @@ export default function FooterSection() {
               onClick={() => {
                 document.getElementById("simulation")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex min-h-[48px] items-center rounded-full border border-accent-orange/30 bg-accent-orange/10 px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-orange backdrop-blur-md transition-colors hover:bg-accent-orange/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+              className="inline-flex min-h-[48px] items-center rounded-full border border-accent-deep/30 bg-accent-deep/10 px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-deep backdrop-blur-md transition-colors hover:bg-accent-deep/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
             >
               {t.footer.replaySim}
             </button>

@@ -24,7 +24,7 @@ export function AmbientToggle({
       aria-pressed={enabled}
       className="mt-6 inline-flex min-h-[40px] items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/60 transition-colors hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
     >
-      <span className={`h-2 w-2 rounded-full ${enabled ? "animate-pulse bg-accent-orange" : "bg-white/30"}`} />
+      <span className={`h-2 w-2 rounded-full ${enabled ? "animate-pulse bg-accent-deep" : "bg-white/30"}`} />
       {enabled ? labelOff : labelOn}
     </button>
   );

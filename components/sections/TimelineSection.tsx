@@ -29,7 +29,7 @@ const TIMELINE = [
       "Bekenstein (1973) propose que les trous noirs ont une entropie proportionnelle à leur aire ; Hawking (1974–75) confirme et quantifie, premier indice holographique.",
     descEn:
       "Bekenstein (1973) proposes black hole entropy proportional to area; Hawking (1974–75) confirms and quantifies it, the first holographic hint.",
-    color: "#ffa064",
+    color: "#3a5f8f",
   },
   {
     id: "maldacena-1997",

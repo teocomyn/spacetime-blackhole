@@ -62,8 +62,8 @@ export default function GlossarySection() {
           className="pointer-events-none absolute inset-x-0 bottom-0 flex h-[40vh] items-end justify-center pb-8"
           aria-hidden="true"
         >
-          <div className="h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(255,100,40,0.35)_0%,transparent_70%)] blur-sm" />
-          <div className="absolute bottom-16 h-px w-[min(80vw,600px)] bg-gradient-to-r from-transparent via-accent-orange/40 to-transparent" />
+          <div className="h-32 w-32 rounded-full bg-[radial-gradient(circle,rgba(45,90,140,0.35)_0%,transparent_70%)] blur-sm" />
+          <div className="absolute bottom-16 h-px w-[min(80vw,600px)] bg-gradient-to-r from-transparent via-accent-deep/40 to-transparent" />
         </motion.div>
       )}
     </section>

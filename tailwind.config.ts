@@ -17,7 +17,7 @@ const config: Config = {
         "bg-panel": "var(--bg-panel)",
         "accent-blue": "var(--accent-blue)",
         "accent-cyan": "var(--accent-cyan)",
-        "accent-orange": "var(--accent-orange)",
+        "accent-deep": "var(--accent-deep)",
         "accent-red": "var(--accent-red)",
         "accent-purple": "var(--accent-purple)",
         "text-primary": "var(--text-primary)",
