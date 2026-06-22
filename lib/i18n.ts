@@ -33,6 +33,7 @@ type Dictionary = {
   };
   intuition: {
     staticTitle: string;
+    emergenceLabel: string;
     text1Title: string;
     text1Desc: string;
     text2Title: string;
@@ -159,6 +160,7 @@ export const translations: Record<Locale, Dictionary> = {
     },
     intuition: {
       staticTitle: "L'émergence de l'espace-temps",
+      emergenceLabel: "[ émergence ]",
       text1Title: "Et si la question elle-même était mal posée ?",
       text1Desc:
         "On cherche à \"marier\" la gravité et la mécanique quantique. Mais c'est comme demander comment marier la température et les atomes.",
@@ -351,6 +353,7 @@ export const translations: Record<Locale, Dictionary> = {
     },
     intuition: {
       staticTitle: "Emergent spacetime",
+      emergenceLabel: "[ emergence ]",
       text1Title: "What if the question itself is wrong?",
       text1Desc:
         "We try to \"marry\" gravity and quantum mechanics. But that's like asking how to marry temperature and atoms.",
