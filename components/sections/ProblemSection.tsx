@@ -42,6 +42,8 @@ export default function ProblemSection() {
   const text3Ref = useRef<HTMLDivElement>(null);
   const text4Ref = useRef<HTMLDivElement>(null);
   const explosionTextRef = useRef<HTMLHeadingElement>(null);
+  const splitLeftRef = useRef<HTMLDivElement>(null);
+  const splitRightRef = useRef<HTMLDivElement>(null);
   const state = useRef({ progress: 0 });
 
   const animateScroll = !reducedMotion && !reducedEffects;
@@ -66,7 +68,11 @@ export default function ProblemSection() {
       tl.fromTo(text1Ref.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.1 }, 0.05);
       tl.to(text1Ref.current, { opacity: 0, y: -30, duration: 0.1 }, 0.25);
       tl.fromTo(text2Ref.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.1 }, 0.35);
+      tl.fromTo(splitLeftRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.12 }, 0.32);
+      tl.fromTo(splitRightRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.12 }, 0.32);
       tl.to(text2Ref.current, { opacity: 0, y: -30, duration: 0.1 }, 0.55);
+      tl.to(splitLeftRef.current, { opacity: 0, duration: 0.1 }, 0.58);
+      tl.to(splitRightRef.current, { opacity: 0, duration: 0.1 }, 0.58);
       tl.fromTo(text3Ref.current, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.05 }, 0.65);
       tl.to(text3Ref.current, { opacity: 0, scale: 1.05, duration: 0.05 }, 0.78);
       tl.fromTo(
@@ -132,7 +138,57 @@ export default function ProblemSection() {
       });
     }
 
-    const monoFont = "600 12px var(--font-geist-mono), ui-monospace, monospace";
+    const drawGridSide = (splitLimit: number, time: number, intensity: number) => {
+      const massX = splitLimit * 0.55;
+      const massY = h * 0.52;
+      const massR = Math.min(splitLimit, h) * 0.12;
+
+      const gridGlow = ctx.createRadialGradient(massX, massY, 0, massX, massY, massR * 3.5);
+      gridGlow.addColorStop(0, "rgba(60, 160, 255, 0.14)");
+      gridGlow.addColorStop(1, "transparent");
+      ctx.fillStyle = gridGlow;
+      ctx.fillRect(0, 0, splitLimit, h);
+
+      ctx.fillStyle = "rgba(5, 8, 18, 0.92)";
+      ctx.beginPath();
+      ctx.arc(massX, massY, massR, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.strokeStyle = `rgba(60, 160, 255, ${0.35 + intensity * 0.35})`;
+      ctx.lineWidth = 1;
+      ctx.shadowColor = "rgba(60, 160, 255, 0.45)";
+      ctx.shadowBlur = 6;
+
+      for (let x = 0; x <= splitLimit; x += gridSize) {
+        ctx.beginPath();
+        for (let y = 0; y <= h; y += 8) {
+          const dx = x - massX;
+          const dy = y - massY;
+          const dist = Math.hypot(dx, dy) || 1;
+          const pull = (massR * massR) / (dist * dist + 120);
+          const px = x + (dx / dist) * pull * 28 + Math.sin(y * 0.012 + time) * 4;
+          const py = y + (dy / dist) * pull * 28;
+          if (y === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+      for (let y = 0; y <= h; y += gridSize) {
+        ctx.beginPath();
+        for (let x = 0; x <= splitLimit; x += 8) {
+          const dx = x - massX;
+          const dy = y - massY;
+          const dist = Math.hypot(dx, dy) || 1;
+          const pull = (massR * massR) / (dist * dist + 120);
+          const px = x + (dx / dist) * pull * 28;
+          const py = y + (dy / dist) * pull * 28 + Math.sin(x * 0.012 + time) * 4;
+          if (x === 0) ctx.moveTo(px, py);
+          else ctx.lineTo(px, py);
+        }
+        ctx.stroke();
+      }
+      ctx.shadowBlur = 0;
+    };
 
     const draw = () => {
       if (!isActive) return;
@@ -160,26 +216,7 @@ export default function ProblemSection() {
       ctx.lineWidth = 1;
 
       if (!isExplosion) {
-        for (let x = 0; x <= splitX; x += gridSize) {
-          ctx.beginPath();
-          for (let y = 0; y <= h; y += 10) {
-            const warp = Math.sin(y * 0.01 + time) * 15 * (1 - x / splitX);
-            const px = x + warp;
-            if (y === 0) ctx.moveTo(px, y);
-            else ctx.lineTo(px, y);
-          }
-          ctx.stroke();
-        }
-        for (let y = 0; y <= h; y += gridSize) {
-          ctx.beginPath();
-          for (let x = 0; x <= splitX; x += 10) {
-            const warp = Math.sin(x * 0.01 + time) * 15 * (1 - x / splitX);
-            const py = y + warp;
-            if (x === 0) ctx.moveTo(x, py);
-            else ctx.lineTo(x, py);
-          }
-          ctx.stroke();
-        }
+        drawGridSide(splitX + (p > 0.5 ? glitchOffset : 0), time, collisionIntensity);
       } else {
         const scatterP = (p - 0.8) * 5;
         gridLines.forEach((line) => {
@@ -213,43 +250,37 @@ export default function ProblemSection() {
           const scatterP = (p - 0.8) * 5;
           px += part.scatterX * scatterP;
           py += part.scatterY * scatterP;
+        } else {
+          px += Math.sin(time * part.speed + part.phase) * 3;
+          py += Math.cos(time * part.speed * 0.8 + part.phase) * 3;
         }
 
-        const alpha = Math.max(0, 0.5 + 0.5 * Math.sin(time * part.speed * 5 + part.phase));
+        const alpha = Math.max(0, 0.45 + 0.55 * Math.sin(time * part.speed * 5 + part.phase));
 
         if (alpha > 0.1) {
           ctx.fillStyle = `rgba(0, 229, 255, ${isExplosion ? alpha * (1 - (p - 0.8) * 5) : alpha})`;
+          ctx.shadowColor = "rgba(0, 229, 255, 0.55)";
+          ctx.shadowBlur = part.size > 2 ? 8 : 4;
           ctx.beginPath();
-          ctx.arc(px, py, part.size + (Math.sin(time * 10 + i) > 0.8 ? 2 : 0), 0, Math.PI * 2);
+          ctx.arc(px, py, part.size + (Math.sin(time * 10 + i) > 0.8 ? 1.5 : 0), 0, Math.PI * 2);
           ctx.fill();
+          ctx.shadowBlur = 0;
         }
       });
       ctx.restore();
 
       if (p < 0.8) {
-        ctx.strokeStyle = `rgba(255, 255, 255, ${Math.max(0.1, collisionIntensity)})`;
-        ctx.lineWidth = 1 + collisionIntensity * 4;
+        const dividerX = splitX + glitchOffset;
+        const grad = ctx.createLinearGradient(dividerX - 40, 0, dividerX + 40, 0);
+        grad.addColorStop(0, "transparent");
+        grad.addColorStop(0.5, `rgba(180, 210, 255, ${0.15 + collisionIntensity * 0.45})`);
+        grad.addColorStop(1, "transparent");
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1 + collisionIntensity * 3;
         ctx.beginPath();
-        ctx.moveTo(splitX + glitchOffset, 0);
-        ctx.lineTo(splitX - glitchOffset, h);
+        ctx.moveTo(dividerX, 0);
+        ctx.lineTo(dividerX - glitchOffset * 0.5, h);
         ctx.stroke();
-
-        if (p < 0.4) {
-          ctx.font = monoFont;
-          ctx.fillStyle = "rgba(60, 160, 255, 0.8)";
-          ctx.textAlign = "center";
-          ctx.fillText(t.problem.grLabel, w / 4, h / 2 - 20);
-          ctx.font = "400 10px var(--font-satoshi), sans-serif";
-          ctx.fillStyle = "rgba(138, 184, 216, 0.6)";
-          ctx.fillText(t.problem.grSub, w / 4, h / 2 + 10);
-
-          ctx.font = monoFont;
-          ctx.fillStyle = "rgba(0, 229, 255, 0.8)";
-          ctx.fillText(t.problem.qmLabel, (w / 4) * 3, h / 2 - 20);
-          ctx.font = "400 10px var(--font-satoshi), sans-serif";
-          ctx.fillStyle = "rgba(138, 184, 216, 0.6)";
-          ctx.fillText(t.problem.qmSub, (w / 4) * 3, h / 2 + 10);
-        }
       }
 
       animFrame = requestAnimationFrame(draw);
@@ -292,7 +323,31 @@ export default function ProblemSection() {
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
 
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+          <div
+            ref={splitLeftRef}
+            className="pointer-events-none absolute inset-y-0 left-0 z-[1] flex w-1/2 flex-col items-center justify-center px-6 opacity-0"
+          >
+            <p className="text-center font-sans text-[clamp(0.7rem,1.5vw,0.85rem)] font-semibold uppercase tracking-[0.22em] text-accent-blue">
+              {t.problem.grLabel}
+            </p>
+            <p className="mt-3 max-w-[18ch] text-center font-sans text-[clamp(0.85rem,1.6vw,1rem)] leading-relaxed text-white/70">
+              {t.problem.grSub}
+            </p>
+          </div>
+
+          <div
+            ref={splitRightRef}
+            className="pointer-events-none absolute inset-y-0 right-0 z-[1] flex w-1/2 flex-col items-center justify-center px-6 opacity-0"
+          >
+            <p className="text-center font-sans text-[clamp(0.7rem,1.5vw,0.85rem)] font-semibold uppercase tracking-[0.22em] text-accent-cyan">
+              {t.problem.qmLabel}
+            </p>
+            <p className="mt-3 max-w-[18ch] text-center font-sans text-[clamp(0.85rem,1.6vw,1rem)] leading-relaxed text-white/70">
+              {t.problem.qmSub}
+            </p>
+          </div>
+
+          <div className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center p-6 text-center">
             <div ref={text1Ref} className="absolute max-w-xl opacity-0">
               <p className="font-sans text-3xl md:text-5xl text-white mb-6">{t.problem.text1}</p>
             </div>
