@@ -70,7 +70,7 @@ export default function EmergenceRing({ opacity, scale }: Props) {
             opacity="0.45"
           />
 
-          {/* Dashed entanglement ring — rotates via CSS */}
+          {/* Dashed entanglement ring, rotates via CSS */}
           <g className="origin-center animate-[spin_90s_linear_infinite]" style={{ transformOrigin: "200px 200px" }}>
             <circle
               cx="200"

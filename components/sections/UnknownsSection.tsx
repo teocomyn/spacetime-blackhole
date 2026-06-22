@@ -51,9 +51,9 @@ const UNKNOWNS = [
     titleFr: "Prédiction expérimentalement testable",
     titleEn: "Experimentally testable prediction",
     descFr:
-      "Tant qu'on ne peut pas extraire une prédiction mesurable différente de la relativité générale, ça reste une intuition — aussi belle soit-elle.",
+      "Tant qu'on ne peut pas extraire une prédiction mesurable différente de la relativité générale, ça reste une intuition, aussi belle soit-elle.",
     descEn:
-      "Until we extract a measurable prediction distinct from general relativity, it remains an intuition — however beautiful.",
+      "Until we extract a measurable prediction distinct from general relativity, it remains an intuition, however beautiful.",
     icon: (
       <svg className="w-8 h-8 text-accent-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />

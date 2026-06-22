@@ -2,7 +2,7 @@
 
 **Emergent Spacetime** est un web documentaire interactif qui explore l'idée que **l'espace-temps n'est pas fondamental, mais émerge de l'intrication quantique**.
 
-Développé par **Teo Comyn** — [github.com/teocomyn/spacetime-blackhole](https://github.com/teocomyn/spacetime-blackhole)
+Développé par **Teo Comyn**, [github.com/teocomyn/spacetime-blackhole](https://github.com/teocomyn/spacetime-blackhole)
 
 ## Fonctionnalités
 
@@ -31,7 +31,7 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Déploiement
 
-Cible : [Vercel](https://vercel.com) — `emergent-spacetime.vercel.app`
+Cible : [Vercel](https://vercel.com), `emergent-spacetime.vercel.app`
 
 ## Inspirations
 

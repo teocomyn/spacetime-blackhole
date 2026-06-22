@@ -46,7 +46,7 @@ export const metadata: Metadata = {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Emergent Spacetime — L'espace n'existe pas",
+        alt: "Emergent Spacetime, L'espace n'existe pas",
       },
     ],
   },
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Emergent Spacetime",
     description:
-      "L'espace-temps émerge de l'intrication quantique — expérience interactive.",
+      "L'espace-temps émerge de l'intrication quantique, expérience interactive.",
     images: ["/og-image.svg"],
   },
   robots: { index: true, follow: true },

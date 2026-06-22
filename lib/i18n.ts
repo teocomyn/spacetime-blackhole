@@ -174,7 +174,7 @@ export const translations: Record<Locale, Dictionary> = {
     simulation: {
       loading: "Chargement de la simulation WebGL…",
       disclaimer:
-        "Visualisation conceptuelle — métaphore pédagogique, pas une simulation numérique des équations de la physique.",
+        "Visualisation conceptuelle, métaphore pédagogique, pas une simulation numérique des équations de la physique.",
       panelTitle: "Tableau de contrôle",
       collapse: "Masquer les contrôles",
       expand: "Afficher les contrôles",
@@ -191,7 +191,7 @@ export const translations: Record<Locale, Dictionary> = {
         },
         wormhole: {
           label: "ER = EPR (Trou de ver)",
-          desc: "Deux régions très intriquées mais éloignées créent un pont d'Einstein-Rosen — un raccourci dans l'espace-temps émergent.",
+          desc: "Deux régions très intriquées mais éloignées créent un pont d'Einstein-Rosen, un raccourci dans l'espace-temps émergent.",
           aria: "Mode trou de ver ER=EPR",
         },
         decoherence: {
@@ -223,18 +223,18 @@ export const translations: Record<Locale, Dictionary> = {
       subtitle: "Termes clés de la physique holographique",
     },
     finale: {
-      aria: "Singularité — immersion trou noir",
+      aria: "Singularité, immersion trou noir",
       label: "[ singularité ]",
       line1: "Au-delà de l'horizon,",
       line2: "l'information ne disparaît pas.",
-      body: "Les trous noirs ne sont pas des puits sans fond. Ils encodent tout ce qui tombe en eux sur leur surface — une projection holographique où l'espace-temps émerge de l'intrication.",
+      body: "Les trous noirs ne sont pas des puits sans fond. Ils encodent tout ce qui tombe en eux sur leur surface, une projection holographique où l'espace-temps émerge de l'intrication.",
       cta: "Explorer les horizons",
       ambientOn: "Activer l'ambiance",
       ambientOff: "Couper l'ambiance",
     },
     capabilities: {
       title:
-        "Les trous noirs ne détruisent pas l'information — ils la transforment, la compressent, la projettent.",
+        "Les trous noirs ne détruisent pas l'information, ils la transforment, la compressent, la projettent.",
       subtitle:
         "De la limite de Bekenstein à ER=EPR, chaque découverte rapproche la gravité quantique d'une géométrie émergente née de l'intrication.",
       cta: "Voir les phénomènes",
@@ -243,9 +243,9 @@ export const translations: Record<Locale, Dictionary> = {
       quote:
         "« Un trou noir n'est pas aussi noir qu'on le croit. Il rayonne comme un corps chaud et peut perdre de la masse. »",
       quoteAuthor: "Stephen Hawking",
-      quoteRole: "Physicien théoricien — rayonnement de Hawking, 1974",
+      quoteRole: "Physicien théoricien, rayonnement de Hawking, 1974",
       metric: "S = A/4",
-      metricLabel: "Entropie de Bekenstein-Hawking — l'information gravite à la surface",
+      metricLabel: "Entropie de Bekenstein-Hawking, l'information gravite à la surface",
       labelSystems: "Systèmes fondamentaux",
       labelReach: "Continuer l'exploration",
       link: "github.com/teocomyn/spacetime-blackhole",
@@ -268,7 +268,7 @@ export const translations: Record<Locale, Dictionary> = {
           id: "horizon",
           title: "Horizon des événements",
           subtitle: "frontière sans retour",
-          body: "La surface de non-retour où la vitesse de libération dépasse celle de la lumière. Ce qui la traverse ne peut revenir — mais l'information pourrait être encodée sur cette surface en 2D.",
+          body: "La surface de non-retour où la vitesse de libération dépasse celle de la lumière. Ce qui la traverse ne peut revenir, mais l'information pourrait être encodée sur cette surface en 2D.",
         },
         {
           id: "accretion",
@@ -280,7 +280,7 @@ export const translations: Record<Locale, Dictionary> = {
           id: "lensing",
           title: "Lentille gravitationnelle",
           subtitle: "courbure extrême",
-          body: "La masse colossale du trou noir courbe l'espace-temps si fortement que la lumière des étoiles derrière est déformée en arcs — un effet prédit par Einstein, observé par EHT.",
+          body: "La masse colossale du trou noir courbe l'espace-temps si fortement que la lumière des étoiles derrière est déformée en arcs, un effet prédit par Einstein, observé par EHT.",
         },
       ],
       rightCards: [
@@ -288,19 +288,19 @@ export const translations: Record<Locale, Dictionary> = {
           id: "paradox",
           title: "Paradoxe de l'information",
           subtitle: "où va l'information ?",
-          body: "Si un trou noir disparaît par évaporation, que devient l'information des objets tombés dedans ? La physique quantique dit qu'elle ne peut être détruite — d'où le paradoxe.",
+          body: "Si un trou noir disparaît par évaporation, que devient l'information des objets tombés dedans ? La physique quantique dit qu'elle ne peut être détruite, d'où le paradoxe.",
         },
         {
           id: "hawking",
           title: "Rayonnement de Hawking",
           subtitle: "évaporation quantique",
-          body: "Les trous noirs ne sont pas parfaitement noirs : des paires particule-antiparticule près de l'horizon font qu'ils rayonnent et perdent lentement masse — une prédiction quantique révolutionnaire.",
+          body: "Les trous noirs ne sont pas parfaitement noirs : des paires particule-antiparticule près de l'horizon font qu'ils rayonnent et perdent lentement masse, une prédiction quantique révolutionnaire.",
         },
         {
           id: "wormhole",
           title: "Trou de ver ER=EPR",
           subtitle: "intrication géométrique",
-          body: "Maldacena et Susskind ont proposé que deux particules intriquées (EPR) sont connectées par un pont d'Einstein-Rosen (ER) — l'intrication comme géométrie émergente.",
+          body: "Maldacena et Susskind ont proposé que deux particules intriquées (EPR) sont connectées par un pont d'Einstein-Rosen (ER), l'intrication comme géométrie émergente.",
         },
       ],
     },
@@ -367,7 +367,7 @@ export const translations: Record<Locale, Dictionary> = {
     simulation: {
       loading: "Loading WebGL simulation…",
       disclaimer:
-        "Conceptual visualization — a pedagogical metaphor, not a numerical simulation of physics equations.",
+        "Conceptual visualization, a pedagogical metaphor, not a numerical simulation of physics equations.",
       panelTitle: "Control panel",
       collapse: "Hide controls",
       expand: "Show controls",
@@ -384,7 +384,7 @@ export const translations: Record<Locale, Dictionary> = {
         },
         wormhole: {
           label: "ER = EPR (Wormhole)",
-          desc: "Two highly entangled but distant regions create an Einstein-Rosen bridge — a shortcut in emergent spacetime.",
+          desc: "Two highly entangled but distant regions create an Einstein-Rosen bridge, a shortcut in emergent spacetime.",
           aria: "ER=EPR wormhole mode",
         },
         decoherence: {
@@ -416,18 +416,18 @@ export const translations: Record<Locale, Dictionary> = {
       subtitle: "Key terms in holographic physics",
     },
     finale: {
-      aria: "Singularity — black hole immersion",
+      aria: "Singularity, black hole immersion",
       label: "[ singularity ]",
       line1: "Beyond the horizon,",
       line2: "information is not lost.",
-      body: "Black holes are not bottomless pits. They encode everything that falls in on their surface — a holographic projection where spacetime emerges from entanglement.",
+      body: "Black holes are not bottomless pits. They encode everything that falls in on their surface, a holographic projection where spacetime emerges from entanglement.",
       cta: "Explore the horizons",
       ambientOn: "Enable ambience",
       ambientOff: "Disable ambience",
     },
     capabilities: {
       title:
-        "Black holes do not destroy information — they transform it, compress it, project it.",
+        "Black holes do not destroy information, they transform it, compress it, project it.",
       subtitle:
         "From Bekenstein's bound to ER=EPR, each discovery brings quantum gravity closer to an emergent geometry born from entanglement.",
       cta: "See the phenomena",
@@ -436,9 +436,9 @@ export const translations: Record<Locale, Dictionary> = {
       quote:
         "\"A black hole is not as black as it is painted. It radiates like a hot body and can lose mass.\"",
       quoteAuthor: "Stephen Hawking",
-      quoteRole: "Theoretical physicist — Hawking radiation, 1974",
+      quoteRole: "Theoretical physicist, Hawking radiation, 1974",
       metric: "S = A/4",
-      metricLabel: "Bekenstein-Hawking entropy — information gravitates at the surface",
+      metricLabel: "Bekenstein-Hawking entropy, information gravitates at the surface",
       labelSystems: "Core systems",
       labelReach: "Keep exploring",
       link: "github.com/teocomyn/spacetime-blackhole",
@@ -461,7 +461,7 @@ export const translations: Record<Locale, Dictionary> = {
           id: "horizon",
           title: "Event horizon",
           subtitle: "point of no return",
-          body: "The boundary where escape velocity exceeds light speed. What crosses cannot return — yet information may be encoded on this 2D surface.",
+          body: "The boundary where escape velocity exceeds light speed. What crosses cannot return, yet information may be encoded on this 2D surface.",
         },
         {
           id: "accretion",
@@ -473,7 +473,7 @@ export const translations: Record<Locale, Dictionary> = {
           id: "lensing",
           title: "Gravitational lensing",
           subtitle: "extreme curvature",
-          body: "The black hole's mass warps spacetime so severely that light from background stars bends into arcs — predicted by Einstein, seen by EHT.",
+          body: "The black hole's mass warps spacetime so severely that light from background stars bends into arcs, predicted by Einstein, seen by EHT.",
         },
       ],
       rightCards: [
@@ -481,19 +481,19 @@ export const translations: Record<Locale, Dictionary> = {
           id: "paradox",
           title: "Information paradox",
           subtitle: "where does information go?",
-          body: "If a black hole evaporates away, what happens to the information of objects that fell in? Quantum mechanics forbids its destruction — hence the paradox.",
+          body: "If a black hole evaporates away, what happens to the information of objects that fell in? Quantum mechanics forbids its destruction, hence the paradox.",
         },
         {
           id: "hawking",
           title: "Hawking radiation",
           subtitle: "quantum evaporation",
-          body: "Black holes aren't perfectly black: particle-antiparticle pairs near the horizon cause them to radiate and slowly lose mass — a revolutionary quantum prediction.",
+          body: "Black holes aren't perfectly black: particle-antiparticle pairs near the horizon cause them to radiate and slowly lose mass, a revolutionary quantum prediction.",
         },
         {
           id: "wormhole",
           title: "ER=EPR wormhole",
           subtitle: "geometric entanglement",
-          body: "Maldacena and Susskind proposed that entangled particles (EPR) are connected by an Einstein-Rosen bridge (ER) — entanglement as emergent geometry.",
+          body: "Maldacena and Susskind proposed that entangled particles (EPR) are connected by an Einstein-Rosen bridge (ER), entanglement as emergent geometry.",
         },
       ],
     },

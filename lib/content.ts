@@ -63,18 +63,18 @@ export const GLOSSARY = [
     termFr: "Intrication",
     termEn: "Entanglement",
     defFr:
-      "Corrélation quantique entre deux systèmes, si forte qu'ils ne peuvent plus être décrits indépendamment — même à distance.",
+      "Corrélation quantique entre deux systèmes, si forte qu'ils ne peuvent plus être décrits indépendamment, même à distance.",
     defEn:
-      "Quantum correlation between two systems so strong they can no longer be described independently — even at a distance.",
+      "Quantum correlation between two systems so strong they can no longer be described independently, even at a distance.",
   },
   {
     id: "decoherence",
     termFr: "Décohérence",
     termEn: "Decoherence",
     defFr:
-      "Perte de la superposition quantique par interaction avec l'environnement — l'information quantique devient classique.",
+      "Perte de la superposition quantique par interaction avec l'environnement, l'information quantique devient classique.",
     defEn:
-      "Loss of quantum superposition through environmental interaction — quantum information becomes classical.",
+      "Loss of quantum superposition through environmental interaction, quantum information becomes classical.",
   },
   {
     id: "ads-cft",
@@ -99,9 +99,9 @@ export const GLOSSARY = [
     termFr: "Principe holographique",
     termEn: "Holographic principle",
     defFr:
-      "L'information d'un volume d'espace peut être encodée sur sa surface — comme un hologramme en 2D encode une scène 3D.",
+      "L'information d'un volume d'espace peut être encodée sur sa surface, comme un hologramme en 2D encode une scène 3D.",
     defEn:
-      "Information in a volume of space can be encoded on its boundary — like a 2D hologram encoding a 3D scene.",
+      "Information in a volume of space can be encoded on its boundary, like a 2D hologram encoding a 3D scene.",
   },
   {
     id: "de-sitter",

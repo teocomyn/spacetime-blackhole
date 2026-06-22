@@ -133,7 +133,7 @@ export default function IntuitionSection() {
             aria-hidden="true"
           />
 
-          {/* Beat 1 — wrong question */}
+          {/* Beat 1, wrong question */}
           <motion.div style={{ opacity: text1Opacity }} className="absolute z-20 max-w-2xl px-6 text-center">
             <p className="font-sans text-[clamp(1.8rem,4vw,3.5rem)] font-light leading-tight tracking-[-0.02em] text-white">
               {t.intuition.text1Title}
@@ -143,7 +143,7 @@ export default function IntuitionSection() {
             </p>
           </motion.div>
 
-          {/* Beat 2 — temperature */}
+          {/* Beat 2, temperature */}
           <motion.div style={{ opacity: text2Opacity }} className="absolute z-20 max-w-2xl px-6 text-center">
             <p className="font-sans text-[clamp(2rem,5vw,4rem)] font-semibold leading-none tracking-[-0.02em] text-accent-red drop-shadow-[0_0_40px_rgba(255,60,60,0.35)]">
               {t.intuition.text2Title}
@@ -153,7 +153,7 @@ export default function IntuitionSection() {
             </p>
           </motion.div>
 
-          {/* Beat 3 — emergence climax */}
+          {/* Beat 3, emergence climax */}
           <motion.div
             style={{ opacity: vignetteOpacity }}
             className="pointer-events-none absolute inset-0 z-[0] bg-[radial-gradient(circle_at_50%_48%,rgba(60,160,255,0.08)_0%,transparent_55%)]"

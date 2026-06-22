@@ -13,9 +13,9 @@ const TIMELINE = [
     titleFr: "Les trous noirs s'évaporent",
     titleEn: "Black holes evaporate",
     descFr:
-      "Le rayonnement de Hawking crée le paradoxe de l'information — premier indice que quelque chose de fondamental nous échappe.",
+      "Le rayonnement de Hawking crée le paradoxe de l'information, premier indice que quelque chose de fondamental nous échappe.",
     descEn:
-      "Hawking radiation creates the information paradox — the first hint that something fundamental is missing.",
+      "Hawking radiation creates the information paradox, the first hint that something fundamental is missing.",
     color: "#ff3c3c",
   },
   {
@@ -26,9 +26,9 @@ const TIMELINE = [
     titleFr: "L'entropie est sur la surface",
     titleEn: "Entropy lives on the surface",
     descFr:
-      "Bekenstein (1973) propose que les trous noirs ont une entropie proportionnelle à leur aire ; Hawking (1974–75) confirme et quantifie — premier indice holographique.",
+      "Bekenstein (1973) propose que les trous noirs ont une entropie proportionnelle à leur aire ; Hawking (1974–75) confirme et quantifie, premier indice holographique.",
     descEn:
-      "Bekenstein (1973) proposes black hole entropy proportional to area; Hawking (1974–75) confirms and quantifies it — the first holographic hint.",
+      "Bekenstein (1973) proposes black hole entropy proportional to area; Hawking (1974–75) confirms and quantifies it, the first holographic hint.",
     color: "#ffa064",
   },
   {
