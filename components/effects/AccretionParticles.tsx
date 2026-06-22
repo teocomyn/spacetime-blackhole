@@ -115,7 +115,7 @@ export default function AccretionParticles() {
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-[5] h-full w-full opacity-70 mix-blend-screen"
+      className="pointer-events-none absolute inset-0 z-[6] h-full w-full opacity-40 mix-blend-screen"
       aria-hidden="true"
     />
   );

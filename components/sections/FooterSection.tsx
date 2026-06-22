@@ -17,12 +17,12 @@ export default function FooterSection() {
     >
       <BackgroundVideo
         src={BLACKHOLE_VIDEOS.accretionHls}
-        className="absolute inset-0 h-full w-full object-cover opacity-50"
-        lazy
+        className="absolute inset-0 h-full w-full scale-105 object-cover"
+        lazy={false}
       />
       <AccretionParticles />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_0%,rgba(0,0,0,0.65)_50%,rgba(0,0,0,0.95)_100%)]" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/70" />
+      <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_40%,transparent_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.88)_100%)]" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/25 to-black/50" />
 
       <div className="relative z-10 px-4 text-center">
         <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/45">
