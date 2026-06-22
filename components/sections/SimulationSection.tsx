@@ -9,7 +9,10 @@ import type { SimMode } from "@/lib/types";
 export type { SimMode };
 
 const SimulationOrchestrator = dynamic(
-  () => import("../three/simulations/SimulationOrchestrator"),
+  () =>
+    import("../three/simulations/SimulationOrchestrator").then(
+      (mod) => mod.default
+    ),
   {
     ssr: false,
     loading: () => <SimulationLoader />,

@@ -175,10 +175,9 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
   return (
     <group ref={group}>
       <instancedMesh ref={instancedMeshRef} args={[undefined, undefined, count]}>
-        <sphereGeometry args={[0.08, 16, 16]}>
-          <instancedBufferAttribute attach="attributes-color" args={[sphereColors, 3]} />
-        </sphereGeometry>
+        <sphereGeometry args={[0.08, 16, 16]} />
         <meshBasicMaterial vertexColors toneMapped={false} transparent opacity={1 - progress * 0.8} />
+        <instancedBufferAttribute attach="instanceColor" args={[sphereColors, 3]} />
       </instancedMesh>
       <lineSegments geometry={lineGeometry} material={lineMaterial} />
     </group>

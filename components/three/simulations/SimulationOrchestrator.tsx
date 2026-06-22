@@ -1,10 +1,9 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
 import { useCallback, useRef } from "react";
 import type { SimMode } from "@/lib/types";
-import { useFpsTracker } from "@/hooks/useFpsTracker";
 
 import EntanglementMode from "./EntanglementMode";
 import BlackHoleMode from "./BlackHoleMode";
@@ -29,6 +28,8 @@ function Scene({
   onStatsUpdate,
 }: Props) {
   const statsRef = useRef({ qubits: 60, links: 0, fps: 60 });
+  const fpsFrames = useRef(0);
+  const fpsLastTime = useRef(performance.now());
 
   const emitStats = useCallback(() => {
     onStatsUpdate({ ...statsRef.current });
@@ -42,15 +43,18 @@ function Scene({
     [emitStats]
   );
 
-  useFpsTracker(
-    useCallback(
-      (fps) => {
-        statsRef.current.fps = fps;
-        emitStats();
-      },
-      [emitStats]
-    )
-  );
+  useFrame(() => {
+    fpsFrames.current += 1;
+    const now = performance.now();
+    const elapsed = now - fpsLastTime.current;
+
+    if (elapsed >= 500) {
+      statsRef.current.fps = Math.round((fpsFrames.current * 1000) / elapsed);
+      fpsFrames.current = 0;
+      fpsLastTime.current = now;
+      emitStats();
+    }
+  });
 
   return (
     <>

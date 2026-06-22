@@ -129,6 +129,7 @@ export default function InstancedQubitNetwork({
     },
     [onLinkCount]
   );
+  const lastLinkReport = useRef(0);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
@@ -243,7 +244,12 @@ export default function InstancedQubitNetwork({
 
     lineGeometry.attributes.position.needsUpdate = true;
     lineGeometry.attributes.color.needsUpdate = true;
-    reportLinks(drawnLinks);
+
+    const now = performance.now();
+    if (onLinkCount && now - lastLinkReport.current > 400) {
+      lastLinkReport.current = now;
+      reportLinks(drawnLinks);
+    }
   });
 
   const sphereColors = useMemo(() => {
@@ -259,13 +265,9 @@ export default function InstancedQubitNetwork({
   return (
     <group ref={group}>
       <instancedMesh ref={instancedMeshRef} args={[undefined, undefined, count]}>
-        <sphereGeometry args={[sphereSize, 16, 16]}>
-          <instancedBufferAttribute
-            attach="attributes-color"
-            args={[sphereColors, 3]}
-          />
-        </sphereGeometry>
+        <sphereGeometry args={[sphereSize, 16, 16]} />
         <meshBasicMaterial vertexColors toneMapped={false} />
+        <instancedBufferAttribute attach="instanceColor" args={[sphereColors, 3]} />
       </instancedMesh>
       <lineSegments geometry={lineGeometry} material={lineMaterial} />
     </group>
