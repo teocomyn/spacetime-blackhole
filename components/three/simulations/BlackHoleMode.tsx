@@ -36,7 +36,7 @@ export default function BlackHoleMode({ mass, onUpdate }: Props) {
         // Color gradient based on radius
         if (radius < 3.5) colorObj.setHex(0xffffff); // White hot
         else if (radius < 5) colorObj.setHex(0xffddaa); // Yellow
-        else colorObj.setHex(0xff4411); // Red/Orange
+        else colorObj.setHex(0x3a5f8f);
         
         colorObj.toArray(colors, i * 3);
     }
