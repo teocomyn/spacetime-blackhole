@@ -67,12 +67,17 @@ export default function ProblemSection() {
       tl.to(state.current, { progress: 1, duration: 1, ease: "none" }, 0);
       tl.fromTo(text1Ref.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.1 }, 0.05);
       tl.to(text1Ref.current, { opacity: 0, y: -30, duration: 0.1 }, 0.25);
-      tl.fromTo(text2Ref.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.1 }, 0.35);
-      tl.fromTo(splitLeftRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.12 }, 0.32);
-      tl.fromTo(splitRightRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.12 }, 0.32);
-      tl.to(text2Ref.current, { opacity: 0, y: -30, duration: 0.1 }, 0.55);
-      tl.to(splitLeftRef.current, { opacity: 0, duration: 0.1 }, 0.58);
-      tl.to(splitRightRef.current, { opacity: 0, duration: 0.1 }, 0.58);
+
+      // Beat split : labels GR/MQ seuls (pas de carte au centre)
+      tl.fromTo(splitLeftRef.current, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.08 }, 0.28);
+      tl.fromTo(splitRightRef.current, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.08 }, 0.28);
+      tl.to(splitLeftRef.current, { opacity: 0, y: -12, duration: 0.08 }, 0.38);
+      tl.to(splitRightRef.current, { opacity: 0, y: -12, duration: 0.08 }, 0.38);
+
+      // Beat scène / acteur : carte centrée une fois les labels partis
+      tl.fromTo(text2Ref.current, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.1 }, 0.42);
+      tl.to(text2Ref.current, { opacity: 0, y: -24, duration: 0.1 }, 0.58);
+
       tl.fromTo(text3Ref.current, { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.05 }, 0.65);
       tl.to(text3Ref.current, { opacity: 0, scale: 1.05, duration: 0.05 }, 0.78);
       tl.fromTo(
@@ -325,44 +330,52 @@ export default function ProblemSection() {
 
           <div
             ref={splitLeftRef}
-            className="pointer-events-none absolute inset-y-0 left-0 z-[1] flex w-1/2 flex-col items-center justify-center px-6 opacity-0"
+            className="pointer-events-none absolute bottom-[12vh] left-0 z-[1] flex w-1/2 flex-col items-center px-4 opacity-0 md:bottom-[14vh] md:px-8"
           >
-            <p className="text-center font-sans text-[clamp(0.7rem,1.5vw,0.85rem)] font-semibold uppercase tracking-[0.22em] text-accent-blue">
+            <p className="text-center font-sans text-[clamp(0.65rem,1.3vw,0.8rem)] font-semibold uppercase tracking-[0.22em] text-accent-blue">
               {t.problem.grLabel}
             </p>
-            <p className="mt-3 max-w-[18ch] text-center font-sans text-[clamp(0.85rem,1.6vw,1rem)] leading-relaxed text-white/70">
+            <p className="mt-2 max-w-[16ch] text-center font-sans text-[clamp(0.8rem,1.4vw,0.95rem)] leading-snug text-white/75">
               {t.problem.grSub}
             </p>
           </div>
 
           <div
             ref={splitRightRef}
-            className="pointer-events-none absolute inset-y-0 right-0 z-[1] flex w-1/2 flex-col items-center justify-center px-6 opacity-0"
+            className="pointer-events-none absolute bottom-[12vh] right-0 z-[1] flex w-1/2 flex-col items-center px-4 opacity-0 md:bottom-[14vh] md:px-8"
           >
-            <p className="text-center font-sans text-[clamp(0.7rem,1.5vw,0.85rem)] font-semibold uppercase tracking-[0.22em] text-accent-cyan">
+            <p className="text-center font-sans text-[clamp(0.65rem,1.3vw,0.8rem)] font-semibold uppercase tracking-[0.22em] text-accent-cyan">
               {t.problem.qmLabel}
             </p>
-            <p className="mt-3 max-w-[18ch] text-center font-sans text-[clamp(0.85rem,1.6vw,1rem)] leading-relaxed text-white/70">
+            <p className="mt-2 max-w-[16ch] text-center font-sans text-[clamp(0.8rem,1.4vw,0.95rem)] leading-snug text-white/75">
               {t.problem.qmSub}
             </p>
           </div>
 
-          <div className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center p-6 text-center">
+          <div className="pointer-events-none absolute inset-0 z-[2] flex flex-col items-center justify-center p-4 text-center md:p-6">
             <div ref={text1Ref} className="absolute max-w-xl opacity-0">
               <p className="font-sans text-3xl md:text-5xl text-white mb-6">{t.problem.text1}</p>
             </div>
 
             <div
               ref={text2Ref}
-              className="absolute max-w-2xl opacity-0 flex flex-col md:flex-row gap-12 text-left bg-bg-panel p-8 rounded-2xl border border-white/5 backdrop-blur-md"
+              className="absolute mx-3 flex max-w-[min(92vw,42rem)] flex-col gap-8 rounded-2xl border border-white/10 bg-bg-panel/95 p-6 text-left opacity-0 shadow-[0_24px_80px_rgba(0,0,0,0.55)] backdrop-blur-xl md:flex-row md:gap-10 md:p-8"
             >
-              <div className="flex-1">
-                <h3 className="text-accent-blue font-sans text-sm mb-3">{t.problem.sceneTitle}</h3>
-                <p className="text-text-secondary text-sm md:text-base leading-relaxed">{t.problem.sceneDesc}</p>
+              <div className="flex-1 border-accent-blue/20 md:border-r md:pr-8">
+                <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-blue">
+                  {t.problem.sceneTitle}
+                </h3>
+                <p className="font-sans text-sm leading-relaxed text-text-secondary md:text-base">
+                  {t.problem.sceneDesc}
+                </p>
               </div>
-              <div className="flex-1">
-                <h3 className="text-accent-cyan font-sans text-sm mb-3">{t.problem.actorTitle}</h3>
-                <p className="text-text-secondary text-sm md:text-base leading-relaxed">{t.problem.actorDesc}</p>
+              <div className="flex-1 md:pl-2">
+                <h3 className="mb-3 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-cyan">
+                  {t.problem.actorTitle}
+                </h3>
+                <p className="font-sans text-sm leading-relaxed text-text-secondary md:text-base">
+                  {t.problem.actorDesc}
+                </p>
               </div>
             </div>
 
