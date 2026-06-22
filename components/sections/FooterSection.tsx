@@ -1,5 +1,6 @@
 "use client";
 
+import AccretionParticles from "@/components/effects/AccretionParticles";
 import BackgroundVideo from "@/components/media/BackgroundVideo";
 import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
@@ -17,7 +18,9 @@ export default function FooterSection() {
       <BackgroundVideo
         src={BLACKHOLE_VIDEOS.accretionHls}
         className="absolute inset-0 h-full w-full object-cover opacity-50"
+        lazy
       />
+      <AccretionParticles />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,transparent_0%,rgba(0,0,0,0.65)_50%,rgba(0,0,0,0.95)_100%)]" />
       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-black/70" />
 
@@ -40,15 +43,26 @@ export default function FooterSection() {
         </p>
 
         <div className="mt-14 flex flex-col items-center gap-4">
-          <button
-            type="button"
-            onClick={() => {
-              document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="inline-flex min-h-[48px] items-center rounded-full border border-white/15 bg-white/[0.06] px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
-          >
-            {t.footer.backTop}
-          </button>
+          <div className="flex flex-wrap justify-center gap-3">
+            <button
+              type="button"
+              onClick={() => {
+                document.getElementById("simulation")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="inline-flex min-h-[48px] items-center rounded-full border border-accent-orange/30 bg-accent-orange/10 px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-orange backdrop-blur-md transition-colors hover:bg-accent-orange/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+            >
+              {t.footer.replaySim}
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
+              }}
+              className="inline-flex min-h-[48px] items-center rounded-full border border-white/15 bg-white/[0.06] px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-white/80 backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+            >
+              {t.footer.backTop}
+            </button>
+          </div>
 
           <div className="mt-8 flex flex-col gap-2 font-sans text-[10px] uppercase tracking-wider text-white/40">
             <p>{t.footer.credits}</p>

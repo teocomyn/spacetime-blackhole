@@ -79,6 +79,8 @@ type Dictionary = {
     line2: string;
     body: string;
     cta: string;
+    ambientOn: string;
+    ambientOff: string;
   };
   capabilities: {
     title: string;
@@ -103,8 +105,9 @@ type Dictionary = {
   phenomena: {
     label: string;
     title: string;
-    leftCards: { title: string; subtitle: string }[];
-    rightCards: { title: string; subtitle: string }[];
+    closeModal: string;
+    leftCards: { id: string; title: string; subtitle: string; body: string }[];
+    rightCards: { id: string; title: string; subtitle: string; body: string }[];
   };
   footer: {
     epilogue: string;
@@ -224,6 +227,8 @@ export const translations: Record<Locale, Dictionary> = {
       line2: "l'information ne disparaît pas.",
       body: "Les trous noirs ne sont pas des puits sans fond. Ils encodent tout ce qui tombe en eux sur leur surface — une projection holographique où l'espace-temps émerge de l'intrication.",
       cta: "Explorer les horizons",
+      ambientOn: "Activer l'ambiance",
+      ambientOff: "Couper l'ambiance",
     },
     capabilities: {
       title:
@@ -255,15 +260,46 @@ export const translations: Record<Locale, Dictionary> = {
     phenomena: {
       label: "[ phénomènes ]",
       title: "trous noirs",
+      closeModal: "Fermer",
       leftCards: [
-        { title: "Horizon des événements", subtitle: "frontière sans retour" },
-        { title: "Disque d'accrétion", subtitle: "matière en chute libre" },
-        { title: "Lentille gravitationnelle", subtitle: "courbure extrême" },
+        {
+          id: "horizon",
+          title: "Horizon des événements",
+          subtitle: "frontière sans retour",
+          body: "La surface de non-retour où la vitesse de libération dépasse celle de la lumière. Ce qui la traverse ne peut revenir — mais l'information pourrait être encodée sur cette surface en 2D.",
+        },
+        {
+          id: "accretion",
+          title: "Disque d'accrétion",
+          subtitle: "matière en chute libre",
+          body: "La matière spirale vers le trou noir, chauffée par frottement jusqu'à des millions de kelvins. Ce disque brûlant est l'une des sources les plus lumineuses de l'univers.",
+        },
+        {
+          id: "lensing",
+          title: "Lentille gravitationnelle",
+          subtitle: "courbure extrême",
+          body: "La masse colossale du trou noir courbe l'espace-temps si fortement que la lumière des étoiles derrière est déformée en arcs — un effet prédit par Einstein, observé par EHT.",
+        },
       ],
       rightCards: [
-        { title: "Paradoxe de l'information", subtitle: "où va l'information ?" },
-        { title: "Rayonnement de Hawking", subtitle: "évaporation quantique" },
-        { title: "Trou de ver ER=EPR", subtitle: "intrication géométrique" },
+        {
+          id: "paradox",
+          title: "Paradoxe de l'information",
+          subtitle: "où va l'information ?",
+          body: "Si un trou noir disparaît par évaporation, que devient l'information des objets tombés dedans ? La physique quantique dit qu'elle ne peut être détruite — d'où le paradoxe.",
+        },
+        {
+          id: "hawking",
+          title: "Rayonnement de Hawking",
+          subtitle: "évaporation quantique",
+          body: "Les trous noirs ne sont pas parfaitement noirs : des paires particule-antiparticule près de l'horizon font qu'ils rayonnent et perdent lentement masse — une prédiction quantique révolutionnaire.",
+        },
+        {
+          id: "wormhole",
+          title: "Trou de ver ER=EPR",
+          subtitle: "intrication géométrique",
+          body: "Maldacena et Susskind ont proposé que deux particules intriquées (EPR) sont connectées par un pont d'Einstein-Rosen (ER) — l'intrication comme géométrie émergente.",
+        },
       ],
     },
     footer: {
@@ -383,6 +419,8 @@ export const translations: Record<Locale, Dictionary> = {
       line2: "information is not lost.",
       body: "Black holes are not bottomless pits. They encode everything that falls in on their surface — a holographic projection where spacetime emerges from entanglement.",
       cta: "Explore the horizons",
+      ambientOn: "Enable ambience",
+      ambientOff: "Disable ambience",
     },
     capabilities: {
       title:
@@ -414,15 +452,46 @@ export const translations: Record<Locale, Dictionary> = {
     phenomena: {
       label: "[ phenomena ]",
       title: "black holes",
+      closeModal: "Close",
       leftCards: [
-        { title: "Event horizon", subtitle: "point of no return" },
-        { title: "Accretion disk", subtitle: "matter in free fall" },
-        { title: "Gravitational lensing", subtitle: "extreme curvature" },
+        {
+          id: "horizon",
+          title: "Event horizon",
+          subtitle: "point of no return",
+          body: "The boundary where escape velocity exceeds light speed. What crosses cannot return — yet information may be encoded on this 2D surface.",
+        },
+        {
+          id: "accretion",
+          title: "Accretion disk",
+          subtitle: "matter in free fall",
+          body: "Matter spirals inward, heated by friction to millions of kelvin. This blazing disk is among the brightest sources in the universe.",
+        },
+        {
+          id: "lensing",
+          title: "Gravitational lensing",
+          subtitle: "extreme curvature",
+          body: "The black hole's mass warps spacetime so severely that light from background stars bends into arcs — predicted by Einstein, seen by EHT.",
+        },
       ],
       rightCards: [
-        { title: "Information paradox", subtitle: "where does information go?" },
-        { title: "Hawking radiation", subtitle: "quantum evaporation" },
-        { title: "ER=EPR wormhole", subtitle: "geometric entanglement" },
+        {
+          id: "paradox",
+          title: "Information paradox",
+          subtitle: "where does information go?",
+          body: "If a black hole evaporates away, what happens to the information of objects that fell in? Quantum mechanics forbids its destruction — hence the paradox.",
+        },
+        {
+          id: "hawking",
+          title: "Hawking radiation",
+          subtitle: "quantum evaporation",
+          body: "Black holes aren't perfectly black: particle-antiparticle pairs near the horizon cause them to radiate and slowly lose mass — a revolutionary quantum prediction.",
+        },
+        {
+          id: "wormhole",
+          title: "ER=EPR wormhole",
+          subtitle: "geometric entanglement",
+          body: "Maldacena and Susskind proposed that entangled particles (EPR) are connected by an Einstein-Rosen bridge (ER) — entanglement as emergent geometry.",
+        },
       ],
     },
     footer: {

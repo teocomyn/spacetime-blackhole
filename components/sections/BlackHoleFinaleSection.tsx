@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { AmbientToggle, SingularityDrone } from "@/components/media/AmbientAudio";
 import BackgroundVideo from "@/components/media/BackgroundVideo";
 import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
@@ -9,6 +10,7 @@ import { useTranslation } from "@/lib/i18n";
 
 export default function BlackHoleFinaleSection() {
   const ref = useRef<HTMLElement>(null);
+  const [ambientOn, setAmbientOn] = useState(false);
   const { locale } = useApp();
   const t = useTranslation(locale);
   const { scrollYProgress } = useScroll({
@@ -30,11 +32,14 @@ export default function BlackHoleFinaleSection() {
       className="relative z-[60] h-[220vh] bg-black"
       aria-label={t.finale.aria}
     >
+      <SingularityDrone active={ambientOn} />
+
       <div className="sticky top-0 h-screen w-full overflow-hidden">
         <motion.div style={{ scale: videoScale, opacity: videoOpacity }} className="absolute inset-0">
           <BackgroundVideo
             src={BLACKHOLE_VIDEOS.singularityMp4}
             className="absolute inset-0 h-full w-full object-cover"
+            lazy
           />
         </motion.div>
 
@@ -67,10 +72,19 @@ export default function BlackHoleFinaleSection() {
             {t.finale.body}
           </motion.p>
 
+          <motion.div style={{ opacity: bodyOpacity }}>
+            <AmbientToggle
+              enabled={ambientOn}
+              onToggle={() => setAmbientOn((v) => !v)}
+              labelOn={t.finale.ambientOff}
+              labelOff={t.finale.ambientOn}
+            />
+          </motion.div>
+
           <motion.a
             href="#horizons"
             style={{ opacity: bodyOpacity }}
-            className="mt-12 inline-flex min-h-[48px] items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-6 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+            className="mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-6 text-sm font-semibold text-white backdrop-blur-md transition-colors hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
           >
             {t.finale.cta}
             <span aria-hidden="true">↓</span>

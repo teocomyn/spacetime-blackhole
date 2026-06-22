@@ -1,9 +1,9 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
 import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
-import HeroVideo from "../HeroVideo";
+import { motion, useScroll } from "framer-motion";
+import HeroVideoCrossfade from "../HeroVideoCrossfade";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 
@@ -15,18 +15,25 @@ const HeroCanvas = dynamic(() => import("../three/HeroCanvas"), {
 });
 
 export default function HeroSection() {
+  const ref = useRef<HTMLElement>(null);
   const { locale, reducedMotion, reducedEffects } = useApp();
   const t = useTranslation(locale);
   const title = t.hero.title.split("");
   const animate = !reducedMotion && !reducedEffects;
 
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
   return (
     <section
+      ref={ref}
       id="hero"
       className="relative h-[100vh] w-full overflow-hidden bg-bg-primary"
       aria-label={t.hero.videoLabel}
     >
-      <HeroVideo />
+      <HeroVideoCrossfade scrollProgress={scrollYProgress} />
 
       {!reducedEffects && (
         <div className="absolute inset-0 z-[2] opacity-60 mix-blend-screen">

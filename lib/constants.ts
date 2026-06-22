@@ -16,10 +16,20 @@ export const BLACKHOLE_VIDEOS = {
     "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260613_180732_a54afbf6-b30d-470e-861f-669871f09f67.mp4",
 } as const;
 
+export const PHENOMENON_VIDEOS: Record<string, string> = {
+  horizon: BLACKHOLE_VIDEOS.horizonMp4,
+  accretion: BLACKHOLE_VIDEOS.accretionHls,
+  lensing: BLACKHOLE_VIDEOS.collapseMp4,
+  paradox: BLACKHOLE_VIDEOS.singularityMp4,
+  hawking: BLACKHOLE_VIDEOS.wormholeHls,
+  wormhole: BLACKHOLE_VIDEOS.wormholeHls,
+};
+
 export const SECTIONS = [
   { id: "hero", labelFr: "Accueil", labelEn: "Home" },
   { id: "problem", labelFr: "Conflit", labelEn: "Conflict" },
   { id: "intuition", labelFr: "Intuition", labelEn: "Intuition" },
+  { id: "simulation", labelFr: "Simulation", labelEn: "Simulation" },
   { id: "timeline", labelFr: "Timeline", labelEn: "Timeline" },
   { id: "unknowns", labelFr: "Inconnus", labelEn: "Unknowns" },
   { id: "bibliography", labelFr: "Sources", labelEn: "Sources" },

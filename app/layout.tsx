@@ -7,6 +7,7 @@ import ScrollProgress from "@/components/ScrollProgress";
 import SkipLink from "@/components/SkipLink";
 import SiteNav from "@/components/navigation/SiteNav";
 import LanguageToggle from "@/components/LanguageToggle";
+import StarfieldParallax from "@/components/effects/StarfieldParallax";
 import { AppProvider } from "@/context/AppContext";
 import { SITE_URL } from "@/lib/constants";
 
@@ -85,6 +86,7 @@ export default function RootLayout({
       </head>
       <body className="overflow-x-hidden bg-bg-primary font-sans text-text-primary antialiased">
         <AppProvider>
+          <StarfieldParallax />
           <SkipLink />
           <LanguageToggle />
           <ScrollProgress />

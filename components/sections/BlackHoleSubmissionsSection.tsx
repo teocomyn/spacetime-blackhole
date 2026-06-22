@@ -1,22 +1,30 @@
 "use client";
 
+import { useCallback, useState } from "react";
 import BackgroundVideo from "@/components/media/BackgroundVideo";
-import { BLACKHOLE_VIDEOS } from "@/lib/constants";
+import PhenomenonModal from "@/components/ui/PhenomenonModal";
+import { BLACKHOLE_VIDEOS, PHENOMENON_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 
-function HexCard({
-  title,
-  subtitle,
-  href,
-}: {
+type PhenomenonCard = {
+  id: string;
   title: string;
   subtitle: string;
-  href: string;
+  body: string;
+};
+
+function HexCard({
+  card,
+  onOpen,
+}: {
+  card: PhenomenonCard;
+  onOpen: (id: string) => void;
 }) {
   return (
-    <a
-      href={href}
+    <button
+      type="button"
+      onClick={() => onOpen(card.id)}
       className="group relative block h-[5em] w-full max-w-[20em] transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
     >
       <svg
@@ -36,17 +44,23 @@ function HexCard({
       </svg>
       <div className="relative flex h-full w-full items-center justify-center">
         <div className="px-4 text-center text-white">
-          <p className="text-[13px] font-semibold leading-tight">{title}</p>
-          <p className="text-[12px] font-normal leading-tight text-white/70">{subtitle}</p>
+          <p className="text-[13px] font-semibold leading-tight">{card.title}</p>
+          <p className="text-[12px] font-normal leading-tight text-white/70">{card.subtitle}</p>
         </div>
       </div>
-    </a>
+    </button>
   );
 }
 
 export default function BlackHoleSubmissionsSection() {
   const { locale } = useApp();
   const t = useTranslation(locale);
+  const [activeId, setActiveId] = useState<string | null>(null);
+
+  const allCards = [...t.phenomena.leftCards, ...t.phenomena.rightCards];
+  const active = allCards.find((c) => c.id === activeId) ?? null;
+
+  const close = useCallback(() => setActiveId(null), []);
 
   return (
     <section
@@ -58,7 +72,7 @@ export default function BlackHoleSubmissionsSection() {
       <div className="relative mx-auto flex max-w-5xl flex-col items-start justify-center gap-10 lg:flex-row lg:items-stretch lg:gap-12">
         <div className="order-2 flex flex-col items-center gap-4 lg:order-1 lg:mt-36 lg:items-start">
           {t.phenomena.leftCards.map((card) => (
-            <HexCard key={card.title} {...card} href="#horizons" />
+            <HexCard key={card.id} card={card} onOpen={setActiveId} />
           ))}
         </div>
 
@@ -74,16 +88,29 @@ export default function BlackHoleSubmissionsSection() {
             <BackgroundVideo
               src={BLACKHOLE_VIDEOS.horizonMp4}
               className="relative h-full w-full object-cover ring-1 ring-white/10"
+              lazy
             />
           </div>
         </div>
 
         <div className="order-3 flex flex-col items-center gap-4 lg:mt-36 lg:items-end">
           {t.phenomena.rightCards.map((card) => (
-            <HexCard key={card.title} {...card} href="#singularity" />
+            <HexCard key={card.id} card={card} onOpen={setActiveId} />
           ))}
         </div>
       </div>
+
+      {active && (
+        <PhenomenonModal
+          open={Boolean(activeId)}
+          onClose={close}
+          title={active.title}
+          subtitle={active.subtitle}
+          body={active.body}
+          videoSrc={PHENOMENON_VIDEOS[active.id]}
+          closeLabel={t.phenomena.closeModal}
+        />
+      )}
 
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-40 sm:h-56"
