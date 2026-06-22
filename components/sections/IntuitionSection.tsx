@@ -28,9 +28,9 @@ export default function IntuitionSection() {
   const thermoOpacity = useTransform(scrollYProgress, [0.05, 0.25, 0.35], [0, 1, 0]);
   const thermoScale = useTransform(scrollYProgress, [0.1, 0.35], [1, 20]);
   const text2Opacity = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [0, 1, 1, 0]);
-  const moleculesOpacity = useTransform(scrollYProgress, [0.35, 0.45, 0.6, 0.7], [0, 1, 0]);
+  const moleculesOpacity = useTransform(scrollYProgress, [0.35, 0.45, 0.6, 0.7], [0, 1, 1, 0]);
   const text3Opacity = useTransform(scrollYProgress, [0.7, 0.8, 0.95, 1], [0, 1, 1, 0]);
-  const qubitsOpacity = useTransform(scrollYProgress, [0.65, 0.75, 0.95, 1], [0, 1, 0]);
+  const qubitsOpacity = useTransform(scrollYProgress, [0.65, 0.75, 0.95, 1], [0, 1, 1, 0]);
   const gridOpacity = useTransform(scrollYProgress, [0.75, 0.85, 0.95, 1], [0, 0.4, 0.4, 0]);
 
   const particleCount = useMemo(() => {
