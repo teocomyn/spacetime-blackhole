@@ -111,6 +111,7 @@ type Dictionary = {
     replaySim: string;
     backTop: string;
     credits: string;
+    madeByPrefix: string;
     source: string;
   };
 };
@@ -261,6 +262,7 @@ export const translations: Record<Locale, Dictionary> = {
       backTop: "Remonter au début",
       credits:
         "BASÉ SUR LES TRAVAUX DE: MALDACENA, PENROSE, HAWKING, RYU, TAKAYANAGI, VERLINDE, SUSSKIND",
+      madeByPrefix: "Réalisé par",
       source: "CODE SOURCE",
     },
   },
@@ -409,6 +411,7 @@ export const translations: Record<Locale, Dictionary> = {
       backTop: "Back to top",
       credits:
         "BASED ON WORK BY: MALDACENA, PENROSE, HAWKING, RYU, TAKAYANAGI, VERLINDE, SUSSKIND",
+      madeByPrefix: "Built by",
       source: "SOURCE CODE",
     },
   },

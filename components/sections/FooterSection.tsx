@@ -67,12 +67,27 @@ export default function FooterSection() {
           <div className="mt-8 flex flex-col gap-2 font-sans text-[10px] uppercase tracking-wider text-white/40">
             <p>{t.footer.credits}</p>
             <p>
-              {locale === "fr" ? "Développé par Teo Comyn." : "Built by Teo Comyn."}{" "}
+              {t.footer.madeByPrefix}{" "}
+              <a
+                href="https://teocomyn.com/"
+                className="underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+              >
+                Teo Comyn
+              </a>
+              {" - "}
+              <a
+                href="https://experaise.com/"
+                className="underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+              >
+                Experaise
+              </a>
+            </p>
+            <p>
               <a
                 href="https://github.com/teocomyn/spacetime-blackhole"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-1 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                className="underline decoration-white/20 underline-offset-4 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
               >
                 {t.footer.source}
               </a>
