@@ -1,5 +1,5 @@
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://spacetime-blackhole.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://blackhole.the42laws.fr"
 ).replace(/\/$/, "");
 
 export const HERO_VIDEO_HLS =

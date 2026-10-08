@@ -23,7 +23,9 @@ content-only (prototype conservé). Aucune base de données, aucun compte utilis
 ## Infrastructure
 
 - Dépôt : github.com/teocomyn/spacetime-blackhole (public), branche `main`.
-- Hébergement : Vercel, production sur https://spacetime-blackhole.vercel.app. Un push sur `main` déploie en environ une minute.
+- Hébergement : Vercel (équipe « T4C2's projects », projet `spacetime-blackhole`). Production sur https://blackhole.the42laws.fr depuis le 2026-10-08 ; https://spacetime-blackhole.vercel.app reste l'adresse technique. Un push sur `main` déploie en environ une minute.
+- DNS : the42laws.fr est géré chez Hostinger (hPanel, serveurs dns-parking.com). Enregistrement `CNAME blackhole → 65ca587fbc94be25.vercel-dns-017.com` (TTL 300), valeur recommandée par Vercel.
+- Le connecteur MCP Vercel est en lecture seule ; les écritures passent par la CLI `vercel` connectée en local.
 - `emergent-spacetime.vercel.app` n'est PAS ce site : il sert une autre application (Rust/WASM).
 - Variables optionnelles : `NEXT_PUBLIC_SITE_URL` (domaine personnalisé), `GOOGLE_SITE_VERIFICATION` (Search Console).
 

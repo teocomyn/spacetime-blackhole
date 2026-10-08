@@ -4,13 +4,13 @@ Brouillons prêts à publier. Rien n'a été posté : chaque publication se fait
 
 ## 1. Google Search Console (15 min)
 
-1. Ouvrir Search Console, ajouter la propriété « Préfixe de l'URL » `https://spacetime-blackhole.vercel.app` (ou le domaine définitif).
+1. Ouvrir Search Console, ajouter la propriété « Préfixe de l'URL » `https://blackhole.the42laws.fr` (ou, si the42laws.fr est déjà validé en propriété « Domaine », le sous-domaine est couvert automatiquement).
 2. Choisir la validation par balise HTML et copier uniquement la valeur de `content`.
 3. Dans Vercel, ajouter la variable d'environnement `GOOGLE_SITE_VERIFICATION` avec cette valeur, puis redéployer. Le site ajoute alors la balise tout seul (`components/layout/RootShell.tsx`).
-4. Valider, puis soumettre `https://spacetime-blackhole.vercel.app/sitemap.xml` (24 URL, FR et EN, avec hreflang).
+4. Valider, puis soumettre `https://blackhole.the42laws.fr/sitemap.xml` (24 URL, FR et EN, avec hreflang).
 5. Demander l'indexation de `/`, `/trous-noirs`, `/tomber-dans-un-trou-noir` et `/en`.
 
-Si un domaine personnalisé est branché, définir aussi `NEXT_PUBLIC_SITE_URL` sur Vercel pour que les URL canoniques suivent.
+L'adresse officielle `https://blackhole.the42laws.fr` est codée dans `lib/constants.ts` ; `NEXT_PUBLIC_SITE_URL` sur Vercel permet de la remplacer sans modifier le code.
 
 ## 2. Hacker News (Show HN)
 
@@ -24,7 +24,7 @@ Si un domaine personnalisé est branché, définir aussi `NEXT_PUBLIC_SITE_URL` 
 >
 > It has not been reviewed by a professional physicist yet; corrections are very welcome via GitHub issues.
 >
-> https://spacetime-blackhole.vercel.app/en
+> https://blackhole.the42laws.fr/en
 
 ## 3. Reddit
 
@@ -34,7 +34,7 @@ Titre : I made a free interactive site where you can fall into a ray-traced blac
 
 > Each page explains one thing (what black holes are, falling in, Hawking radiation, the information paradox, gravitational waves) with a "go deeper" mode for the equations. Images of M87* and Sgr A* are the EHT's (CC BY 4.0), everything else is computed in your browser. Feedback from physicists especially welcome.
 >
-> https://spacetime-blackhole.vercel.app/en
+> https://blackhole.the42laws.fr/en
 
 **r/PhysicsStudents ou r/AskPhysics** (angle pédagogique)
 
@@ -42,7 +42,7 @@ Titre : Interactive Page curve and Schwarzschild ray tracer for teaching black h
 
 > Built for students and teachers: a slider that traces Hawking's curve versus the Page curve, a calculator for r_s, T_H and evaporation time, and five classroom activities with answer keys (weighing Sgr A* from S2's orbit with Kepler's third law, reading the M87* image). Free, no sign-up.
 >
-> https://spacetime-blackhole.vercel.app/en/teachers
+> https://blackhole.the42laws.fr/en/teachers
 
 **r/france ou r/sciences** (FR)
 
@@ -50,7 +50,7 @@ Titre : J'ai fait un site gratuit pour comprendre les trous noirs (et tomber ded
 
 > Rendu physique de la lentille gravitationnelle, calculateur de température de Hawking, son de la première fusion de trous noirs, courbe de Page interactive et activités pour les profs. Toutes les sources sont liées. Les retours de physiciens sont les bienvenus.
 >
-> https://spacetime-blackhole.vercel.app
+> https://blackhole.the42laws.fr
 
 ## 4. Enseignants
 
@@ -60,7 +60,7 @@ Titre : J'ai fait un site gratuit pour comprendre les trous noirs (et tomber ded
 
 Message court :
 
-> Bonjour, j'ai créé une ressource gratuite sur les trous noirs avec cinq activités corrigées, de la seconde au supérieur, dont une qui pèse le trou noir central de la Voie lactée à partir de l'orbite de l'étoile S2 avec la troisième loi de Kepler. Tout est sourcé. Je serais ravi d'avoir votre avis : https://spacetime-blackhole.vercel.app/enseignants
+> Bonjour, j'ai créé une ressource gratuite sur les trous noirs avec cinq activités corrigées, de la seconde au supérieur, dont une qui pèse le trou noir central de la Voie lactée à partir de l'orbite de l'étoile S2 avec la troisième loi de Kepler. Tout est sourcé. Je serais ravi d'avoir votre avis : https://blackhole.the42laws.fr/enseignants
 
 ## 5. Vulgarisateurs et relecture scientifique
 

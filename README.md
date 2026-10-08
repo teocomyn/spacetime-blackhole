@@ -44,7 +44,7 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Déploiement
 
-Production : [spacetime-blackhole.vercel.app](https://spacetime-blackhole.vercel.app) sur [Vercel](https://vercel.com).
+Production : [blackhole.the42laws.fr](https://blackhole.the42laws.fr) sur [Vercel](https://vercel.com) (sous-domaine de the42laws.fr, DNS chez Hostinger : CNAME `blackhole` vers la cible fournie par Vercel).
 
 L'URL canonique, le sitemap et les balises de partage viennent de `SITE_URL` (`lib/constants.ts`). Pour un domaine personnalisé, définir `NEXT_PUBLIC_SITE_URL` dans les variables d'environnement Vercel. Pour valider Google Search Console, définir `GOOGLE_SITE_VERIFICATION` (voir `docs/diffusion.md`).
 
