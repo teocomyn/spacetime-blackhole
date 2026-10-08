@@ -1,4 +1,6 @@
-export const SITE_URL = "https://emergent-spacetime.vercel.app";
+export const SITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://spacetime-blackhole.vercel.app"
+).replace(/\/$/, "");
 
 export const HERO_VIDEO_HLS =
   "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";

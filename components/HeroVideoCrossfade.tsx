@@ -1,44 +1,43 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Hls from "hls.js";
 import { motion, MotionValue, useTransform } from "framer-motion";
 import { BLACKHOLE_VIDEOS, HERO_VIDEO_HLS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
+import { attachVideoSource } from "@/lib/attachVideoSource";
 
 function useHlsVideo(
   videoRef: React.RefObject<HTMLVideoElement | null>,
   src: string,
-  enabled: boolean
+  enabled: boolean,
+  playing: boolean
 ) {
+  const playingRef = useRef(playing);
+  playingRef.current = playing;
+
   useEffect(() => {
     const video = videoRef.current;
     if (!video || !enabled) return;
 
-    if (src.includes(".m3u8")) {
-      if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = src;
-        void video.play().catch(() => {});
-        return;
-      }
-      if (!Hls.isSupported()) return;
-      const hls = new Hls({ enableWorker: true });
-      hls.loadSource(src);
-      hls.attachMedia(video);
-      void video.play().catch(() => {});
-      return () => hls.destroy();
-    }
-
-    video.src = src;
-    void video.play().catch(() => {});
+    return attachVideoSource(video, src, () => {
+      if (playingRef.current) void video.play().catch(() => {});
+    });
   }, [src, enabled, videoRef]);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !enabled) return;
+    if (playing) void video.play().catch(() => {});
+    else video.pause();
+  }, [src, enabled, playing, videoRef]);
 }
 
 interface Props {
   scrollProgress: MotionValue<number>;
+  active: boolean;
 }
 
-export default function HeroVideoCrossfade({ scrollProgress }: Props) {
+export default function HeroVideoCrossfade({ scrollProgress, active }: Props) {
   const videoARef = useRef<HTMLVideoElement>(null);
   const videoBRef = useRef<HTMLVideoElement>(null);
   const { reducedMotion, reducedEffects } = useApp();
@@ -48,8 +47,8 @@ export default function HeroVideoCrossfade({ scrollProgress }: Props) {
   const scale = useTransform(scrollProgress, [0, 1], [1, 1.08]);
 
   const enabled = !reducedMotion && !reducedEffects;
-  useHlsVideo(videoARef, HERO_VIDEO_HLS, enabled);
-  useHlsVideo(videoBRef, BLACKHOLE_VIDEOS.accretionHls, enabled);
+  useHlsVideo(videoARef, HERO_VIDEO_HLS, enabled, active);
+  useHlsVideo(videoBRef, BLACKHOLE_VIDEOS.accretionHls, enabled, active);
 
   if (!enabled) return null;
 
@@ -59,7 +58,6 @@ export default function HeroVideoCrossfade({ scrollProgress }: Props) {
         ref={videoARef}
         style={{ opacity: opacityA }}
         className="absolute inset-0 h-full w-full object-cover mix-blend-screen"
-        autoPlay
         muted
         loop
         playsInline
@@ -69,10 +67,10 @@ export default function HeroVideoCrossfade({ scrollProgress }: Props) {
         ref={videoBRef}
         style={{ opacity: opacityB }}
         className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
-        autoPlay
         muted
         loop
         playsInline
+        preload="none"
         aria-hidden="true"
       />
     </motion.div>

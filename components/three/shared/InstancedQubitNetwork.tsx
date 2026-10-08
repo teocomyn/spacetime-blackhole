@@ -94,7 +94,9 @@ export default function InstancedQubitNetwork({
   );
 
   const instancedMeshRef = useRef<THREE.InstancedMesh>(null);
-  const tempObject = new THREE.Object3D();
+  const tempObject = useMemo(() => new THREE.Object3D(), []);
+  const mouseWorld = useMemo(() => new THREE.Vector3(), []);
+  const repelDir = useMemo(() => new THREE.Vector3(), []);
   const positions = useMemo(
     () => new Float32Array(links.length * 6),
     [links.length]
@@ -159,16 +161,12 @@ export default function InstancedQubitNetwork({
       n.pos.y += jitterY;
 
       if (enableMouse) {
-        const mouseWorld = new THREE.Vector3(
-          (mouse.x * viewport.width) / 2,
-          (mouse.y * viewport.height) / 2,
-          0
-        );
+        mouseWorld.set((mouse.x * viewport.width) / 2, (mouse.y * viewport.height) / 2, 0);
         const distToMouse = n.pos.distanceTo(mouseWorld);
         if (distToMouse < 2) {
           const repelForce = (2 - distToMouse) * 0.2;
-          const dir = n.pos.clone().sub(mouseWorld).normalize();
-          n.pos.add(dir.multiplyScalar(repelForce));
+          repelDir.copy(n.pos).sub(mouseWorld).normalize();
+          n.pos.add(repelDir.multiplyScalar(repelForce));
         }
       }
 

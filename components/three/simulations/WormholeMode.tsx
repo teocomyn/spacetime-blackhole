@@ -45,7 +45,7 @@ export default function WormholeMode({ eprStrength, onUpdate }: Props) {
 
   const group = useRef<THREE.Group>(null);
   const meshRef = useRef<THREE.InstancedMesh>(null);
-  const tempObj = new THREE.Object3D();
+  const tempObj = useMemo(() => new THREE.Object3D(), []);
 
   useFrame((state) => {
     const t = state.clock.getElapsedTime();

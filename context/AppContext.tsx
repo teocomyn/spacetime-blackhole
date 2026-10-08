@@ -43,10 +43,13 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return () => media.removeEventListener("change", update);
   }, []);
 
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+
   const setLocale = useCallback((next: Locale) => {
     setLocaleState(next);
     window.localStorage.setItem("locale", next);
-    document.documentElement.lang = next;
   }, []);
 
   const setReducedEffectsPersist = useCallback((value: boolean) => {

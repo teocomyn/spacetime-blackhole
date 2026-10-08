@@ -1,5 +1,6 @@
 import type { Locale } from "@/context/AppContext";
 import type { SimMode } from "@/lib/types";
+import type { GlossaryId } from "@/lib/content";
 
 type Dictionary = {
   skipLink: string;
@@ -56,6 +57,7 @@ type Dictionary = {
     mass: string;
     epr: string;
     rebuild: string;
+    links: string;
   };
   timeline: {
     title: string;
@@ -100,12 +102,13 @@ type Dictionary = {
     linkSub: string;
     linkAria: string;
     timeline: { year: string; program: string; note: string }[];
-    toolsRow1: string[];
-    toolsRow2: string[];
+    toolsRow1: { label: string; id: GlossaryId }[];
+    toolsRow2: { label: string; id: GlossaryId }[];
   };
   footer: {
     epilogue: string;
     line1: string;
+    line1b: string;
     line2: string;
     quote: string;
     replaySim: string;
@@ -113,6 +116,11 @@ type Dictionary = {
     credits: string;
     madeByPrefix: string;
     source: string;
+  };
+  error: {
+    title: string;
+    desc: string;
+    retry: string;
   };
 };
 
@@ -198,6 +206,7 @@ export const translations: Record<Locale, Dictionary> = {
       mass: "Masse du trou noir",
       epr: "Intrication EPR",
       rebuild: "Reconstruire l'espace-temps",
+      links: "Liens",
     },
     timeline: {
       title: "Un changement de paradigme",
@@ -206,7 +215,7 @@ export const translations: Record<Locale, Dictionary> = {
     unknowns: {
       title: "Ce que l'on ne sait pas",
       subtitle:
-        "Le concept est très probablement le bon. Mais connaître la direction n'est pas la même chose que trouver le chemin.",
+        "Beaucoup de physiciens pensent que la direction est la bonne. Mais connaître la direction n'est pas la même chose que trouver le chemin.",
     },
     bibliography: {
       title: "Pour aller plus loin",
@@ -234,28 +243,40 @@ export const translations: Record<Locale, Dictionary> = {
       cta: "Vers l'épilogue",
       labelProgram: "Chronologie",
       labelVoice: "Voix de la physique",
-      quote:
-        "« Un trou noir n'est pas aussi noir qu'on le croit. Il rayonne comme un corps chaud et peut perdre de la masse. »",
+      quote: "« Les trous noirs ne sont pas si noirs. »",
       quoteAuthor: "Stephen Hawking",
-      quoteRole: "Physicien théoricien, rayonnement de Hawking, 1974",
+      quoteRole: "Une brève histoire du temps (1988), titre du chapitre 7",
       metric: "S = A/4",
-      metricLabel: "Entropie de Bekenstein-Hawking, l'information gravite à la surface",
+      metricLabel: "Entropie de Bekenstein-Hawking : l'information d'un trou noir se mesure à l'aire de son horizon",
       labelSystems: "Systèmes fondamentaux",
       labelReach: "Continuer l'exploration",
       link: "github.com/teocomyn/spacetime-blackhole",
       linkSub: "Code source · expérience interactive",
       linkAria: "Ouvrir le dépôt GitHub",
       timeline: [
-        { year: "2024", program: "Intrigation & géométrie émergente", note: "Réseaux tensoriels" },
+        { year: "2019", program: "Courbe de Page retrouvée", note: "Îlots d'intrication" },
         { year: "2013", program: "ER = EPR", note: "Ponts quantiques" },
         { year: "1974", program: "Rayonnement de Hawking", note: "Évaporation" },
       ],
-      toolsRow1: ["Horizon", "Accrétion", "Tidalité", "Singularité", "Photosphère"],
-      toolsRow2: ["EPR", "ER=EPR", "AdS/CFT", "Firewall", "Page curve"],
+      toolsRow1: [
+        { label: "Horizon", id: "horizon" },
+        { label: "Accrétion", id: "disque-accretion" },
+        { label: "Forces de marée", id: "forces-maree" },
+        { label: "Singularité", id: "singularite" },
+        { label: "Sphère de photons", id: "sphere-photons" },
+      ],
+      toolsRow2: [
+        { label: "Intrication", id: "intrication" },
+        { label: "ER = EPR", id: "er-epr" },
+        { label: "AdS/CFT", id: "ads-cft" },
+        { label: "Firewall", id: "firewall" },
+        { label: "Courbe de Page", id: "courbe-page" },
+      ],
     },
     footer: {
       epilogue: "[ épilogue ]",
       line1: "L'espace-temps n'est pas",
+      line1b: "le contenant.",
       line2: "C'est le contenu.",
       quote: "Et peut-être qu'un jour, les trous noirs éclaireront nos chemins.",
       replaySim: "Rejouer la simulation",
@@ -264,6 +285,11 @@ export const translations: Record<Locale, Dictionary> = {
         "BASÉ SUR LES TRAVAUX DE: MALDACENA, PENROSE, HAWKING, RYU, TAKAYANAGI, VERLINDE, SUSSKIND",
       madeByPrefix: "Réalisé par",
       source: "CODE SOURCE",
+    },
+    error: {
+      title: "Une erreur est survenue",
+      desc: "Cette partie de l'expérience n'a pas pu se charger. Réessayez, ou rechargez la page.",
+      retry: "Réessayer",
     },
   },
   en: {
@@ -347,6 +373,7 @@ export const translations: Record<Locale, Dictionary> = {
       mass: "Black hole mass",
       epr: "EPR entanglement",
       rebuild: "Rebuild spacetime",
+      links: "Links",
     },
     timeline: {
       title: "A paradigm shift",
@@ -355,7 +382,7 @@ export const translations: Record<Locale, Dictionary> = {
     unknowns: {
       title: "What we don't know",
       subtitle:
-        "The concept is very likely right. But knowing the direction is not the same as finding the path.",
+        "Many physicists believe the direction is right. But knowing the direction is not the same as finding the path.",
     },
     bibliography: {
       title: "Further reading",
@@ -383,28 +410,40 @@ export const translations: Record<Locale, Dictionary> = {
       cta: "To the epilogue",
       labelProgram: "Timeline",
       labelVoice: "Voice of physics",
-      quote:
-        "\"A black hole is not as black as it is painted. It radiates like a hot body and can lose mass.\"",
+      quote: "\"Black holes ain't so black.\"",
       quoteAuthor: "Stephen Hawking",
-      quoteRole: "Theoretical physicist, Hawking radiation, 1974",
+      quoteRole: "A Brief History of Time (1988), chapter 7 title",
       metric: "S = A/4",
-      metricLabel: "Bekenstein-Hawking entropy, information gravitates at the surface",
+      metricLabel: "Bekenstein-Hawking entropy: a black hole's information scales with its horizon area",
       labelSystems: "Core systems",
       labelReach: "Keep exploring",
       link: "github.com/teocomyn/spacetime-blackhole",
       linkSub: "Source code · interactive experience",
       linkAria: "Open GitHub repository",
       timeline: [
-        { year: "2024", program: "Entanglement & emergent geometry", note: "Tensor networks" },
+        { year: "2019", program: "Page curve recovered", note: "Entanglement islands" },
         { year: "2013", program: "ER = EPR", note: "Quantum bridges" },
         { year: "1974", program: "Hawking radiation", note: "Evaporation" },
       ],
-      toolsRow1: ["Horizon", "Accretion", "Tidal forces", "Singularity", "Photosphere"],
-      toolsRow2: ["EPR", "ER=EPR", "AdS/CFT", "Firewall", "Page curve"],
+      toolsRow1: [
+        { label: "Horizon", id: "horizon" },
+        { label: "Accretion", id: "disque-accretion" },
+        { label: "Tidal forces", id: "forces-maree" },
+        { label: "Singularity", id: "singularite" },
+        { label: "Photon sphere", id: "sphere-photons" },
+      ],
+      toolsRow2: [
+        { label: "Entanglement", id: "intrication" },
+        { label: "ER = EPR", id: "er-epr" },
+        { label: "AdS/CFT", id: "ads-cft" },
+        { label: "Firewall", id: "firewall" },
+        { label: "Page curve", id: "courbe-page" },
+      ],
     },
     footer: {
       epilogue: "[ epilogue ]",
       line1: "Spacetime is not",
+      line1b: "the container.",
       line2: "It is the content.",
       quote: "And perhaps one day, black holes will light our way.",
       replaySim: "Replay simulation",
@@ -413,6 +452,11 @@ export const translations: Record<Locale, Dictionary> = {
         "BASED ON WORK BY: MALDACENA, PENROSE, HAWKING, RYU, TAKAYANAGI, VERLINDE, SUSSKIND",
       madeByPrefix: "Built by",
       source: "SOURCE CODE",
+    },
+    error: {
+      title: "Something went wrong",
+      desc: "This part of the experience failed to load. Try again, or reload the page.",
+      retry: "Try again",
     },
   },
 };

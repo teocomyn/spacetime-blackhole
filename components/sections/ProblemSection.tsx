@@ -41,7 +41,7 @@ export default function ProblemSection() {
   const text2Ref = useRef<HTMLDivElement>(null);
   const text3Ref = useRef<HTMLDivElement>(null);
   const text4Ref = useRef<HTMLDivElement>(null);
-  const explosionTextRef = useRef<HTMLHeadingElement>(null);
+  const explosionTextRef = useRef<HTMLParagraphElement>(null);
   const splitLeftRef = useRef<HTMLDivElement>(null);
   const splitRightRef = useRef<HTMLDivElement>(null);
   const state = useRef({ progress: 0 });
@@ -111,6 +111,19 @@ export default function ProblemSection() {
     };
     window.addEventListener("resize", resize);
     resize();
+
+    // Halo pré-rendu : shadowBlur sur chaque particule coûtait trop cher à chaque image.
+    const glow = document.createElement("canvas");
+    glow.width = 64;
+    glow.height = 64;
+    const glowCtx = glow.getContext("2d");
+    if (glowCtx) {
+      const gradient = glowCtx.createRadialGradient(32, 32, 0, 32, 32, 32);
+      gradient.addColorStop(0, "rgba(0, 229, 255, 0.55)");
+      gradient.addColorStop(1, "rgba(0, 229, 255, 0)");
+      glowCtx.fillStyle = gradient;
+      glowCtx.fillRect(0, 0, 64, 64);
+    }
 
     const particles: Particle[] = Array.from({ length: 150 }).map(() => ({
       x: Math.random(),
@@ -263,13 +276,15 @@ export default function ProblemSection() {
         const alpha = Math.max(0, 0.45 + 0.55 * Math.sin(time * part.speed * 5 + part.phase));
 
         if (alpha > 0.1) {
-          ctx.fillStyle = `rgba(0, 229, 255, ${isExplosion ? alpha * (1 - (p - 0.8) * 5) : alpha})`;
-          ctx.shadowColor = "rgba(0, 229, 255, 0.55)";
-          ctx.shadowBlur = part.size > 2 ? 8 : 4;
+          const radius = part.size + (Math.sin(time * 10 + i) > 0.8 ? 1.5 : 0);
+          const glowRadius = radius + (part.size > 2 ? 8 : 4);
+          ctx.globalAlpha = Math.max(0, isExplosion ? alpha * (1 - (p - 0.8) * 5) : alpha);
+          ctx.drawImage(glow, px - glowRadius, py - glowRadius, glowRadius * 2, glowRadius * 2);
+          ctx.fillStyle = "rgb(0, 229, 255)";
           ctx.beginPath();
-          ctx.arc(px, py, part.size + (Math.sin(time * 10 + i) > 0.8 ? 1.5 : 0), 0, Math.PI * 2);
+          ctx.arc(px, py, radius, 0, Math.PI * 2);
           ctx.fill();
-          ctx.shadowBlur = 0;
+          ctx.globalAlpha = 1;
         }
       });
       ctx.restore();
@@ -297,17 +312,25 @@ export default function ProblemSection() {
       cancelAnimationFrame(animFrame);
       window.removeEventListener("resize", resize);
     };
-  }, [animateScroll, isActive, t.problem]);
+  }, [animateScroll, isActive]);
 
   return (
     <section ref={sectionRef} id="problem" className="relative h-[250vh] w-full bg-bg-primary">
       <div className="sr-only">
         <h2>{t.problem.staticTitle}</h2>
-        <p>{t.problem.staticSummary}</p>
+        <p>{t.problem.text1}</p>
+        <h3>{t.problem.sceneTitle}</h3>
+        <p>{t.problem.sceneDesc}</p>
+        <h3>{t.problem.actorTitle}</h3>
+        <p>{t.problem.actorDesc}</p>
+        <p>{t.problem.text3Title} {t.problem.text3Desc}</p>
+        <p>
+          {t.problem.explosion} {t.problem.text4}
+        </p>
       </div>
 
       {!animateScroll && (
-        <div className="mx-auto max-w-3xl px-6 py-24 space-y-8">
+        <div className="mx-auto max-w-3xl px-6 py-24 space-y-8" aria-hidden="true">
           <p className="font-sans text-2xl text-white">{t.problem.text1}</p>
           <div className="grid gap-6 md:grid-cols-2">
             <div className="rounded-xl border border-white/10 p-6">
@@ -325,7 +348,7 @@ export default function ProblemSection() {
       )}
 
       {animateScroll && (
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
+        <div className="sticky top-0 h-screen w-full overflow-hidden" aria-hidden="true">
           <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden="true" />
 
           <div
@@ -387,12 +410,12 @@ export default function ProblemSection() {
               <p className="mt-4 text-text-secondary font-sans text-sm md:text-base">{t.problem.text3Desc}</p>
             </div>
 
-            <h2
+            <p
               ref={explosionTextRef}
               className="absolute font-sans text-[clamp(2rem,6vw,5rem)] font-bold text-accent-red leading-none drop-shadow-[0_0_30px_rgba(255,60,60,0.8)] opacity-0 uppercase mix-blend-screen"
             >
               {t.problem.explosion}
-            </h2>
+            </p>
 
             <div ref={text4Ref} className="absolute mt-32 max-w-xl opacity-0">
               <p className="font-sans tracking-widest text-sm text-text-muted uppercase">{t.problem.text4}</p>

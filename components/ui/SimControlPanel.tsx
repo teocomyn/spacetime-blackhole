@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState, type KeyboardEvent } from "react";
 import { motion } from "framer-motion";
 import { Dispatch, SetStateAction } from "react";
 import type { SimMode } from "@/lib/types";
@@ -10,7 +10,7 @@ import { SIM_MODES } from "@/lib/constants";
 
 interface Props {
   mode: SimMode;
-  setMode: Dispatch<SetStateAction<SimMode>>;
+  setMode: (mode: SimMode) => void;
   stats: { qubits: number; links: number; fps: number };
   entanglementStrength: number;
   setEntanglementStrength: Dispatch<SetStateAction<number>>;
@@ -37,6 +37,23 @@ export default function SimControlPanel({
   const t = useTranslation(locale);
   const [collapsed, setCollapsed] = useState(false);
   const currentMode = t.simulation.modes[mode];
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const onTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const keys: Record<string, number> = {
+      ArrowDown: index + 1,
+      ArrowRight: index + 1,
+      ArrowUp: index - 1,
+      ArrowLeft: index - 1,
+      Home: 0,
+      End: SIM_MODES.length - 1,
+    };
+    if (!(event.key in keys)) return;
+    event.preventDefault();
+    const next = (keys[event.key] + SIM_MODES.length) % SIM_MODES.length;
+    setMode(SIM_MODES[next]);
+    tabRefs.current[next]?.focus();
+  };
 
   const panel = (
     <>
@@ -53,19 +70,24 @@ export default function SimControlPanel({
         aria-label={t.simulation.panelTitle}
         className="flex flex-col gap-2 mb-6 mt-2"
       >
-        {SIM_MODES.map((id) => {
+        {SIM_MODES.map((id, index) => {
           const m = t.simulation.modes[id];
           const isActive = mode === id;
           return (
             <button
               key={id}
+              ref={(el) => {
+                tabRefs.current[index] = el;
+              }}
               type="button"
               role="tab"
               id={`tab-${id}`}
+              tabIndex={isActive ? 0 : -1}
               aria-selected={isActive}
               aria-controls="sim-panel-controls"
               aria-label={m.aria}
               onClick={() => setMode(id)}
+              onKeyDown={(event) => onTabKeyDown(event, index)}
               className={`relative px-4 py-3 text-left rounded-lg text-sm font-sans transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan ${
                 isActive
                   ? "bg-accent-blue/10 border border-accent-blue/50 text-accent-cyan shadow-[0_0_15px_rgba(60,160,255,0.2)]"
@@ -84,7 +106,12 @@ export default function SimControlPanel({
         })}
       </div>
 
-      <div id="sim-panel-controls" role="tabpanel" className="mb-6 min-h-[60px]">
+      <div
+        id="sim-panel-controls"
+        role="tabpanel"
+        aria-labelledby={`tab-${mode}`}
+        className="mb-6 min-h-[60px]"
+      >
         {mode === "entanglement" && (
           <div className="flex flex-col gap-2">
             <label
@@ -162,7 +189,7 @@ export default function SimControlPanel({
         )}
       </div>
 
-      <div className="p-4 rounded-xl bg-black/40 border border-white/5 mb-6">
+      <div className="p-4 rounded-xl bg-black/40 border border-white/5 mb-6" aria-live="polite">
         <p className="text-sm text-text-secondary font-sans leading-relaxed">
           {currentMode.desc}
         </p>
@@ -170,7 +197,6 @@ export default function SimControlPanel({
 
       <div
         className="flex justify-between items-center text-[10px] font-sans text-text-dim border-t border-white/10 pt-4"
-        aria-live="polite"
       >
         <span className="flex items-center gap-1">
           <span className="h-2 w-2 rounded-full bg-accent-blue/50" aria-hidden="true" />
@@ -178,7 +204,7 @@ export default function SimControlPanel({
         </span>
         <span className="flex items-center gap-1">
           <span className="h-2 w-2 rounded-full bg-accent-cyan/50" aria-hidden="true" />
-          LIENS: {stats.links}
+          {t.simulation.links.toUpperCase()}: {stats.links}
         </span>
         <span>FPS: {stats.fps}</span>
       </div>
@@ -191,7 +217,7 @@ export default function SimControlPanel({
       <button
         type="button"
         onClick={() => setCollapsed((c) => !c)}
-        className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/15 bg-bg-panel/95 px-4 py-2 font-sans text-[10px] uppercase tracking-widest text-accent-cyan backdrop-blur-xl md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+        className="absolute bottom-20 left-1/2 z-20 -translate-x-1/2 rounded-full border border-white/15 bg-bg-panel/95 px-4 py-2 font-sans text-[10px] uppercase tracking-widest text-accent-cyan backdrop-blur-xl md:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
         aria-expanded={!collapsed}
         aria-controls="sim-control-panel"
       >
@@ -205,7 +231,7 @@ export default function SimControlPanel({
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
         className={`absolute z-10 rounded-2xl bg-bg-panel backdrop-blur-xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.8)] transition-transform duration-300
-          max-md:bottom-14 max-md:left-4 max-md:right-4 max-md:max-h-[45vh] max-md:overflow-y-auto max-md:p-4
+          max-md:bottom-32 max-md:left-4 max-md:right-4 max-md:max-h-[42vh] max-md:overflow-y-auto max-md:p-4
           ${collapsed ? "max-md:translate-y-[120%] max-md:opacity-0 max-md:pointer-events-none" : "max-md:translate-y-0"}
           md:top-1/2 md:left-12 md:-translate-y-1/2 md:w-full md:max-w-sm md:p-6`}
       >

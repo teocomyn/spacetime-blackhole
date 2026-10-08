@@ -29,7 +29,6 @@ export default function IntuitionSection() {
   const thermoOpacity = useTransform(scrollYProgress, [0.05, 0.25, 0.35], [0, 1, 0]);
   const thermoScale = useTransform(scrollYProgress, [0.1, 0.35], [1, 20]);
   const text2Opacity = useTransform(scrollYProgress, [0.35, 0.45, 0.55, 0.65], [0, 1, 1, 0]);
-  const moleculesOpacity = useTransform(scrollYProgress, [0.35, 0.45, 0.6, 0.7], [0, 1, 1, 0]);
   const text3Opacity = useTransform(scrollYProgress, [0.68, 0.78, 0.95, 1], [0, 1, 1, 0]);
   const ringOpacity = useTransform(scrollYProgress, [0.64, 0.76, 0.95, 1], [0, 1, 1, 0.2]);
   const ringScale = useTransform(scrollYProgress, [0.64, 0.82], [0.72, 1]);
@@ -92,13 +91,17 @@ export default function IntuitionSection() {
     <section ref={containerRef} id="intuition" className="relative h-[350vh] w-full bg-bg-primary">
       <div className="sr-only">
         <h2>{t.intuition.staticTitle}</h2>
+        <p>{t.intuition.text1Title}</p>
         <p>{t.intuition.text1Desc}</p>
+        <p>{t.intuition.text2Title}</p>
         <p>{t.intuition.text2Desc}</p>
+        <p>{t.intuition.text3Title}</p>
+        <p>{t.intuition.text3Line1}</p>
         <p>{t.intuition.text3Line2}</p>
       </div>
 
       {!animate && (
-        <div className="mx-auto max-w-3xl space-y-16 px-6 py-24">
+        <div className="mx-auto max-w-3xl space-y-16 px-6 py-24" aria-hidden="true">
           <div>
             <p className="font-sans text-3xl text-white">{t.intuition.text1Title}</p>
             <p className="mt-4 text-text-secondary">{t.intuition.text1Desc}</p>
@@ -126,7 +129,10 @@ export default function IntuitionSection() {
       )}
 
       {animate && (
-        <div className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+        <div
+          className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden"
+          aria-hidden="true"
+        >
           <canvas
             ref={canvasRef}
             className="absolute inset-0 z-0 opacity-40"
@@ -178,9 +184,9 @@ export default function IntuitionSection() {
               {t.intuition.emergenceLabel}
             </p>
 
-            <h3 className="bg-gradient-to-br from-white via-[#c8ecff] to-accent-blue bg-clip-text font-sans text-[clamp(2.4rem,6.5vw,4.8rem)] font-light leading-[0.98] tracking-[-0.04em] text-transparent drop-shadow-[0_0_60px_rgba(60,160,255,0.25)]">
+            <p className="bg-gradient-to-br from-white via-[#c8ecff] to-accent-blue bg-clip-text font-sans text-[clamp(2.4rem,6.5vw,4.8rem)] font-light leading-[0.98] tracking-[-0.04em] text-transparent drop-shadow-[0_0_60px_rgba(60,160,255,0.25)]">
               {t.intuition.text3Title}
-            </h3>
+            </p>
 
             <p className="mx-auto mt-8 max-w-[32ch] font-sans text-[clamp(1rem,2vw,1.25rem)] font-light leading-[1.65] text-white/78">
               {t.intuition.text3Line1}
@@ -208,7 +214,6 @@ export default function IntuitionSection() {
             <div className="z-10 -mt-2 h-10 w-10 rounded-full border-[1.5px] border-white/20 bg-accent-red shadow-[0_0_20px_rgba(255,60,60,0.8)]" />
           </motion.div>
 
-          <motion.div style={{ opacity: moleculesOpacity }} className="absolute inset-0 z-0" aria-hidden="true" />
         </div>
       )}
     </section>

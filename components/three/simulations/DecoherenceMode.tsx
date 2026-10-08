@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo, useEffect, useState } from "react";
+import { useRef, useMemo, useEffect } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
@@ -13,11 +13,14 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
   const count = 60;
   const lastReport = useRef(0);
   const group = useRef<THREE.Group>(null);
-  const [progress, setProgress] = useState(0);
+  // La progression vit dans une ref : la mettre en state relançait un rendu React à chaque image.
+  const progressRef = useRef(0);
+  const sphereMaterialRef = useRef<THREE.MeshBasicMaterial>(null);
+  const drift = useMemo(() => new THREE.Vector3(), []);
 
   // Reset progress when trigger changes
   useEffect(() => {
-    setProgress(0);
+    progressRef.current = 0;
   }, [rebuildTrigger]);
 
   const nodes = useMemo(() => {
@@ -58,7 +61,7 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
   }, [nodes]);
 
   const instancedMeshRef = useRef<THREE.InstancedMesh>(null);
-  const tempObject = new THREE.Object3D();
+  const tempObject = useMemo(() => new THREE.Object3D(), []);
   const positions = useMemo(() => new Float32Array(links.length * 6), [links.length]);
   const colors = useMemo(() => new Float32Array(links.length * 6), [links.length]);
 
@@ -84,8 +87,12 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
     let drawnLinks = 0;
 
     // Advance decoherence
-    if (progress < 1) {
-        setProgress(p => Math.min(1, p + delta * 0.1));
+    if (progressRef.current < 1) {
+      progressRef.current = Math.min(1, progressRef.current + Math.min(delta, 0.1) * 0.1);
+    }
+    const progress = progressRef.current;
+    if (sphereMaterialRef.current) {
+      sphereMaterialRef.current.opacity = 1 - progress * 0.8;
     }
 
     nodes.forEach((n, i) => {
@@ -97,7 +104,7 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
       // Add drift based on decoherence progress
       if (progress > 0.1) {
           const p = (progress - 0.1) * 1.1;
-          n.pos.add(n.drift.clone().multiplyScalar(p * p));
+          n.pos.add(drift.copy(n.drift).multiplyScalar(p * p));
       }
 
       n.pos.x += jitter;
@@ -181,7 +188,7 @@ export default function DecoherenceMode({ rebuildTrigger, onUpdate }: Props) {
     <group ref={group}>
       <instancedMesh ref={instancedMeshRef} args={[undefined, undefined, count]}>
         <sphereGeometry args={[0.08, 16, 16]} />
-        <meshBasicMaterial vertexColors toneMapped={false} transparent opacity={1 - progress * 0.8} />
+        <meshBasicMaterial ref={sphereMaterialRef} vertexColors toneMapped={false} transparent />
       </instancedMesh>
       <lineSegments geometry={lineGeometry} material={lineMaterial} />
     </group>

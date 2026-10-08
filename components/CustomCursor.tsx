@@ -15,7 +15,11 @@ export default function CustomCursor() {
     if (reducedMotion || reducedEffects) return;
 
     const finePointer = window.matchMedia("(pointer: fine)");
-    const updateDesktop = () => setIsDesktop(finePointer.matches);
+    // Le curseur natif n'est masqué que si le curseur personnalisé s'affiche réellement.
+    const updateDesktop = () => {
+      setIsDesktop(finePointer.matches);
+      document.body.classList.toggle("custom-cursor-active", finePointer.matches);
+    };
     updateDesktop();
     finePointer.addEventListener("change", updateDesktop);
 
@@ -24,7 +28,6 @@ export default function CustomCursor() {
       cursorY.set(e.clientY);
     };
 
-    document.body.classList.add("custom-cursor-active");
     window.addEventListener("mousemove", moveCursor);
 
     return () => {

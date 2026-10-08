@@ -6,6 +6,7 @@ import { motion, useScroll } from "framer-motion";
 import HeroVideoCrossfade from "../HeroVideoCrossfade";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
+import { useIntersectionActive } from "@/hooks/useIntersectionActive";
 
 const HeroCanvas = dynamic(() => import("../three/HeroCanvas"), {
   ssr: false,
@@ -18,8 +19,12 @@ export default function HeroSection() {
   const ref = useRef<HTMLElement>(null);
   const { locale, reducedMotion, reducedEffects } = useApp();
   const t = useTranslation(locale);
-  const title = t.hero.title.split("");
+  const words = t.hero.title.split(" ");
+  const wordOffsets = words.map((_, w) =>
+    words.slice(0, w).reduce((sum, word) => sum + word.length + 1, 0)
+  );
   const animate = !reducedMotion && !reducedEffects;
+  const inView = useIntersectionActive(ref, 0);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -31,14 +36,13 @@ export default function HeroSection() {
       ref={ref}
       id="hero"
       className="relative h-[100vh] w-full overflow-hidden bg-bg-primary"
-      aria-label={t.hero.videoLabel}
     >
-      <HeroVideoCrossfade scrollProgress={scrollYProgress} />
+      <HeroVideoCrossfade scrollProgress={scrollYProgress} active={inView} />
 
       {!reducedEffects && (
         <div className="absolute inset-0 z-[2] opacity-60 mix-blend-screen">
           <Suspense fallback={null}>
-            <HeroCanvas />
+            <HeroCanvas active={inView} />
           </Suspense>
         </div>
       )}
@@ -48,28 +52,33 @@ export default function HeroSection() {
       </div>
 
       <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 text-center">
-        <h1 className="flex font-sans text-[clamp(2.5rem,8vw,6.5rem)] font-normal leading-none tracking-tight text-text-primary drop-shadow-[0_0_20px_rgba(60,160,255,0.3)]">
-          {title.map((letter, i) =>
-            animate ? (
-              <motion.span
-                key={`${letter}-${i}`}
-                initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                transition={{
-                  duration: 1.2,
-                  ease: [0.2, 0.65, 0.3, 0.9],
-                  delay: i * 0.04,
-                }}
-                className={letter === " " ? "w-[0.3em]" : ""}
-              >
-                {letter}
-              </motion.span>
-            ) : (
-              <span key={`${letter}-${i}`} className={letter === " " ? "w-[0.3em]" : ""}>
-                {letter}
-              </span>
-            )
-          )}
+        <h1
+          aria-label={t.hero.title}
+          className="flex flex-wrap justify-center gap-x-[0.3em] font-sans text-[clamp(2.5rem,8vw,6.5rem)] font-normal leading-none tracking-tight text-text-primary drop-shadow-[0_0_20px_rgba(60,160,255,0.3)]"
+        >
+          {words.map((word, w) => (
+            <span key={`${word}-${w}`} className="inline-flex whitespace-nowrap" aria-hidden="true">
+              {word.split("").map((letter, i) => {
+                const index = wordOffsets[w] + i;
+                return animate ? (
+                  <motion.span
+                    key={`${letter}-${index}`}
+                    initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                    transition={{
+                      duration: 1.2,
+                      ease: [0.2, 0.65, 0.3, 0.9],
+                      delay: index * 0.04,
+                    }}
+                  >
+                    {letter}
+                  </motion.span>
+                ) : (
+                  <span key={`${letter}-${index}`}>{letter}</span>
+                );
+              })}
+            </span>
+          ))}
         </h1>
 
         {animate ? (

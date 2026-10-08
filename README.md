@@ -9,7 +9,7 @@ Développé par **Teo Comyn**, [github.com/teocomyn/spacetime-blackhole](https:/
 - Scrollytelling (GSAP + Framer Motion) avec alternative statique pour l'accessibilité
 - Vidéo HLS Mux en hero + réseau de qubits 3D lazy-loadé
 - Navigation par ancres et i18n FR/EN
-- SEO : Open Graph, JSON-LD, sitemap, robots, PWA manifest
+- SEO : Open Graph (image PNG générée), JSON-LD avec bibliographie, sitemap, robots, PWA manifest
 
 ## Stack
 
@@ -31,8 +31,10 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 ## Déploiement
 
-Cible : [Vercel](https://vercel.com), `emergent-spacetime.vercel.app`
+Production : [spacetime-blackhole.vercel.app](https://spacetime-blackhole.vercel.app) sur [Vercel](https://vercel.com).
+
+L'URL canonique, le sitemap et les balises de partage viennent de `SITE_URL` (`lib/constants.ts`). Pour un domaine personnalisé, définir `NEXT_PUBLIC_SITE_URL` dans les variables d'environnement Vercel.
 
 ## Inspirations
 
-Maldacena (AdS/CFT), Susskind (ER=EPR), Hawking & Bekenstein (entropie des trous noirs), Ryu-Takayanagi, Verlinde.
+Penrose, Bekenstein & Hawking (entropie et rayonnement des trous noirs), Maldacena (AdS/CFT), Ryu-Takayanagi, Van Raamsdonk, Verlinde, Maldacena & Susskind (ER=EPR), Penington et Almheiri et al. (courbe de Page).

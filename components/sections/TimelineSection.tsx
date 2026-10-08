@@ -6,6 +6,19 @@ import { useTranslation } from "@/lib/i18n";
 
 const TIMELINE = [
   {
+    id: "bekenstein-1973",
+    year: "1973",
+    authorFr: "Bekenstein",
+    authorEn: "Bekenstein",
+    titleFr: "L'entropie vit sur la surface",
+    titleEn: "Entropy lives on the surface",
+    descFr:
+      "Bekenstein propose que l'entropie d'un trou noir soit proportionnelle à l'aire de son horizon, pas à son volume. Premier indice holographique.",
+    descEn:
+      "Bekenstein proposes that a black hole's entropy is proportional to its horizon area, not its volume. The first holographic hint.",
+    color: "#3a5f8f",
+  },
+  {
     id: "hawking-1974",
     year: "1974",
     authorFr: "Hawking",
@@ -13,23 +26,10 @@ const TIMELINE = [
     titleFr: "Les trous noirs s'évaporent",
     titleEn: "Black holes evaporate",
     descFr:
-      "Le rayonnement de Hawking crée le paradoxe de l'information, premier indice que quelque chose de fondamental nous échappe.",
+      "Hawking montre qu'un trou noir rayonne et fixe la formule S = A/4. Naît le paradoxe de l'information : que devient ce qui est tombé dedans ?",
     descEn:
-      "Hawking radiation creates the information paradox, the first hint that something fundamental is missing.",
+      "Hawking shows that black holes radiate and fixes the formula S = A/4. The information paradox is born: what happens to what fell in?",
     color: "#ff3c3c",
-  },
-  {
-    id: "bekenstein-1973",
-    year: "1973–1975",
-    authorFr: "Bekenstein & Hawking",
-    authorEn: "Bekenstein & Hawking",
-    titleFr: "L'entropie est sur la surface",
-    titleEn: "Entropy lives on the surface",
-    descFr:
-      "Bekenstein (1973) propose que les trous noirs ont une entropie proportionnelle à leur aire ; Hawking (1974–75) confirme et quantifie, premier indice holographique.",
-    descEn:
-      "Bekenstein (1973) proposes black hole entropy proportional to area; Hawking (1974–75) confirms and quantifies it, the first holographic hint.",
-    color: "#3a5f8f",
   },
   {
     id: "maldacena-1997",
@@ -39,65 +39,90 @@ const TIMELINE = [
     titleFr: "L'holographie (AdS/CFT)",
     titleEn: "Holography (AdS/CFT)",
     descFr:
-      "Un univers avec gravité en 3D est mathématiquement identique à une théorie quantique sans gravité en 2D. La gravité est un hologramme.",
+      "Une théorie avec gravité dans un espace Anti-de Sitter équivaut à une théorie quantique sans gravité vivant sur sa frontière, avec une dimension de moins. La gravité se comporte comme un hologramme.",
     descEn:
-      "A 3D universe with gravity is mathematically identical to a 2D quantum theory without gravity. Gravity is a hologram.",
+      "A theory with gravity in Anti-de Sitter space is equivalent to a quantum theory without gravity living on its boundary, with one dimension fewer. Gravity behaves like a hologram.",
     color: "#3ca0ff",
   },
   {
     id: "ryu-takayanagi-2006",
     year: "2006",
-    authorFr: "Ryu-Takayanagi",
-    authorEn: "Ryu-Takayanagi",
-    titleFr: "L'intrication fabrique la géométrie",
-    titleEn: "Entanglement builds geometry",
+    authorFr: "Ryu & Takayanagi",
+    authorEn: "Ryu & Takayanagi",
+    titleFr: "L'intrication mesure la géométrie",
+    titleEn: "Entanglement measures geometry",
     descFr:
-      "L'entropie d'intrication calcule précisément l'aire géométrique. L'intrication quantique CRÉE littéralement l'espace.",
+      "L'entropie d'intrication d'une région de la frontière est égale à l'aire d'une surface minimale à l'intérieur. Intrication et géométrie deviennent deux langages pour une même réalité.",
     descEn:
-      "Entanglement entropy precisely computes geometric area. Quantum entanglement literally CREATES space.",
+      "The entanglement entropy of a boundary region equals the area of a minimal surface in the interior. Entanglement and geometry become two languages for the same reality.",
     color: "#00e5ff",
+  },
+  {
+    id: "van-raamsdonk-2010",
+    year: "2010",
+    authorFr: "Van Raamsdonk",
+    authorEn: "Van Raamsdonk",
+    titleFr: "L'intrication coud l'espace",
+    titleEn: "Entanglement stitches space together",
+    descFr:
+      "Réduire l'intrication entre deux moitiés de la frontière éloigne puis sépare les régions correspondantes de l'espace-temps. Sans intrication, plus d'espace d'un seul tenant.",
+    descEn:
+      "Reducing the entanglement between two halves of the boundary pulls the corresponding regions of spacetime apart until they disconnect. Without entanglement, space falls apart.",
+    color: "#b480ff",
   },
   {
     id: "verlinde-2010",
     year: "2010",
     authorFr: "Verlinde",
     authorEn: "Verlinde",
-    titleFr: "La gravité est entropique",
-    titleEn: "Gravity is entropic",
+    titleFr: "La gravité serait entropique",
+    titleEn: "Gravity may be entropic",
     descFr:
-      "La gravité n'est pas une force fondamentale. Elle émerge statistiquement, comme la pression d'un gaz.",
+      "Verlinde propose que la gravité ne soit pas une force fondamentale mais émerge statistiquement, comme la pression d'un gaz. Une hypothèse encore débattue.",
     descEn:
-      "Gravity is not a fundamental force. It emerges statistically, like gas pressure.",
-    color: "#b480ff",
+      "Verlinde proposes that gravity is not a fundamental force but emerges statistically, like gas pressure. A hypothesis still under debate.",
+    color: "#5a8aaa",
   },
   {
     id: "er-epr-2013",
     year: "2013",
-    authorFr: "Maldacena - Susskind",
-    authorEn: "Maldacena - Susskind",
+    authorFr: "Maldacena & Susskind",
+    authorEn: "Maldacena & Susskind",
     titleFr: "ER = EPR",
     titleEn: "ER = EPR",
     descFr:
-      "Chaque paire intriquée est un trou de ver microscopique. La connectivité de l'espace EST l'intrication.",
+      "Conjecture : deux particules intriquées seraient reliées par un trou de ver microscopique. La connectivité de l'espace serait faite d'intrication.",
     descEn:
-      "Every entangled pair is a microscopic wormhole. The connectivity of space IS entanglement.",
+      "Conjecture: two entangled particles would be linked by a microscopic wormhole. The connectivity of space would be made of entanglement.",
     color: "#ff3c3c",
   },
   {
     id: "pastawski-2015",
     year: "2015",
-    authorFr: "Pastawski et al.",
-    authorEn: "Pastawski et al.",
-    titleFr: "L'espace-temps est un code",
-    titleEn: "Spacetime is a code",
+    authorFr: "Pastawski, Yoshida, Harlow & Preskill",
+    authorEn: "Pastawski, Yoshida, Harlow & Preskill",
+    titleFr: "L'espace-temps comme code",
+    titleEn: "Spacetime as a code",
     descFr:
-      "La correspondance holographique fonctionne exactement comme un code correcteur d'erreurs quantique.",
+      "La correspondance holographique se comporte comme un code correcteur d'erreurs quantique : l'information de l'intérieur est encodée de façon redondante sur la frontière.",
     descEn:
-      "The holographic correspondence works exactly like a quantum error-correcting code.",
+      "The holographic correspondence behaves like a quantum error-correcting code: information from the interior is redundantly encoded on the boundary.",
     color: "#3ca0ff",
   },
+  {
+    id: "page-curve-2019",
+    year: "2019",
+    authorFr: "Penington ; Almheiri et al.",
+    authorEn: "Penington; Almheiri et al.",
+    titleFr: "La courbe de Page retrouvée",
+    titleEn: "The Page curve recovered",
+    descFr:
+      "En ajoutant des « îlots » d'intrication au calcul, deux équipes retrouvent la courbe de Page : l'information semble bien ressortir d'un trou noir qui s'évapore.",
+    descEn:
+      "By adding entanglement \"islands\" to the calculation, two teams recover the Page curve: information does seem to escape an evaporating black hole.",
+    color: "#00e5ff",
+  },
 ];
-
 export default function TimelineSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const { locale } = useApp();

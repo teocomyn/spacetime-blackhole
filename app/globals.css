@@ -10,19 +10,20 @@
   --accent-blue: #3ca0ff;
   --accent-cyan: #00e5ff;
   --accent-deep: #3a5f8f;
+  --accent-deep-text: #6d93c4;
   --accent-red: #ff3c3c;
   --accent-purple: #b480ff;
 
   --text-primary: #e0f0ff;
   --text-secondary: #8ab8d8;
-  --text-muted: #4a6a85;
+  --text-muted: #6a8aa6;
   --text-dim: #5a8aaa;
 }
 
 body {
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  font-family: var(--font-sans), var(--font-display), system-ui, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -72,6 +73,13 @@ body.custom-cursor-active button {
 ::-webkit-scrollbar {
   width: 8px;
 }
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
 ::-webkit-scrollbar-track {
   background: var(--bg-primary);
 }
@@ -97,4 +105,13 @@ button:focus-visible,
 a:focus-visible {
   outline: 2px solid var(--accent-cyan);
   outline-offset: 2px;
+}
+
+.tool-marquee:hover .tool-marquee__row,
+.tool-marquee:focus-within .tool-marquee__row {
+  animation-play-state: paused;
+}
+
+[id^="glossary-"] {
+  scroll-margin-top: 6rem;
 }

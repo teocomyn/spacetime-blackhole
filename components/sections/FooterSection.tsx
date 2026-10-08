@@ -18,7 +18,6 @@ export default function FooterSection() {
       <BackgroundVideo
         src={BLACKHOLE_VIDEOS.accretionHls}
         className="absolute inset-0 h-full w-full scale-105 object-cover"
-        lazy={false}
       />
       <AccretionParticles />
       <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_40%,transparent_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.88)_100%)]" />
@@ -32,7 +31,7 @@ export default function FooterSection() {
         <h2 className="font-sans text-[clamp(2rem,6vw,5rem)] font-light leading-[1.02] tracking-[-0.03em] text-white">
           {t.footer.line1}
           <br />
-          <span className="text-white/55">{locale === "fr" ? "le contenant." : "the container."}</span>
+          <span className="text-white/55">{t.footer.line1b}</span>
         </h2>
         <h2 className="mt-2 font-sans text-[clamp(2rem,6vw,5rem)] font-semibold leading-[1.02] tracking-[-0.03em] text-accent-deep">
           {t.footer.line2}
@@ -49,7 +48,7 @@ export default function FooterSection() {
               onClick={() => {
                 document.getElementById("simulation")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="inline-flex min-h-[48px] items-center rounded-full border border-accent-deep/30 bg-accent-deep/10 px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-deep backdrop-blur-md transition-colors hover:bg-accent-deep/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+              className="inline-flex min-h-[48px] items-center rounded-full border border-accent-deep/30 bg-accent-deep/10 px-6 font-sans text-xs font-semibold uppercase tracking-[0.18em] text-accent-deep-text backdrop-blur-md transition-colors hover:bg-accent-deep/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
             >
               {t.footer.replaySim}
             </button>

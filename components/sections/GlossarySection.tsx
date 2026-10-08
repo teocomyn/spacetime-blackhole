@@ -12,15 +12,16 @@ export default function GlossarySection() {
   const t = useTranslation(locale);
   const animate = !reducedMotion && !reducedEffects;
 
+  // L'aspiration ne démarre qu'une fois le bas du glossaire arrivé à l'écran : on peut tout lire avant.
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start end", "end start"],
+    offset: ["end end", "end start"],
   });
 
-  const suctionScale = useTransform(scrollYProgress, [0.6, 1], [1, 0.55]);
-  const suctionOpacity = useTransform(scrollYProgress, [0.65, 0.95], [1, 0]);
-  const suctionY = useTransform(scrollYProgress, [0.6, 1], [0, 120]);
-  const vortexOpacity = useTransform(scrollYProgress, [0.7, 1], [0, 0.9]);
+  const suctionScale = useTransform(scrollYProgress, [0.15, 1], [1, 0.55]);
+  const suctionOpacity = useTransform(scrollYProgress, [0.25, 0.9], [1, 0]);
+  const suctionY = useTransform(scrollYProgress, [0.15, 1], [0, 120]);
+  const vortexOpacity = useTransform(scrollYProgress, [0.3, 1], [0, 0.9]);
 
   return (
     <section
@@ -43,6 +44,7 @@ export default function GlossarySection() {
           {GLOSSARY.map((item) => (
             <div
               key={item.id}
+              id={`glossary-${item.id}`}
               className="rounded-xl border border-white/5 bg-bg-secondary/40 p-6 backdrop-blur-sm"
             >
               <dt className="mb-2 font-sans text-xl text-accent-cyan">

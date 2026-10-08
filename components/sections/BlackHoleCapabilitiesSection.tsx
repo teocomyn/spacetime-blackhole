@@ -5,6 +5,7 @@ import BackgroundVideo from "@/components/media/BackgroundVideo";
 import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
+import type { GlossaryId } from "@/lib/content";
 
 function CapCardShade({ heavy = false }: { heavy?: boolean }) {
   return (
@@ -28,6 +29,37 @@ function CapLabel({ children, left }: { children: React.ReactNode; left?: boolea
     >
       {children}
     </p>
+  );
+}
+
+function MarqueeRow({
+  tags,
+  direction,
+}: {
+  tags: { label: string; id: GlossaryId }[];
+  direction: "left" | "right";
+}) {
+  // La seconde copie ne sert qu'à boucler l'animation : elle est masquée aux lecteurs d'écran et au clavier.
+  return (
+    <div
+      className={`tool-marquee__row flex w-max gap-3 ${
+        direction === "left" ? "animate-marquee-left" : "animate-marquee-right"
+      }`}
+    >
+      {[0, 1].map((copy) =>
+        tags.map((tag) => (
+          <a
+            key={`${copy}-${tag.id}`}
+            href={`#glossary-${tag.id}`}
+            tabIndex={copy === 0 ? undefined : -1}
+            aria-hidden={copy === 0 ? undefined : true}
+            className="inline-flex min-h-[54px] items-center gap-2 rounded-[14px] border border-white/20 bg-white/[0.12] px-4 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.24)] backdrop-blur-[10px] transition-colors hover:bg-white/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+          >
+            {tag.label}
+          </a>
+        ))
+      )}
+    </div>
   );
 }
 
@@ -79,7 +111,7 @@ export default function BlackHoleCapabilitiesSection() {
 
       <div className="capabilities__grid mx-auto grid min-h-[clamp(620px,72vh,780px)] max-w-[1820px] grid-cols-1 gap-[clamp(14px,1.25vw,22px)] lg:grid-cols-2 xl:grid-cols-3">
         <div className="capabilities__stack grid gap-[clamp(14px,1.25vw,22px)]">
-          <article className="group relative min-h-[560px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] shadow-[0_22px_60px_rgb(0_0_0_/_0.45)] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45, 90, 140, 0.18)] lg:min-h-[620px] xl:min-h-0 xl:row-span-2">
+          <article className="group relative min-h-[560px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] shadow-[0_22px_60px_rgb(0_0_0_/_0.45)] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45,90,140,0.18)] lg:min-h-[620px] xl:min-h-0 xl:row-span-2">
             <VideoLayer src={BLACKHOLE_VIDEOS.accretionHls} />
             <CapCardShade heavy />
             <CapLabel>{t.capabilities.labelProgram}</CapLabel>
@@ -117,7 +149,7 @@ export default function BlackHoleCapabilitiesSection() {
             </footer>
           </article>
 
-          <article className="group relative block min-h-[320px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45, 90, 140, 0.18)]">
+          <article className="group relative block min-h-[320px] overflow-hidden rounded-[18px] border border-white/[0.08] bg-[#0a0c10] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45,90,140,0.18)]">
             <VideoLayer src={BLACKHOLE_VIDEOS.collapseMp4} className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
             <CapCardShade heavy />
             <div className="cap-cardmetric absolute inset-0 z-[2] text-center">
@@ -132,31 +164,13 @@ export default function BlackHoleCapabilitiesSection() {
         </div>
 
         <div className="capabilities__stack capabilitiesstack--systems grid gap-[clamp(14px,1.25vw,22px)] lg:col-span-2 lg:grid-cols-2 lg:grid-rows-[minmax(260px,1fr)_auto] xl:col-span-1 xl:grid-cols-1 xl:grid-rows-[minmax(420px,1.45fr)_auto]">
-          <article className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[18px] border border-white/[0.08] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45, 90, 140, 0.18)] xl:min-h-[420px]">
+          <article className="group relative flex min-h-[320px] flex-col justify-between overflow-hidden rounded-[18px] border border-white/[0.08] transition-[box-shadow,border-color] duration-500 hover:border-accent-deep/35 hover:shadow-[0_0_48px_rgba(45,90,140,0.18)] xl:min-h-[420px]">
             <VideoLayer src={BLACKHOLE_VIDEOS.wormholeHls} />
             <CapCardShade />
             <CapLabel>{t.capabilities.labelSystems}</CapLabel>
             <div className="tool-marquee relative z-[2] grid gap-3.5 overflow-hidden px-0 pb-2 pt-6 [mask-image:linear-gradient(to_right,transparent,#000_9%,#000_91%,transparent)]">
-              <div className="tool-marquee__row flex w-max animate-marquee-left gap-3">
-                {[...t.capabilities.toolsRow1, ...t.capabilities.toolsRow1].map((tag, i) => (
-                  <span
-                    key={`r1-${tag}-${i}`}
-                    className="inline-flex min-h-[54px] items-center gap-2 rounded-[14px] border border-white/20 bg-white/[0.12] px-4 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.24)] backdrop-blur-[10px]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-              <div className="tool-marquee__row flex w-max animate-marquee-right gap-3">
-                {[...t.capabilities.toolsRow2, ...t.capabilities.toolsRow2].map((tag, i) => (
-                  <span
-                    key={`r2-${tag}-${i}`}
-                    className="inline-flex min-h-[54px] items-center gap-2 rounded-[14px] border border-white/20 bg-white/[0.12] px-4 text-[13px] font-bold text-white shadow-[inset_0_1px_0_rgb(255_255_255_/_0.24)] backdrop-blur-[10px]"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              <MarqueeRow tags={t.capabilities.toolsRow1} direction="left" />
+              <MarqueeRow tags={t.capabilities.toolsRow2} direction="right" />
             </div>
           </article>
 

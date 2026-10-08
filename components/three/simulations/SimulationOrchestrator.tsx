@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, Stars } from "@react-three/drei";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { SimMode } from "@/lib/types";
 
 import EntanglementMode from "./EntanglementMode";
@@ -12,6 +12,7 @@ import DecoherenceMode from "./DecoherenceMode";
 
 interface Props {
   mode: SimMode;
+  active: boolean;
   entanglementStrength: number;
   mass: number;
   eprStrength: number;
@@ -26,10 +27,20 @@ function Scene({
   eprStrength,
   rebuildTrigger,
   onStatsUpdate,
-}: Props) {
+}: Omit<Props, "active">) {
   const statsRef = useRef({ qubits: 60, links: 0, fps: 60 });
   const fpsFrames = useRef(0);
   const fpsLastTime = useRef(performance.now());
+
+  const [finePointer, setFinePointer] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia("(pointer: fine)");
+    const update = () => setFinePointer(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   const emitStats = useCallback(() => {
     onStatsUpdate({ ...statsRef.current });
@@ -58,14 +69,15 @@ function Scene({
 
   return (
     <>
-      <OrbitControls
-        enablePan={false}
-        enableZoom
-        maxDistance={30}
-        minDistance={2}
-        enableDamping
-        dampingFactor={0.05}
-      />
+      {/* Sans zoom à la molette et sans contrôles tactiles, la page reste défilable par-dessus la scène. */}
+      {finePointer && (
+        <OrbitControls
+          enablePan={false}
+          enableZoom={false}
+          enableDamping
+          dampingFactor={0.05}
+        />
+      )}
       <ambientLight intensity={0.5} />
       <Stars radius={100} depth={50} count={2000} factor={3} saturation={0.5} fade speed={0.5} />
 
@@ -83,7 +95,12 @@ function Scene({
 
 export default function SimulationOrchestrator(props: Props) {
   return (
-    <Canvas camera={{ position: [0, 0, 18], fov: 45 }} gl={{ antialias: true, alpha: true }} dpr={[1, 2]}>
+    <Canvas
+      camera={{ position: [0, 0, 18], fov: 45 }}
+      gl={{ antialias: true, alpha: true }}
+      dpr={[1, 2]}
+      frameloop={props.active ? "always" : "never"}
+    >
       <Scene {...props} />
     </Canvas>
   );

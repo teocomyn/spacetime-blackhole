@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useApp } from "@/context/AppContext";
+import { useIntersectionActive } from "@/hooks/useIntersectionActive";
 
 interface Particle {
   x: number;
@@ -11,6 +12,7 @@ interface Particle {
   char: string;
   alpha: number;
   size: number;
+  font: string;
 }
 
 const CODE_CHARS = "01{}[]();=<>constletfnifreturn".split("");
@@ -18,9 +20,10 @@ const CODE_CHARS = "01{}[]();=<>constletfnifreturn".split("");
 export default function AccretionParticles() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { reducedMotion, reducedEffects } = useApp();
+  const isVisible = useIntersectionActive(canvasRef, 0, "100px 0px");
 
   useEffect(() => {
-    if (reducedMotion || reducedEffects) return;
+    if (reducedMotion || reducedEffects || !isVisible) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -49,6 +52,7 @@ export default function AccretionParticles() {
       if (edge === 1) x = w + 10;
       if (edge === 2) y = h + 10;
       if (edge === 3) x = -10;
+      const size = 9 + Math.round(Math.random() * 7);
       return {
         x,
         y,
@@ -56,7 +60,8 @@ export default function AccretionParticles() {
         vy: 0,
         char: CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]!,
         alpha: 0.15 + Math.random() * 0.55,
-        size: 9 + Math.random() * 7,
+        size,
+        font: `${size}px Inter, system-ui, sans-serif`,
       };
     };
 
@@ -64,6 +69,7 @@ export default function AccretionParticles() {
       const w = canvas.offsetWidth;
       const h = canvas.offsetHeight;
       ctx.clearRect(0, 0, w, h);
+      let currentFont = "";
 
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i]!;
@@ -82,7 +88,10 @@ export default function AccretionParticles() {
         p.x += -dy * spiral;
         p.y += dx * spiral;
 
-        ctx.font = `${p.size}px Inter, system-ui, sans-serif`;
+        if (p.font !== currentFont) {
+          ctx.font = p.font;
+          currentFont = p.font;
+        }
         ctx.fillStyle = `rgba(180, 210, 240, ${p.alpha * Math.min(1, dist / 120)})`;
         ctx.fillText(p.char, p.x, p.y);
 
@@ -108,14 +117,14 @@ export default function AccretionParticles() {
       cancelAnimationFrame(raf);
       window.removeEventListener("resize", resize);
     };
-  }, [reducedMotion, reducedEffects]);
-
-  if (reducedMotion || reducedEffects) return null;
+  }, [reducedMotion, reducedEffects, isVisible]);
 
   return (
     <canvas
       ref={canvasRef}
-      className="pointer-events-none absolute inset-0 z-[6] h-full w-full opacity-40 mix-blend-screen"
+      className={`pointer-events-none absolute inset-0 z-[6] h-full w-full opacity-40 mix-blend-screen ${
+        reducedMotion || reducedEffects ? "hidden" : ""
+      }`}
       aria-hidden="true"
     />
   );

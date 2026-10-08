@@ -25,14 +25,21 @@ export default function StarfieldParallax() {
       alpha: 0.15 + Math.random() * 0.55,
     }));
 
+    // Les étoiles sont fixes : on ne redessine que quand le défilement ou la taille changent.
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(draw);
+    };
+
     const onScroll = () => {
       scrollY = window.scrollY;
+      schedule();
     };
 
     const resize = () => {
       canvas.width = window.innerWidth * devicePixelRatio;
       canvas.height = window.innerHeight * devicePixelRatio;
       ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+      schedule();
     };
 
     const draw = () => {
@@ -50,14 +57,13 @@ export default function StarfieldParallax() {
         ctx.fill();
       }
 
-      raf = requestAnimationFrame(draw);
+      raf = 0;
     };
 
     resize();
     onScroll();
     window.addEventListener("resize", resize);
     window.addEventListener("scroll", onScroll, { passive: true });
-    raf = requestAnimationFrame(draw);
 
     return () => {
       cancelAnimationFrame(raf);

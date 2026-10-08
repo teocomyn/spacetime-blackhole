@@ -18,6 +18,7 @@ const config: Config = {
         "accent-blue": "var(--accent-blue)",
         "accent-cyan": "var(--accent-cyan)",
         "accent-deep": "var(--accent-deep)",
+        "accent-deep-text": "var(--accent-deep-text)",
         "accent-red": "var(--accent-red)",
         "accent-purple": "var(--accent-purple)",
         "text-primary": "var(--text-primary)",
@@ -26,8 +27,7 @@ const config: Config = {
         "text-dim": "var(--text-dim)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)", "var(--font-display)", "system-ui", "sans-serif"],
-        display: ["var(--font-display)", "var(--font-sans)", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       animation: {
         "marquee-left": "marquee-left 24s linear infinite",
