@@ -2,6 +2,7 @@
 
 import AccretionParticles from "@/components/effects/AccretionParticles";
 import BackgroundVideo from "@/components/media/BackgroundVideo";
+import MediaBadge from "@/components/topic/MediaBadge";
 import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
@@ -17,8 +18,10 @@ export default function FooterSection() {
     >
       <BackgroundVideo
         src={BLACKHOLE_VIDEOS.accretionHls}
+        poster={BLACKHOLE_VIDEOS.accretionPoster}
         className="absolute inset-0 h-full w-full scale-105 object-cover"
       />
+      <MediaBadge kind="artistic" locale={locale} className="absolute left-4 top-6 z-10" />
       <AccretionParticles />
       <div className="absolute inset-0 z-[1] bg-[radial-gradient(circle_at_50%_40%,transparent_0%,rgba(0,0,0,0.35)_55%,rgba(0,0,0,0.88)_100%)]" />
       <div className="absolute inset-0 z-[1] bg-gradient-to-t from-black/90 via-black/25 to-black/50" />

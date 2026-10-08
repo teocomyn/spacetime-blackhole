@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 import { SECTIONS } from "@/lib/constants";
+import { LAST_SECTION_KEY } from "@/components/navigation/ResumeReading";
 
 export default function SiteNav() {
   const { locale, reducedEffects, setReducedEffects } = useApp();
@@ -17,7 +18,13 @@ export default function SiteNav() {
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible?.target.id) setActiveId(visible.target.id);
+        if (!visible?.target.id) return;
+        setActiveId(visible.target.id);
+        try {
+          window.localStorage.setItem(LAST_SECTION_KEY, visible.target.id);
+        } catch {
+          // Pas de stockage : pas de reprise de lecture, le reste fonctionne.
+        }
       },
       { rootMargin: "-40% 0px -40% 0px", threshold: [0, 0.25, 0.5] }
     );

@@ -6,10 +6,23 @@ Développé par **Teo Comyn**, [github.com/teocomyn/spacetime-blackhole](https:/
 
 ## Fonctionnalités
 
-- Scrollytelling (GSAP + Framer Motion) avec alternative statique pour l'accessibilité
-- Vidéo HLS Mux en hero + réseau de qubits 3D lazy-loadé
-- Navigation par ancres et i18n FR/EN
-- SEO : Open Graph (image PNG générée), JSON-LD avec bibliographie, sitemap, robots, PWA manifest
+- **Expérience** (`/` et `/en`) : scrollytelling (GSAP + Framer Motion) avec alternative statique, simulation 3D, chapitres, reprise de lecture.
+- **Pages thématiques** : trous noirs, tomber dedans, rayonnement de Hawking, paradoxe de l'information, ondes gravitationnelles. Deux niveaux de lecture (« Découvrir » / « Approfondir ») et FAQ.
+- **Outils** : calculateur (rayon de Schwarzschild, température de Hawking, évaporation, entropie), comparateur de taille, quiz, courbe de Page interactive, synthétiseur du chirp de GW150914.
+- **Lentille gravitationnelle** calculée en GLSL : chaque pixel suit une géodésique lumineuse de Schwarzschild (`components/three/lensing/`).
+- **Références** : glossaire, sources et méthode, ressources pour les enseignants.
+- **Bilingue FR/EN** par l'URL (`/…` et `/en/…`), balises hreflang, sitemap bilingue.
+- **SEO** : métadonnées par page, JSON-LD (Article, FAQPage, BreadcrumbList, DefinedTermSet), images de partage `/social/fr` et `/social/en`.
+- **Sobriété** : canvas 3D et vidéos actifs seulement à l'écran, hls.js chargé à la demande, vidéos coupées en mode économie de données.
+
+## Structure
+
+- `app/(fr)` et `app/(en)/en` : deux mises en page racines (une par langue) qui partagent `components/layout/RootShell.tsx`.
+- `lib/routes.ts` : registre des pages (chemins FR/EN, titres, descriptions).
+- `components/pages/` : contenu des pages, partagé entre les deux langues.
+- `lib/physics.ts` : constantes CODATA 2018 et formules.
+- `lib/content.ts` : bibliographie, sources d'observation, glossaire.
+- `docs/diffusion.md` : Search Console et brouillons de diffusion.
 
 ## Stack
 
@@ -33,7 +46,7 @@ Ouvrir [http://localhost:3000](http://localhost:3000).
 
 Production : [spacetime-blackhole.vercel.app](https://spacetime-blackhole.vercel.app) sur [Vercel](https://vercel.com).
 
-L'URL canonique, le sitemap et les balises de partage viennent de `SITE_URL` (`lib/constants.ts`). Pour un domaine personnalisé, définir `NEXT_PUBLIC_SITE_URL` dans les variables d'environnement Vercel.
+L'URL canonique, le sitemap et les balises de partage viennent de `SITE_URL` (`lib/constants.ts`). Pour un domaine personnalisé, définir `NEXT_PUBLIC_SITE_URL` dans les variables d'environnement Vercel. Pour valider Google Search Console, définir `GOOGLE_SITE_VERIFICATION` (voir `docs/diffusion.md`).
 
 ## Inspirations
 

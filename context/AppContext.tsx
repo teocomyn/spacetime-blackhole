@@ -11,28 +11,52 @@ import {
 } from "react";
 
 export type Locale = "fr" | "en";
+export type ReadingLevel = "discover" | "deep";
 
 interface AppContextValue {
   locale: Locale;
-  setLocale: (locale: Locale) => void;
   reducedEffects: boolean;
   setReducedEffects: (value: boolean) => void;
   reducedMotion: boolean;
+  saveData: boolean;
+  readingLevel: ReadingLevel;
+  setReadingLevel: (value: ReadingLevel) => void;
 }
 
 const AppContext = createContext<AppContextValue | null>(null);
 
-export function AppProvider({ children }: { children: ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>("fr");
+type NetworkInformation = { saveData?: boolean; effectiveType?: string };
+
+function readStorage(key: string): string | null {
+  try {
+    return window.localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key: string, value: string) {
+  try {
+    window.localStorage.setItem(key, value);
+  } catch {
+    // Stockage indisponible (navigation privée) : la préférence reste en mémoire.
+  }
+}
+
+export function AppProvider({ locale, children }: { locale: Locale; children: ReactNode }) {
   const [reducedEffects, setReducedEffects] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [saveData, setSaveData] = useState(false);
+  const [readingLevel, setReadingLevelState] = useState<ReadingLevel>("discover");
 
   useEffect(() => {
-    const stored = window.localStorage.getItem("locale") as Locale | null;
-    if (stored === "fr" || stored === "en") setLocaleState(stored);
+    if (readStorage("reducedEffects") === "true") setReducedEffects(true);
+    if (readStorage("readingLevel") === "deep") setReadingLevelState("deep");
 
-    const effects = window.localStorage.getItem("reducedEffects");
-    if (effects === "true") setReducedEffects(true);
+    const connection = (navigator as Navigator & { connection?: NetworkInformation }).connection;
+    if (connection?.saveData || connection?.effectiveType === "2g" || connection?.effectiveType === "slow-2g") {
+      setSaveData(true);
+    }
   }, []);
 
   useEffect(() => {
@@ -43,29 +67,27 @@ export function AppProvider({ children }: { children: ReactNode }) {
     return () => media.removeEventListener("change", update);
   }, []);
 
-  useEffect(() => {
-    document.documentElement.lang = locale;
-  }, [locale]);
-
-  const setLocale = useCallback((next: Locale) => {
-    setLocaleState(next);
-    window.localStorage.setItem("locale", next);
-  }, []);
-
   const setReducedEffectsPersist = useCallback((value: boolean) => {
     setReducedEffects(value);
-    window.localStorage.setItem("reducedEffects", String(value));
+    writeStorage("reducedEffects", String(value));
+  }, []);
+
+  const setReadingLevel = useCallback((value: ReadingLevel) => {
+    setReadingLevelState(value);
+    writeStorage("readingLevel", value);
   }, []);
 
   const value = useMemo(
     () => ({
       locale,
-      setLocale,
       reducedEffects,
       setReducedEffects: setReducedEffectsPersist,
       reducedMotion,
+      saveData,
+      readingLevel,
+      setReadingLevel,
     }),
-    [locale, setLocale, reducedEffects, setReducedEffectsPersist, reducedMotion]
+    [locale, reducedEffects, setReducedEffectsPersist, reducedMotion, saveData, readingLevel, setReadingLevel]
   );
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

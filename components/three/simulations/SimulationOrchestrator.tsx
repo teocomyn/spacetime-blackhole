@@ -79,7 +79,9 @@ function Scene({
         />
       )}
       <ambientLight intensity={0.5} />
-      <Stars radius={100} depth={50} count={2000} factor={3} saturation={0.5} fade speed={0.5} />
+      {mode !== "blackhole" && (
+        <Stars radius={100} depth={50} count={2000} factor={3} saturation={0.5} fade speed={0.5} />
+      )}
 
       {mode === "entanglement" && (
         <EntanglementMode strength={entanglementStrength} onUpdate={handlePartial} />
@@ -98,7 +100,8 @@ export default function SimulationOrchestrator(props: Props) {
     <Canvas
       camera={{ position: [0, 0, 18], fov: 45 }}
       gl={{ antialias: true, alpha: true }}
-      dpr={[1, 2]}
+      // Le rendu par lancer de rayons coûte cher par pixel : résolution plafonnée dans ce mode.
+      dpr={props.mode === "blackhole" ? [0.75, 1] : [1, 2]}
       frameloop={props.active ? "always" : "never"}
     >
       <Scene {...props} />

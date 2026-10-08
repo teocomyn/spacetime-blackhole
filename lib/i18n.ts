@@ -1,6 +1,5 @@
 import type { Locale } from "@/context/AppContext";
 import type { SimMode } from "@/lib/types";
-import type { GlossaryId } from "@/lib/content";
 
 type Dictionary = {
   skipLink: string;
@@ -84,26 +83,6 @@ type Dictionary = {
     cta: string;
     ambientOn: string;
     ambientOff: string;
-  };
-  capabilities: {
-    title: string;
-    subtitle: string;
-    cta: string;
-    labelProgram: string;
-    labelVoice: string;
-    quote: string;
-    quoteAuthor: string;
-    quoteRole: string;
-    metric: string;
-    metricLabel: string;
-    labelSystems: string;
-    labelReach: string;
-    link: string;
-    linkSub: string;
-    linkAria: string;
-    timeline: { year: string; program: string; note: string }[];
-    toolsRow1: { label: string; id: GlossaryId }[];
-    toolsRow2: { label: string; id: GlossaryId }[];
   };
   footer: {
     epilogue: string;
@@ -235,44 +214,6 @@ export const translations: Record<Locale, Dictionary> = {
       ambientOn: "Activer l'ambiance",
       ambientOff: "Couper l'ambiance",
     },
-    capabilities: {
-      title:
-        "Les trous noirs ne détruisent pas l'information, ils la transforment, la compressent, la projettent.",
-      subtitle:
-        "De la limite de Bekenstein à ER=EPR, chaque découverte rapproche la gravité quantique d'une géométrie émergente née de l'intrication.",
-      cta: "Vers l'épilogue",
-      labelProgram: "Chronologie",
-      labelVoice: "Voix de la physique",
-      quote: "« Les trous noirs ne sont pas si noirs. »",
-      quoteAuthor: "Stephen Hawking",
-      quoteRole: "Une brève histoire du temps (1988), titre du chapitre 7",
-      metric: "S = A/4",
-      metricLabel: "Entropie de Bekenstein-Hawking : l'information d'un trou noir se mesure à l'aire de son horizon",
-      labelSystems: "Systèmes fondamentaux",
-      labelReach: "Continuer l'exploration",
-      link: "github.com/teocomyn/spacetime-blackhole",
-      linkSub: "Code source · expérience interactive",
-      linkAria: "Ouvrir le dépôt GitHub",
-      timeline: [
-        { year: "2019", program: "Courbe de Page retrouvée", note: "Îlots d'intrication" },
-        { year: "2013", program: "ER = EPR", note: "Ponts quantiques" },
-        { year: "1974", program: "Rayonnement de Hawking", note: "Évaporation" },
-      ],
-      toolsRow1: [
-        { label: "Horizon", id: "horizon" },
-        { label: "Accrétion", id: "disque-accretion" },
-        { label: "Forces de marée", id: "forces-maree" },
-        { label: "Singularité", id: "singularite" },
-        { label: "Sphère de photons", id: "sphere-photons" },
-      ],
-      toolsRow2: [
-        { label: "Intrication", id: "intrication" },
-        { label: "ER = EPR", id: "er-epr" },
-        { label: "AdS/CFT", id: "ads-cft" },
-        { label: "Firewall", id: "firewall" },
-        { label: "Courbe de Page", id: "courbe-page" },
-      ],
-    },
     footer: {
       epilogue: "[ épilogue ]",
       line1: "L'espace-temps n'est pas",
@@ -401,44 +342,6 @@ export const translations: Record<Locale, Dictionary> = {
       cta: "Explore the horizons",
       ambientOn: "Enable ambience",
       ambientOff: "Disable ambience",
-    },
-    capabilities: {
-      title:
-        "Black holes do not destroy information, they transform it, compress it, project it.",
-      subtitle:
-        "From Bekenstein's bound to ER=EPR, each discovery brings quantum gravity closer to an emergent geometry born from entanglement.",
-      cta: "To the epilogue",
-      labelProgram: "Timeline",
-      labelVoice: "Voice of physics",
-      quote: "\"Black holes ain't so black.\"",
-      quoteAuthor: "Stephen Hawking",
-      quoteRole: "A Brief History of Time (1988), chapter 7 title",
-      metric: "S = A/4",
-      metricLabel: "Bekenstein-Hawking entropy: a black hole's information scales with its horizon area",
-      labelSystems: "Core systems",
-      labelReach: "Keep exploring",
-      link: "github.com/teocomyn/spacetime-blackhole",
-      linkSub: "Source code · interactive experience",
-      linkAria: "Open GitHub repository",
-      timeline: [
-        { year: "2019", program: "Page curve recovered", note: "Entanglement islands" },
-        { year: "2013", program: "ER = EPR", note: "Quantum bridges" },
-        { year: "1974", program: "Hawking radiation", note: "Evaporation" },
-      ],
-      toolsRow1: [
-        { label: "Horizon", id: "horizon" },
-        { label: "Accretion", id: "disque-accretion" },
-        { label: "Tidal forces", id: "forces-maree" },
-        { label: "Singularity", id: "singularite" },
-        { label: "Photon sphere", id: "sphere-photons" },
-      ],
-      toolsRow2: [
-        { label: "Entanglement", id: "intrication" },
-        { label: "ER = EPR", id: "er-epr" },
-        { label: "AdS/CFT", id: "ads-cft" },
-        { label: "Firewall", id: "firewall" },
-        { label: "Page curve", id: "courbe-page" },
-      ],
     },
     footer: {
       epilogue: "[ epilogue ]",

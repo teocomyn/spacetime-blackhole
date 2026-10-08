@@ -1,10 +1,22 @@
 {
   "name": "Emergent Spacetime",
   "short_name": "Spacetime",
-  "description": "L'espace-temps émerge de l'intrication quantique",
+  "description": "Trous noirs, intrication et espace-temps émergent : une expérience interactive.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#050610",
   "theme_color": "#050610",
-  "lang": "fr"
+  "lang": "fr",
+  "icons": [
+    {
+      "src": "/brand/apple-icon",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/brand/icon",
+      "sizes": "48x48",
+      "type": "image/png"
+    }
+  ]
 }

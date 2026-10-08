@@ -1,10 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 import { GLOSSARY } from "@/lib/content";
+import { pagePath } from "@/lib/routes";
+import { ui } from "@/lib/ui";
+
+const HOME_TERMS = ["intrication", "holographie", "ads-cft", "er-epr", "entropie-bh", "courbe-page", "decoherence", "de-sitter"];
 
 export default function GlossarySection() {
   const ref = useRef<HTMLElement>(null);
@@ -41,7 +46,7 @@ export default function GlossarySection() {
         </div>
 
         <dl className="grid grid-cols-1 gap-4 md:grid-cols-2">
-          {GLOSSARY.map((item) => (
+          {GLOSSARY.filter((item) => HOME_TERMS.includes(item.id)).map((item) => (
             <div
               key={item.id}
               id={`glossary-${item.id}`}
@@ -56,6 +61,14 @@ export default function GlossarySection() {
             </div>
           ))}
         </dl>
+        <p className="mt-8 text-center">
+          <Link
+            href={pagePath("glossary", locale)}
+            className="inline-flex min-h-[44px] items-center rounded-full border border-white/15 px-5 text-sm text-text-secondary transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+          >
+            {ui(locale).seeFullGlossary} →
+          </Link>
+        </p>
       </motion.div>
 
       {animate && (

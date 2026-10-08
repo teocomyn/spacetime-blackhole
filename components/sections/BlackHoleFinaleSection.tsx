@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AmbientToggle, SingularityDrone } from "@/components/media/AmbientAudio";
 import BackgroundVideo from "@/components/media/BackgroundVideo";
+import MediaBadge from "@/components/topic/MediaBadge";
 import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
@@ -44,6 +45,7 @@ export default function BlackHoleFinaleSection() {
         </motion.div>
 
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_0%,rgba(0,0,0,0.55)_55%,rgba(0,0,0,0.92)_100%)]" />
+        <MediaBadge kind="artistic" locale={locale} className="absolute left-4 top-6 z-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">

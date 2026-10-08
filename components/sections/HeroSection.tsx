@@ -1,9 +1,11 @@
 "use client";
 
-import { Suspense, useRef } from "react";
+import { Fragment, Suspense, useRef } from "react";
 import dynamic from "next/dynamic";
 import { motion, useScroll } from "framer-motion";
 import HeroVideoCrossfade from "../HeroVideoCrossfade";
+import MediaBadge from "@/components/topic/MediaBadge";
+import { ui } from "@/lib/ui";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 import { useIntersectionActive } from "@/hooks/useIntersectionActive";
@@ -47,6 +49,10 @@ export default function HeroSection() {
         </div>
       )}
 
+      {!reducedEffects && !reducedMotion && (
+        <MediaBadge kind="artistic" locale={locale} className="absolute bottom-24 left-4 z-20 hidden sm:inline-flex" />
+      )}
+
       <div className="absolute top-6 right-6 z-20 font-sans text-[10px] tracking-[0.2em] text-accent-blue/60 uppercase">
         {t.hero.credit}
       </div>
@@ -57,27 +63,30 @@ export default function HeroSection() {
           className="flex flex-wrap justify-center gap-x-[0.3em] font-sans text-[clamp(2.5rem,8vw,6.5rem)] font-normal leading-none tracking-tight text-text-primary drop-shadow-[0_0_20px_rgba(60,160,255,0.3)]"
         >
           {words.map((word, w) => (
-            <span key={`${word}-${w}`} className="inline-flex whitespace-nowrap" aria-hidden="true">
-              {word.split("").map((letter, i) => {
-                const index = wordOffsets[w] + i;
-                return animate ? (
-                  <motion.span
-                    key={`${letter}-${index}`}
-                    initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
-                    animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                    transition={{
-                      duration: 1.2,
-                      ease: [0.2, 0.65, 0.3, 0.9],
-                      delay: index * 0.04,
-                    }}
-                  >
-                    {letter}
-                  </motion.span>
-                ) : (
-                  <span key={`${letter}-${index}`}>{letter}</span>
-                );
-              })}
-            </span>
+            <Fragment key={`${word}-${w}`}>
+              {w > 0 && " "}
+              <span className="inline-flex whitespace-nowrap" aria-hidden="true">
+                {word.split("").map((letter, i) => {
+                  const index = wordOffsets[w] + i;
+                  return animate ? (
+                    <motion.span
+                      key={`${letter}-${index}`}
+                      initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{
+                        duration: 1.2,
+                        ease: [0.2, 0.65, 0.3, 0.9],
+                        delay: index * 0.04,
+                      }}
+                    >
+                      {letter}
+                    </motion.span>
+                  ) : (
+                    <span key={`${letter}-${index}`}>{letter}</span>
+                  );
+                })}
+              </span>
+            </Fragment>
           ))}
         </h1>
 
@@ -99,6 +108,9 @@ export default function HeroSection() {
             {t.hero.subtitle2}
           </p>
         )}
+        <p className="mt-6 font-sans text-[11px] uppercase tracking-[0.24em] text-accent-blue/70">
+          {ui(locale).experienceLength}
+        </p>
       </div>
 
       {animate && (

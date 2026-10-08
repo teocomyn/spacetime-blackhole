@@ -1,8 +1,21 @@
 "use client";
 
+import Link from "next/link";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 import { BIBLIOGRAPHY } from "@/lib/content";
+import { pagePath } from "@/lib/routes";
+import { ui } from "@/lib/ui";
+
+const HOME_SOURCES = [
+  "bekenstein-1973",
+  "hawking-1974",
+  "maldacena-1997",
+  "ryu-takayanagi-2006",
+  "van-raamsdonk-2010",
+  "maldacena-susskind-2013",
+  "penington-2019",
+];
 
 export default function BibliographySection() {
   const { locale } = useApp();
@@ -22,7 +35,7 @@ export default function BibliographySection() {
         </div>
 
         <ul className="space-y-4">
-          {BIBLIOGRAPHY.map((item) => (
+          {BIBLIOGRAPHY.filter((item) => HOME_SOURCES.includes(item.id)).map((item) => (
             <li key={item.id}>
               <a
                 href={item.url}
@@ -44,6 +57,14 @@ export default function BibliographySection() {
             </li>
           ))}
         </ul>
+        <p className="mt-8 text-center">
+          <Link
+            href={pagePath("sources", locale)}
+            className="inline-flex min-h-[44px] items-center rounded-full border border-white/15 px-5 text-sm text-text-secondary transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+          >
+            {ui(locale).seeAllSources} →
+          </Link>
+        </p>
       </div>
     </section>
   );

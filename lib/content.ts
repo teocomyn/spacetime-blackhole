@@ -32,6 +32,14 @@ export const BIBLIOGRAPHY = [
     url: "https://doi.org/10.1007/BF02345020",
   },
   {
+    id: "hawking-1976",
+    year: "1976",
+    authors: "Stephen Hawking",
+    title: "Breakdown of predictability in gravitational collapse",
+    venue: "Physical Review D 14, 2460",
+    url: "https://doi.org/10.1103/PhysRevD.14.2460",
+  },
+  {
     id: "maldacena-1997",
     year: "1997",
     authors: "Juan Maldacena",
@@ -72,6 +80,14 @@ export const BIBLIOGRAPHY = [
     url: "https://arxiv.org/abs/1001.0785",
   },
   {
+    id: "amps-2012",
+    year: "2012",
+    authors: "Almheiri, Marolf, Polchinski & Sully",
+    title: "Black holes: complementarity or firewalls?",
+    venue: "JHEP 2013, 62 · arXiv:1207.3123",
+    url: "https://arxiv.org/abs/1207.3123",
+  },
+  {
     id: "maldacena-susskind-2013",
     year: "2013",
     authors: "Juan Maldacena & Leonard Susskind",
@@ -96,6 +112,14 @@ export const BIBLIOGRAPHY = [
     url: "https://arxiv.org/abs/1503.06237",
   },
   {
+    id: "page-1993",
+    year: "1993",
+    authors: "Don N. Page",
+    title: "Information in black hole radiation",
+    venue: "Physical Review Letters 71, 3743 · arXiv:hep-th/9306083",
+    url: "https://arxiv.org/abs/hep-th/9306083",
+  },
+  {
     id: "penington-2019",
     year: "2019",
     authors: "Geoffrey Penington",
@@ -110,6 +134,14 @@ export const BIBLIOGRAPHY = [
     title: "The entropy of bulk quantum fields and the entanglement wedge of an evaporating black hole",
     venue: "arXiv:1905.08762",
     url: "https://arxiv.org/abs/1905.08762",
+  },
+  {
+    id: "ammz-2019",
+    year: "2019",
+    authors: "Almheiri, Mahajan, Maldacena & Zhao",
+    title: "The Page curve of Hawking radiation from semiclassical geometry",
+    venue: "arXiv:1908.10996",
+    url: "https://arxiv.org/abs/1908.10996",
   },
 ] as const;
 
@@ -261,3 +293,64 @@ export const GLOSSARY = [
 ] as const;
 
 export type GlossaryId = (typeof GLOSSARY)[number]["id"];
+
+export const OBSERVATION_SOURCES = {
+  eht2019: {
+    label: "EHT Collaboration (2019), First M87 Event Horizon Telescope results. I. The shadow of the supermassive black hole, ApJL 875, L1",
+    url: "https://arxiv.org/abs/1906.11238",
+  },
+  eht2022: {
+    label: "EHT Collaboration (2022), First Sagittarius A* Event Horizon Telescope results. I, ApJL 930, L12",
+    url: "https://arxiv.org/abs/2311.08680",
+  },
+  gravity2022: {
+    label: "GRAVITY Collaboration (2022), mass and distance of Sgr A* from stellar orbits, A&A 657, L12",
+    url: "https://arxiv.org/abs/2112.07478",
+  },
+  gw150914: {
+    label: "LIGO Scientific & Virgo Collaborations (2016), Observation of gravitational waves from a binary black hole merger, PRL 116, 061102",
+    url: "https://arxiv.org/abs/1602.03837",
+  },
+  gw190521: {
+    label: "LIGO Scientific & Virgo Collaborations (2020), GW190521: a binary black hole merger with a total mass of 150 M☉, PRL 125, 101102",
+    url: "https://arxiv.org/abs/2009.01075",
+  },
+  gaiaBh1: {
+    label: "El-Badry et al. (2023), A Sun-like star orbiting a black hole, MNRAS 518, 1057",
+    url: "https://arxiv.org/abs/2209.06833",
+  },
+  gaiaBh3: {
+    label: "Gaia Collaboration, Panuzzo et al. (2024), Discovery of a dormant 33 solar-mass black hole in pre-release Gaia astrometry, A&A 686, L2",
+    url: "https://arxiv.org/abs/2404.10486",
+  },
+  cygnusX1: {
+    label: "Miller-Jones et al. (2021), Cygnus X-1 contains a 21-solar mass black hole, Science 371, 1046",
+    url: "https://arxiv.org/abs/2102.09091",
+  },
+  holm15a: {
+    label: "Mehrgan et al. (2019), A 40 billion solar mass black hole in the extreme core of Holm 15A, ApJ 887, 195",
+    url: "https://arxiv.org/abs/1907.10608",
+  },
+  ton618: {
+    label: "Shemmer et al. (2004), The hard X-ray spectral properties of high-redshift quasars, ApJ 614, 547 (TON 618 mass estimate)",
+    url: "https://arxiv.org/abs/astro-ph/0406559",
+  },
+  nasaTypes: {
+    label: "NASA Science, Types of black holes",
+    url: "https://science.nasa.gov/universe/black-holes/types/",
+  },
+  nasaPlunge: {
+    label: "NASA Goddard (2024), New NASA black hole visualization takes viewers beyond the brink",
+    url: "https://science.nasa.gov/universe/black-holes/supermassive-black-holes/new-nasa-black-hole-visualization-takes-viewers-beyond-the-brink/",
+  },
+  esoCopyright: {
+    label: "ESO, conditions d'utilisation des images (CC BY 4.0) / image use conditions",
+    url: "https://www.eso.org/public/copyright/",
+  },
+  gwosc: {
+    label: "Gravitational Wave Open Science Center, audio files of GW150914",
+    url: "https://gwosc.org/audio/",
+  },
+} as const;
+
+export type ObservationSourceId = keyof typeof OBSERVATION_SOURCES;

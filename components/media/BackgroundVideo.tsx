@@ -24,8 +24,8 @@ export default function BackgroundVideo({
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { reducedMotion, reducedEffects } = useApp();
-  const enabled = !reducedMotion && !reducedEffects;
+  const { reducedMotion, reducedEffects, saveData } = useApp();
+  const enabled = !reducedMotion && !reducedEffects && !saveData;
 
   const isVisible = useIntersectionActive(containerRef, 0, "200px 0px");
   const visibleRef = useRef(isVisible);

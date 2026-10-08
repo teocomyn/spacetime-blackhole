@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { motion, MotionValue, useTransform } from "framer-motion";
-import { BLACKHOLE_VIDEOS, HERO_VIDEO_HLS } from "@/lib/constants";
+import { BLACKHOLE_VIDEOS, HERO_VIDEO_HLS, HERO_VIDEO_POSTER } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { attachVideoSource } from "@/lib/attachVideoSource";
 
@@ -40,13 +40,13 @@ interface Props {
 export default function HeroVideoCrossfade({ scrollProgress, active }: Props) {
   const videoARef = useRef<HTMLVideoElement>(null);
   const videoBRef = useRef<HTMLVideoElement>(null);
-  const { reducedMotion, reducedEffects } = useApp();
+  const { reducedMotion, reducedEffects, saveData } = useApp();
 
   const opacityA = useTransform(scrollProgress, [0, 0.45, 0.85], [1, 0.35, 0]);
   const opacityB = useTransform(scrollProgress, [0, 0.35, 0.75], [0, 0.65, 1]);
   const scale = useTransform(scrollProgress, [0, 1], [1, 1.08]);
 
-  const enabled = !reducedMotion && !reducedEffects;
+  const enabled = !reducedMotion && !reducedEffects && !saveData;
   useHlsVideo(videoARef, HERO_VIDEO_HLS, enabled, active);
   useHlsVideo(videoBRef, BLACKHOLE_VIDEOS.accretionHls, enabled, active);
 
@@ -58,6 +58,7 @@ export default function HeroVideoCrossfade({ scrollProgress, active }: Props) {
         ref={videoARef}
         style={{ opacity: opacityA }}
         className="absolute inset-0 h-full w-full object-cover mix-blend-screen"
+        poster={HERO_VIDEO_POSTER}
         muted
         loop
         playsInline
@@ -67,6 +68,7 @@ export default function HeroVideoCrossfade({ scrollProgress, active }: Props) {
         ref={videoBRef}
         style={{ opacity: opacityB }}
         className="absolute inset-0 h-full w-full object-cover opacity-40 mix-blend-screen"
+        poster={BLACKHOLE_VIDEOS.accretionPoster}
         muted
         loop
         playsInline
