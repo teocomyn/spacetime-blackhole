@@ -1,14 +1,19 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { useApp } from "@/context/AppContext";
+import { findPageByPath } from "@/lib/routes";
 
 export default function StarfieldParallax() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const { reducedMotion, reducedEffects } = useApp();
+  // Sur l'accueil, le ciel est rendu (et dévié) par le fond 3D : des étoiles par-dessus casseraient l'illusion.
+  const isHome = findPageByPath(usePathname())?.key === "home";
+  const disabled = reducedMotion || reducedEffects || isHome;
 
   useEffect(() => {
-    if (reducedMotion || reducedEffects) return;
+    if (disabled) return;
 
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -70,9 +75,9 @@ export default function StarfieldParallax() {
       window.removeEventListener("resize", resize);
       window.removeEventListener("scroll", onScroll);
     };
-  }, [reducedMotion, reducedEffects]);
+  }, [disabled]);
 
-  if (reducedMotion || reducedEffects) return null;
+  if (disabled) return null;
 
   return (
     <canvas

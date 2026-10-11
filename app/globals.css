@@ -169,3 +169,79 @@ a:focus-visible {
 .prose-space :where(sub, sup) {
   font-size: 0.7em;
 }
+
+/* Apparitions en 3D pilotées par le défilement (CSS natif, sans JavaScript). */
+@keyframes reveal-3d {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateX(34deg) translateY(90px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reveal-3d-left {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(30deg) rotateX(8deg) translateX(-70px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes reveal-3d-right {
+  from {
+    opacity: 0;
+    transform: perspective(1000px) rotateY(-30deg) rotateX(8deg) translateX(70px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal-3d {
+      animation: reveal-3d linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 32%;
+      transform-origin: 50% 100%;
+    }
+    .reveal-3d.reveal-left {
+      animation-name: reveal-3d-left;
+    }
+    .reveal-3d.reveal-right {
+      animation-name: reveal-3d-right;
+    }
+  }
+}
+
+/* Inclinaison qui suit le pointeur, avec un reflet sous le curseur. */
+.tilt {
+  position: relative;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition:
+    transform 0.25s ease-out,
+    border-color 0.3s,
+    background-color 0.3s;
+}
+.tilt::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--gx, 50%) var(--gy, 50%), rgba(140, 200, 255, 0.18), transparent 55%);
+  opacity: var(--glare, 0);
+  transition: opacity 0.3s;
+}
+@media (prefers-reduced-motion: reduce), (pointer: coarse) {
+  .tilt {
+    transform: none;
+  }
+  .tilt::after {
+    display: none;
+  }
+}

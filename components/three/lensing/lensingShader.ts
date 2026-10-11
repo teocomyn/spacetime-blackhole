@@ -24,6 +24,9 @@ uniform float uDiskInner;
 uniform float uDiskOuter;
 uniform float uDiskIntensity;
 uniform int uMaxSteps;
+uniform vec2 uMouse;
+uniform float uMouseLens;
+uniform float uAspect;
 
 const int MAX_STEPS = 220;
 
@@ -122,6 +125,24 @@ vec3 diskColor(vec3 hit, vec3 rayDir, out float alpha) {
 
 void main() {
   vec2 ndc = vUv * 2.0 - 1.0;
+
+  // Le curseur agit comme une petite lentille gravitationnelle ponctuelle : chaque pixel voit le ciel
+  // dévié selon β = θ - θE² θ / |θ|², ce qui dessine un anneau d'Einstein autour du pointeur.
+  vec3 cursorGlow = vec3(0.0);
+  if (uMouseLens > 0.0) {
+    vec2 d = (ndc - uMouse) * vec2(uAspect, 1.0);
+    float r = max(length(d), 1e-4);
+    float thetaE = uMouseLens;
+    float shadow = thetaE * 0.34;
+    cursorGlow = vec3(0.45, 0.8, 1.0) * exp(-pow((r - shadow * 1.08) / (thetaE * 0.05), 2.0)) * 0.9;
+    if (r < shadow) {
+      gl_FragColor = vec4(cursorGlow * 0.6, 1.0);
+      return;
+    }
+    vec2 beta = d - (thetaE * thetaE / (r * r)) * d;
+    ndc = uMouse + beta / vec2(uAspect, 1.0);
+  }
+
   vec4 view = uProjInv * vec4(ndc, 1.0, 1.0);
   view /= view.w;
   vec3 dir = normalize((uCamWorld * vec4(view.xyz, 0.0)).xyz);
@@ -184,6 +205,8 @@ void main() {
   if (!captured) {
     col += transmittance * background(v);
   }
+
+  col += cursorGlow;
 
   // Tonalité douce pour garder les noirs profonds et éviter la saturation.
   col = col / (1.0 + col);

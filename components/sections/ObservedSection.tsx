@@ -5,6 +5,7 @@ import EhtImage from "@/components/topic/EhtImage";
 import ChirpPlayer from "@/components/tools/ChirpPlayer";
 import { useApp } from "@/context/AppContext";
 import { pagePath } from "@/lib/routes";
+import { useTilt } from "@/hooks/useTilt";
 
 const TEXT = {
   fr: {
@@ -46,6 +47,7 @@ const TEXT = {
 export default function ObservedSection() {
   const { locale } = useApp();
   const t = TEXT[locale];
+  const tilt = useTilt(7);
 
   return (
     <section
@@ -60,8 +62,12 @@ export default function ObservedSection() {
         <p className="mt-5 max-w-3xl text-[clamp(0.95rem,1.2vw,1.1rem)] leading-relaxed text-white/60">{t.subtitle}</p>
 
         <div className="mt-12 grid items-start gap-5 md:grid-cols-2">
-          <EhtImage which="m87" locale={locale} />
-          <EhtImage which="sgrA" locale={locale} />
+          <div {...tilt} className="tilt rounded-2xl">
+            <EhtImage which="m87" locale={locale} />
+          </div>
+          <div {...tilt} className="tilt rounded-2xl">
+            <EhtImage which="sgrA" locale={locale} />
+          </div>
         </div>
 
         <div className="mt-12 grid gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:items-center">
@@ -74,7 +80,7 @@ export default function ObservedSection() {
 
         <dl className="mt-10 grid gap-4 sm:grid-cols-3">
           {t.facts.map((fact) => (
-            <div key={fact.value} className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
+            <div key={fact.value} {...tilt} className="tilt rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5">
               <dt className="font-sans text-3xl font-extralight text-white">{fact.value}</dt>
               <dd className="mt-2 text-sm leading-relaxed text-white/60">{fact.label}</dd>
             </div>

@@ -32,7 +32,7 @@ export default function GlossarySection() {
     <section
       id="glossary"
       ref={ref}
-      className="relative w-full border-t border-white/5 bg-bg-primary px-6 py-32"
+      className="relative w-full border-t border-white/5 bg-gradient-to-b from-black/50 via-black/40 to-transparent px-6 py-32"
     >
       <motion.div
         style={animate ? { scale: suctionScale, opacity: suctionOpacity, y: suctionY } : undefined}
@@ -50,7 +50,7 @@ export default function GlossarySection() {
             <div
               key={item.id}
               id={`glossary-${item.id}`}
-              className="rounded-xl border border-white/5 bg-bg-secondary/40 p-6 backdrop-blur-sm"
+              className="reveal-3d rounded-xl border border-white/10 bg-[#060814]/75 p-6 backdrop-blur-md"
             >
               <dt className="mb-2 font-sans text-xl text-accent-cyan">
                 {locale === "fr" ? item.termFr : item.termEn}

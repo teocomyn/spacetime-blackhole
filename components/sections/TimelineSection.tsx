@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
+import { useTilt } from "@/hooks/useTilt";
 
 const TIMELINE = [
   {
@@ -128,9 +129,10 @@ export default function TimelineSection() {
   const { locale } = useApp();
   const t = useTranslation(locale);
   const isEn = locale === "en";
+  const tilt = useTilt(6);
 
   return (
-    <section ref={containerRef} id="timeline" className="relative w-full bg-bg-primary py-32 overflow-hidden">
+    <section ref={containerRef} id="timeline" className="relative w-full bg-gradient-to-b from-black/80 via-black/35 to-black/60 py-32 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-8 relative">
         <div className="text-center mb-32">
           <h2 className="font-sans text-[clamp(2rem,5vw,4rem)] text-white mb-4">
@@ -149,7 +151,7 @@ export default function TimelineSection() {
             return (
               <article
                 key={item.id}
-                className={`flex flex-col md:flex-row items-start md:items-center relative w-full pl-10 md:pl-0 ${
+                className={`reveal-3d ${isLeft ? "reveal-left" : "reveal-right"} flex flex-col md:flex-row items-start md:items-center relative w-full pl-10 md:pl-0 ${
                   isLeft ? "md:justify-start" : "md:justify-end"
                 }`}
               >
@@ -172,7 +174,10 @@ export default function TimelineSection() {
                 >
                   <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:group-hover:opacity-100" />
 
-                  <div className="relative p-6 md:p-8 rounded-2xl border border-white/5 bg-bg-secondary/40 backdrop-blur-md transition-all duration-500 hover:border-white/15 md:hover:-translate-y-1 active:scale-[0.99]">
+                  <div
+                    {...tilt}
+                    className="tilt p-6 md:p-8 rounded-2xl border border-white/10 bg-[#060814]/75 backdrop-blur-md hover:border-white/20"
+                  >
                     <div className="flex flex-wrap items-baseline gap-4 mb-4">
                       <span className="font-sans text-3xl md:text-5xl" style={{ color: item.color }}>
                         {item.year}

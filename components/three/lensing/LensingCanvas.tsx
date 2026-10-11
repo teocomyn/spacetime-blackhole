@@ -1,10 +1,10 @@
 "use client";
 
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { useEffect, useMemo, useRef } from "react";
-import * as THREE from "three";
+import { useEffect, useRef } from "react";
 import type { MotionValue } from "framer-motion";
 import LensingQuad from "./LensingQuad";
+import { applyCameraPose } from "./cameraPose";
 
 interface Props {
   /** Distance de la caméra au centre, en rayons de l'horizon. */
@@ -18,7 +18,6 @@ interface Props {
 function CameraRig({ distance, elevation, animate }: Pick<Props, "distance" | "elevation" | "animate">) {
   const { camera, invalidate } = useThree();
   const orbit = useRef(0);
-  const scratch = useMemo(() => ({ n: new THREE.Vector3(), u: new THREE.Vector3(), dir: new THREE.Vector3() }), []);
 
   useEffect(() => {
     if (typeof distance === "number") {
@@ -31,26 +30,7 @@ function CameraRig({ distance, elevation, animate }: Pick<Props, "distance" | "e
   useFrame((_, delta) => {
     const d = typeof distance === "number" ? distance : distance.get();
     if (animate) orbit.current += Math.min(delta, 0.1) * 0.04;
-    const el = elevation ?? 0.12;
-    camera.position.set(Math.sin(orbit.current) * d, Math.sin(el) * d, Math.cos(orbit.current) * d);
-
-    // Près de l'horizon, l'ombre couvre presque tout le ciel : la caméra se retourne vers l'extérieur
-    // et élargit son champ pour montrer l'Univers qui se contracte en un disque lumineux.
-    const x = Math.min(Math.max((4 - d) / (4 - 1.5), 0), 1);
-    const turn = x * x * (3 - 2 * x);
-    const { n, u, dir } = scratch;
-    n.copy(camera.position).normalize();
-    u.set(0, 1, 0).addScaledVector(n, -n.y).normalize();
-    const theta = Math.PI * turn;
-    dir.copy(n).multiplyScalar(-Math.cos(theta)).addScaledVector(u, Math.sin(theta));
-    camera.lookAt(camera.position.x + dir.x, camera.position.y + dir.y, camera.position.z + dir.z);
-
-    const perspective = camera as THREE.PerspectiveCamera;
-    const fov = 50 + 45 * turn;
-    if (Math.abs(perspective.fov - fov) > 0.01) {
-      perspective.fov = fov;
-      perspective.updateProjectionMatrix();
-    }
+    applyCameraPose(camera, { distance: d, azimuth: orbit.current, elevation: elevation ?? 0.12 });
   });
 
   return null;

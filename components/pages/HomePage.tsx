@@ -1,5 +1,6 @@
 import JsonLd from "@/components/JsonLd";
 import LanguageToggle from "@/components/LanguageToggle";
+import SpacetimeBackdrop from "@/components/effects/SpacetimeBackdrop";
 import ScrollProgress from "@/components/ScrollProgress";
 import SiteNav from "@/components/navigation/SiteNav";
 import ResumeReading from "@/components/navigation/ResumeReading";
@@ -58,6 +59,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
   return (
     <>
       <JsonLd data={jsonLd} />
+      <SpacetimeBackdrop />
       <LanguageToggle />
       <ScrollProgress />
       <SiteNav />

@@ -70,7 +70,7 @@ export default function UnknownsSection() {
   const isEn = locale === "en";
 
   return (
-    <section id="unknowns" className="relative w-full bg-bg-primary py-32 px-6 border-t border-accent-red/10">
+    <section id="unknowns" className="relative w-full bg-black/45 py-32 px-6 border-t border-accent-red/10">
       <div className="max-w-5xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="font-sans text-[clamp(2rem,4vw,3rem)] text-white mb-4">
@@ -83,7 +83,7 @@ export default function UnknownsSection() {
           {UNKNOWNS.map((item, i) => (
             <article
               key={item.id}
-              className="bg-bg-secondary/40 border border-accent-red/20 rounded-2xl p-8 backdrop-blur-sm group hover:bg-accent-red/5 transition-colors duration-500 active:scale-[0.99]"
+              className="reveal-3d bg-[#060814]/75 border border-accent-red/20 rounded-2xl p-8 backdrop-blur-md group hover:bg-accent-red/5 transition-colors duration-500 active:scale-[0.99]"
             >
               <div className="mb-6 opacity-80 group-hover:opacity-100 group-hover:scale-110 transition-all origin-left">
                 {item.icon}

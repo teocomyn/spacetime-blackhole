@@ -24,7 +24,7 @@ export default function BibliographySection() {
   return (
     <section
       id="bibliography"
-      className="relative w-full bg-bg-primary py-32 px-6 border-t border-white/5"
+      className="relative w-full bg-black/50 py-32 px-6 border-t border-white/5"
     >
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-16">
@@ -41,7 +41,7 @@ export default function BibliographySection() {
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-xl border border-white/5 bg-bg-secondary/40 p-5 backdrop-blur-sm transition-colors hover:border-accent-blue/30 hover:bg-accent-blue/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+                className="reveal-3d group block rounded-xl border border-white/10 bg-[#060814]/75 p-5 backdrop-blur-md transition-colors hover:border-accent-blue/30 hover:bg-accent-blue/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
               >
                 <div className="flex flex-wrap items-baseline gap-3 mb-2">
                   <span className="font-sans text-xl text-accent-blue">{item.year}</span>

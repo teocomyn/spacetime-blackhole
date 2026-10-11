@@ -4,20 +4,23 @@ import Link from "next/link";
 import { useApp } from "@/context/AppContext";
 import { PAGES, REFERENCE_KEYS, TOOL_KEYS, TOPIC_KEYS, pagePath, type PageKey } from "@/lib/routes";
 import { ui } from "@/lib/ui";
+import { useTilt } from "@/hooks/useTilt";
 
 export default function ExploreSection() {
   const { locale } = useApp();
   const t = ui(locale);
+  const tilt = useTilt(9);
 
   const group = (title: string, keys: readonly PageKey[], featured = false) => (
     <div>
       <h3 className="mb-4 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">{title}</h3>
       <ul className={`grid gap-3 ${featured ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-3"}`}>
         {keys.map((key) => (
-          <li key={key}>
+          <li key={key} className="reveal-3d">
             <Link
               href={pagePath(key, locale)}
-              className="group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors hover:border-accent-blue/40 hover:bg-accent-blue/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
+              {...tilt}
+              className="tilt group flex h-full flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-colors hover:border-accent-blue/40 hover:bg-accent-blue/[0.05] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-cyan"
             >
               <span className="font-sans text-lg font-light text-white group-hover:text-accent-cyan">
                 {PAGES[key].navLabel[locale]}

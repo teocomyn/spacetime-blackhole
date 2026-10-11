@@ -3,9 +3,7 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { AmbientToggle, SingularityDrone } from "@/components/media/AmbientAudio";
-import BackgroundVideo from "@/components/media/BackgroundVideo";
 import MediaBadge from "@/components/topic/MediaBadge";
-import { BLACKHOLE_VIDEOS } from "@/lib/constants";
 import { useApp } from "@/context/AppContext";
 import { useTranslation } from "@/lib/i18n";
 
@@ -19,8 +17,6 @@ export default function BlackHoleFinaleSection() {
     offset: ["start start", "end end"],
   });
 
-  const videoScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.15, 1, 0.92]);
-  const videoOpacity = useTransform(scrollYProgress, [0, 0.15, 0.85, 1], [0.35, 0.85, 0.85, 0.4]);
   const line1Y = useTransform(scrollYProgress, [0, 0.35], [80, 0]);
   const line1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.5], [0, 1, 0.3]);
   const line2Opacity = useTransform(scrollYProgress, [0.25, 0.45, 0.7], [0, 1, 0.4]);
@@ -30,23 +26,16 @@ export default function BlackHoleFinaleSection() {
     <section
       id="singularity"
       ref={ref}
-      className="relative z-[60] h-[220vh] bg-black"
+      className="relative z-[60] h-[260vh]"
       aria-label={t.finale.aria}
     >
       <SingularityDrone active={ambientOn} />
 
       <div className="sticky top-0 h-screen w-full overflow-hidden">
-        <motion.div style={{ scale: videoScale, opacity: videoOpacity }} className="absolute inset-0">
-          <BackgroundVideo
-            src={BLACKHOLE_VIDEOS.singularityMp4}
-            className="absolute inset-0 h-full w-full object-cover"
-            lazy
-          />
-        </motion.div>
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,transparent_0%,rgba(0,0,0,0.55)_55%,rgba(0,0,0,0.92)_100%)]" />
-        <MediaBadge kind="artistic" locale={locale} className="absolute left-4 top-6 z-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
+        {/* Le trou noir vient du fond 3D de la page : ici, la caméra plonge jusqu'à l'horizon. */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_55%_40%_at_50%_50%,rgba(0,0,0,0.6),transparent_75%)]" />
+        <MediaBadge kind="computed" locale={locale} className="absolute bottom-24 left-4 z-20" />
+        <div className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-black/70" />
 
         <div className="relative z-10 flex h-full flex-col items-center justify-center px-6 text-center">
           <p className="mb-6 text-[11px] font-semibold uppercase tracking-[0.28em] text-white/50">
@@ -62,7 +51,7 @@ export default function BlackHoleFinaleSection() {
 
           <motion.p
             style={{ opacity: line2Opacity }}
-            className="mt-4 max-w-[18ch] font-sans text-[clamp(1.6rem,4.5vw,3.2rem)] font-semibold leading-tight tracking-[-0.02em] text-accent-deep"
+            className="mt-4 max-w-[18ch] font-sans text-[clamp(1.6rem,4.5vw,3.2rem)] font-semibold leading-tight tracking-[-0.02em] text-accent-deep-text"
           >
             {t.finale.line2}
           </motion.p>

@@ -14,6 +14,8 @@ interface Props {
   diskIntensity?: number;
   maxSteps?: number;
   animate?: boolean;
+  /** Lentille du curseur : position en coordonnées normalisées (-1 à 1) et rayon d'Einstein (0 pour désactiver). */
+  cursorLens?: { current: { x: number; y: number; strength: number } };
 }
 
 export default function LensingQuad({
@@ -24,6 +26,7 @@ export default function LensingQuad({
   diskIntensity = 1.4,
   maxSteps = 180,
   animate = true,
+  cursorLens,
 }: Props) {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
   const elapsed = useRef(0);
@@ -40,13 +43,16 @@ export default function LensingQuad({
       uDiskOuter: { value: diskOuter },
       uDiskIntensity: { value: diskIntensity },
       uMaxSteps: { value: maxSteps },
+      uMouse: { value: new THREE.Vector2() },
+      uMouseLens: { value: 0 },
+      uAspect: { value: 1 },
     }),
     // Les uniformes sont créés une fois ; les valeurs sont mises à jour à chaque image.
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
-  useFrame(({ camera }, delta) => {
+  useFrame(({ camera, size }, delta) => {
     const material = materialRef.current;
     if (!material) return;
     if (animate) elapsed.current += Math.min(delta, 0.1);
@@ -62,6 +68,11 @@ export default function LensingQuad({
     u.uDiskOuter.value = diskOuter;
     u.uDiskIntensity.value = diskIntensity;
     u.uMaxSteps.value = maxSteps;
+    u.uAspect.value = size.width / Math.max(size.height, 1);
+    if (cursorLens) {
+      u.uMouse.value.set(cursorLens.current.x, cursorLens.current.y);
+      u.uMouseLens.value = cursorLens.current.strength;
+    }
   });
 
   return (
