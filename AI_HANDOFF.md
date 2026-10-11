@@ -2,7 +2,7 @@
 
 Updated: 2026-10-11
 Agent/tool: Claude Code
-Branch: feat/live-black-hole (poussée sur origin, pas encore fusionnée dans main)
+Branch: main (feat/live-black-hole fusionnée en avance rapide et poussée le 2026-10-11, avec l'accord de Teo)
 
 ## Completed
 
@@ -18,7 +18,7 @@ Branch: feat/live-black-hole (poussée sur origin, pas encore fusionnée dans ma
 
 - `npx tsc --noEmit` OK, `npx next lint` sans avertissement, `npm run build` OK.
 - Captures en Chrome headless (rendu logiciel SwiftShader) : hero desktop et mobile, lentille du curseur, frise, Singularité à 30 % et 95 %. Pas de débordement horizontal sur mobile.
-- Non vérifié : fluidité sur un vrai GPU (Mac, téléphone). À tester sur l'URL de prévisualisation Vercel avant fusion.
+- Mise en production validée par Teo le 2026-10-11. Fluidité sur appareils réels non mesurée par l'agent : à surveiller (qualité adaptative en place).
 
 ## Uncommitted or sensitive areas
 
@@ -26,9 +26,8 @@ Branch: feat/live-black-hole (poussée sur origin, pas encore fusionnée dans ma
 
 ## Blockers and decisions needed
 
-- Teo doit tester la prévisualisation de `feat/live-black-hole`, puis valider la fusion dans `main` (déploiement en production).
 - Search Console, diffusion, relecture scientifique, montée vers Next 16 : inchangés (voir `docs/diffusion.md`).
 
 ## Next concrete action
 
-- Après validation : fusionner `feat/live-black-hole` dans `main`, pousser, vérifier https://blackhole.the42laws.fr.
+- Recueillir les retours de Teo sur le rendu réel (fluidité, lisibilité) et ajuster les images clés de caméra dans `components/three/lensing/BackdropCanvas.tsx` si besoin.
